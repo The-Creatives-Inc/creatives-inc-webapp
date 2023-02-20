@@ -1,3 +1,6 @@
+<?php
+  session_start(); // Session starts here.
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -94,6 +97,18 @@
     <title>Sign Up</title>
   </head>
   <body>
+    <!--- Catching errors PHP --->
+    <span id="error">
+
+         <!---- Initializing Session for errors --->
+         <?php
+             if (!empty($_SESSION['error'])) {
+              echo ("<p style='color: red;'>".$_SESSION['error']."</p>");
+              unset($_SESSION['error']);
+             }
+         ?>
+
+         </span>
     <h1></h1>
     <div class="main-nav">
         <nav class="nav">
@@ -107,38 +122,52 @@
 
 
 
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
-            <input type="name" class="form-control" id="exampleInputEmail1" placeholder="Email">
-          </div>  
+    <form action="signup-2.php" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>  
+            <input type="password" class="form-control" id="exampleInputPassword1" name="confirm-password" placeholder="Password">
+          </div>
+          <p id="error-message"></p>  
           <div class="form-group">
-            <p class="help-block"><input type="checkbox"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
+            <p class="help-block">
+              <input type="checkbox" name="policy" id="accept"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
           </div>
           <div class="form-group">
-            <p class="help-block"><input type="checkbox">Artist <input type="checkbox">Viewer <input type="checkbox"> Promoter</p>
+            <p class="help-block">
+              <input type="radio" name="user-type" value="Artist">Artist 
+              <input type="radio" name="user-type" value="Viewer">Viewer 
+              <input type="radio" name="user-type" value="Promoter"> Promoter
+            </p>
           </div>    
-        <button type="submit" id="popUpYes">Submit</button>
+        <button type="submit" id="popUpYes" name="next" disabled>Next</button>
       </form>
-      
-      
-
-
-
 
       </div>
+      <script type="text/javascript">
+        const acceptBox = document.getElementById("accept");
+        const btn = document.getElementById("popUpYes");
+
+        acceptBox.addEventListener("change", (e) => {
+          e.preventDefault();
+          if(acceptBox.checked) {
+            btn.removeAttribute("disabled");
+          } else {
+            btn.disabled = "disabled";
+
+          }
+          
+
+        })
+        
+      </script>
     </body>
   </html>
 

@@ -169,7 +169,11 @@ if (isset($_POST['next'])){
             <p class="help-block"><input type="checkbox"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
           </div>
           <div class="form-group">
-            <p class="help-block"><input type="checkbox">Artist <input type="checkbox">Viewer <input type="checkbox"> Promoter</p>
+            <p class="help-block">
+                <input type="checkbox">Artist 
+                <input type="checkbox">Viewer 
+                <input type="checkbox"> Promoter
+            </p>
           </div>    
         <button type="submit" id="popUpYes">Submit</button>
       </form>

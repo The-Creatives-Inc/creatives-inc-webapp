@@ -142,9 +142,12 @@
           </div>
           <div class="form-group">
             <p class="help-block">
-              <input type="radio" name="user-type" value="Artist">Artist 
-              <input type="radio" name="user-type" value="Viewer">Viewer 
-              <input type="radio" name="user-type" value="Promoter"> Promoter
+              <select name="user-type">
+                <option value="Individual Artist">Individual Artist</option>
+                <option value="Individual Viewer">Individual Viewer</option>
+                <option value="Company Artist">Company Artist</option>
+                <option value="Company Viewer">Company Viewer</option>
+              </select>
             </p>
           </div>    
         <button type="submit" id="popUpYes" name="next" disabled>Next</button>

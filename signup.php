@@ -1,3 +1,6 @@
+<?php
+  session_start(); // Session starts here.
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -48,11 +51,11 @@
           }
          
           label{
-            margin-top: 3%;
+            margin-top: 1%;
           }
          
           input{
-            margin-top: 3%;
+            margin-top: 1%;
           }
 
           button{
@@ -61,7 +64,8 @@
             padding-right: 35%;
             padding-top: 1%;
             padding-bottom: 1%;
-            border-radius: 10px;           
+            border-radius: 10px;
+            
           }
           
           #popUpYes {
@@ -90,9 +94,21 @@
           
     </style>
 
-    <title>Login</title>
+    <title>Sign Up</title>
   </head>
   <body>
+    <!--- Catching errors PHP --->
+    <span id="error">
+
+         <!---- Initializing Session for errors --->
+         <?php
+             if (!empty($_SESSION['error'])) {
+              echo ("<p style='color: red;'>".$_SESSION['error']."</p>");
+              unset($_SESSION['error']);
+             }
+         ?>
+
+         </span>
     <h1></h1>
     <div class="main-nav">
         <nav class="nav">
@@ -101,32 +117,60 @@
     </div>
 
     <div class="main-nav-info">
-            <h4>New? Create an account <a href="" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">here</a></h4>    
+            <h4>Already have an account? <a href="" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">sign in</a></h4>    
     </div>
 
 
 
-    <form>
+    <form action="signup-2.php" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
         </div>
         <div class="form-group">
-          <p class="help-block"><input type="checkbox"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
-        </div>
-        <button type="submit" id="popUpYes">Submit</button>
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="confirm-password" placeholder="Password">
+          </div>
+          <p id="error-message"></p>  
+          <div class="form-group">
+            <p class="help-block">
+              <input type="checkbox" name="policy" id="accept"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
+          </div>
+          <div class="form-group">
+            <p class="help-block">
+              <select name="user-type">
+                <option value="Individual Artist">Individual Artist</option>
+                <option value="Individual Viewer">Individual Viewer</option>
+                <option value="Company Artist">Company Artist</option>
+                <option value="Company Viewer">Company Viewer</option>
+              </select>
+            </p>
+          </div>    
+        <button type="submit" id="popUpYes" name="next" disabled>Next</button>
       </form>
-      
-      
-
-
-
 
       </div>
+      <script type="text/javascript">
+        const acceptBox = document.getElementById("accept");
+        const btn = document.getElementById("popUpYes");
+
+        acceptBox.addEventListener("change", (e) => {
+          e.preventDefault();
+          if(acceptBox.checked) {
+            btn.removeAttribute("disabled");
+          } else {
+            btn.disabled = "disabled";
+
+          }
+          
+
+        })
+        
+      </script>
     </body>
   </html>
 

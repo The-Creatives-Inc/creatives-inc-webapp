@@ -17,30 +17,7 @@
             background: #000000;
             color: white;
             font-family: 'Montserrat', sans-serif;
-        }
-        .nav {
-            margin-top: 6%;
-            border-radius: 0;
-            background-color: black;
-            color: white;
-            border-color: white;
-            text-align: center;
-            justify-content: center;
-          }
-          
-          .main-nav-info{
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-          }
-
-          .nav a{
-              padding-bottom: 10px;
-              margin-left: 15px;
-              position: relative;
-              text-decoration: none;
-              color: white;
-          }
-          
+        }          
           form{
             text-align: center;
             margin-left: 35%;
@@ -94,33 +71,47 @@
   </head>
   <body>
     <h1></h1>
-    <div class="main-nav">
-        <nav class="nav">
-            <a class="nav-link" href="#"><h1>The Creative</h1></a>    
-    </nav>
-    </div>
 
-    <div class="main-nav-info">
-            <h4>New? Create an account <a href="" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">here</a></h4>    
-    </div>
+    <div class="row">
+        <div class="col-md-4" style="background-color: white; color: black;">
+            <div class="row">
+                <div class="col-md-12" style="background-color: rgb(248, 248, 248); color: black;">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style="width: 150px;" alt="Avatar" />
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-6" style="background-color: rgb(129, 0, 0); color: black;">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style="width: 150px;" alt="Avatar" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="background-color: rgb(0, 0, 0); color: rgb(247, 247, 247);">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus laborum sit ut sunt ipsa, animi provident aliquam libero quaerat asperiores maxime voluptatum pariatur veritatis nesciunt harum porro, eos, voluptatem vel.</p>
+                </div>
+            </div>
 
+        </div>
+        <div class="col-md-8">
 
-    <form>
+        </div>
+      </div> 
+
+    <!-- <form>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <div class="form-group">
-          <p class="help-block"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
+          <p class="help-block"><input type="checkbox"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
         </div>
-        <button type="submit" name="login" id="popUpYes">Login</button>
-    </form>
-      
+        <button type="submit" id="popUpYes">Submit</button>
+      </form>
+       -->
       
 
 

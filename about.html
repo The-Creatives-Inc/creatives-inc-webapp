@@ -128,6 +128,18 @@
 
 
 
+          .grow img{
+            transition: 1s ease;
+            }
+            
+          .grow img:hover{
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+            transition: 1s ease;
+            }
+            
+
     </style>
 
     <title>About</title>
@@ -155,7 +167,9 @@
               </div>
               <div class="col-md-6">
                 <!-- <img src="images/a2.png" alt=""> -->
-                <img src="images/a1.png" alt="" id="img1">
+                <div class="grow">
+                  <img src="images/a1.png" alt="" id="img1">
+                </div>
               </div>
             </div>
 

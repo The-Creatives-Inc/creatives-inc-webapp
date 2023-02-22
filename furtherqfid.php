@@ -19,6 +19,7 @@
             font-family: 'Montserrat', sans-serif;
         }
         .nav {
+            margin-top: 6%;
             border-radius: 0;
             background-color: black;
             color: white;
@@ -30,6 +31,8 @@
           .main-nav-info{
             text-align: center;
             font-family: 'Montserrat', sans-serif;
+            margin-top: 3%;
+            margin-bottom: 3%;
           }
 
           .nav a{
@@ -41,6 +44,7 @@
           }
           
           form{
+            text-align: center;
             margin-left: 35%;
             margin-right: 35%;
           }
@@ -59,7 +63,8 @@
             padding-right: 35%;
             padding-top: 1%;
             padding-bottom: 1%;
-            border-radius: 10px;      
+            border-radius: 10px;
+            
           }
           
           #popUpYes {
@@ -72,91 +77,95 @@
             color: white;
           }
 
-          .form-control{
+          #InputFirstName,#InputLastName, #InputPassword1, #InputPhone, #InputAccount, #InputDate{
             border-radius: 10px;
             background-color: black;
             color: white;
-          }
-          
-          h4{
-            text-align: right;
-            margin-right: 20%;
-          }
-          
-          form button#popUpYes{
             text-align: center;
-            justify-items: center;
-            padding-left: 20%;
-            padding-right: 20%;
           }
           
-          .container {
-            align-items: center;
-            justify-content: center;
+          #upload{
+            background-color: #000000;
+            border-color: white;
           }
 
-          input.checkbox {
-            height: 30px;
-            width: 30px;
-            outline: 2px solid orange;
-            accent-color: black;
-            background-color: red !important;
-          }
 
-          .row {
-
-            padding-top: 50px;
-            padding-bottom: 50px;
-           
-            font-size: 20px;
-          }
     </style>
 
     <title>Sign Up</title>
   </head>
   <body>
     <h1></h1>
-    <div class="main-nav">
-        <h4><a href="signup.php" style="color: white; font-family: 'Croissant One', cursive;">X</a></h4>
-        <nav class="nav">
-            <a class="nav-link" href="#"><h1>The Creative</h1></a>  
-        </nav>
+
+    <div class="main-nav-info">
+            <h4>Few steps away from becoming part of this space ... </h4>    
     </div>
-    
-    <div class="text-center">
-      <h3>WHAT ARE YOU INTERESTED IN?</h3>
-    
-    
+
     <form>
-      <div class="row ">
-        <div class="col-md-6">
-          <input type="checkbox" class="checkbox" id="design" name="design">
-          <label for="design" class="col-sm-2 col-form-label">Design</label>
+     <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style="width: 150px;" alt="Avatar" />
         </div>
-        <div class="col-md-6">
-          <input type="checkbox" class="checkbox" id="paint" name="paint">
-          <label for="paint" class="col-sm-2 col-form-label">Paint</label>
+          <div class="col-md-6">
+                <div class="form-group">
+                
+                    <div class="d-flex justify-content-center">
+                        <div class="btn btn-primary btn-rounded" id="upload">
+                            <label class="form-label text-white m-1" for="customFile1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                              </svg>  Upload Image  </label>
+                            <input type="file" class="form-control d-none" id="customFile1" />
+                        </div>
+                    </div>
+                
+                </div>  
+         </div>
         </div>
-      </div>
-      <div class="row ">
-       <div class="col-md-6">
-          <input type="checkbox" class="checkbox" id="stories" name="stories">
-          <label for="stories" class="col-sm-2 col-form-label">Stories</label>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="InputEmail1">Firstname</label>
+                    <input type="name" class="form-control" id="InputFirstName" placeholder="Firstname">
+                </div>  
         </div>
-        <div class="col-md-6">
-          <input type="checkbox" class="checkbox" id="poems" name="poems">
-          <label for="poems" class="col-sm-2 col-form-label">Poems</label>
+            <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="">Lastname</label>
+                      <input type="name" class="form-control" id="InputLastName" placeholder="Lastname">
+                  </div>  
+            </div>
         </div>
-      </div>
-      <button type="submit" id="popUpYes" name="next">Finally</button>
-        
-    </form>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="phone" class="form-control" id="InputPhone" placeholder="+48 999-999-99" data-mdb-input-mask="+48 999-999-999">
+                </div>  
+        </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="">AccountNo</label>
+                      <input type="text" class="form-control" id="InputAccount" placeholder="AccountNo">
+                  </div>  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="">Date</label>
+                    <input type="date" class="form-control" id="InputDate">
+                </div>  
+            </div>
+        </div>
+        <button type="submit" id="popUpYes" style="margin-top: 8%;">Move Ahead</button>
+    </form>      
       
-      
-
-
-
-
       </div>
     </body>
   </html>

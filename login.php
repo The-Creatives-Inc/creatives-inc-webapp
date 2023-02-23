@@ -87,6 +87,10 @@
             color: white;
             text-align: center;
           }
+
+          .help-block {
+            font-size: 10px;
+          }
           
     </style>
 
@@ -101,24 +105,25 @@
     </div>
 
     <div class="main-nav-info">
-            <h4>New? Create an account <a href="" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">here</a></h4>    
+            <h4>New? Create an account <a href="signup.php" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">here</a></h4>    
     </div>
 
 
 
-    <form>
+    <form action="login_proc.php" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+          <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
         </div>
         <div class="form-group">
-          <p class="help-block"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
-        </div>
-        <button type="submit" name="login" id="popUpYes">Login</button>
+            <p class="help-block">
+              <input type="checkbox" name="policy" id="accept"> By using The Creative, you agree to our Privacy Policy and Terms of Use.</p>
+          </div>
+        <button type="submit" id="popUpYes" name="login" disabled>Login</button>
     </form>
       
       
@@ -127,6 +132,54 @@
 
 
       </div>
+      <script type="text/javascript">
+        const acceptBox = document.getElementById("accept");
+        const btn = document.getElementById("popUpYes");
+        const email = document.getElementById("exampleInputEmail1");
+        const password = document.getElementById("exampleInputPassword1");
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        // const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+        const passwordRegex = /^[0-9]{3}/;
+
+        acceptBox.addEventListener("change", (e) => {
+          e.preventDefault();
+          if(acceptBox.checked) {
+
+            if (emailRegex.test(email.value) && passwordRegex.test(password.value)) 
+            {
+              email.style.border = "green solid 2px";
+              password.style.border = "green solid 2px";
+              btn.removeAttribute("disabled");
+            } 
+            else 
+            {
+              if (emailRegex.test(email.value) && !passwordRegex.test(password.value)) {
+                email.style.border = "green solid 2px";
+                password.style.border = "red solid 2px";         
+              }
+              else if (!emailRegex.test(email.value) && passwordRegex.test(password.value)) {
+                email.style.border = "red solid 2px";
+                password.style.border = "green solid 2px";
+              }
+              else {
+                  email.style.border = "red solid 2px";
+                  password.style.border = "red solid 2px";
+              }
+              btn.disabled = "disabled";
+              acceptBox.checked = false;
+            }
+            
+          } else {
+            btn.disabled = "disabled";
+
+          }
+
+          
+
+        })
+
+        
+      </script>
     </body>
   </html>
 

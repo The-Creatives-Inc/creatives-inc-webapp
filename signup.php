@@ -91,24 +91,16 @@
             color: white;
             text-align: center;
           }
+          .help-block {
+            font-size: 10px;
+          }
           
     </style>
 
     <title>Sign Up</title>
   </head>
   <body>
-    <!--- Catching errors PHP --->
-    <span id="error">
-
-         <!---- Initializing Session for errors --->
-         <?php
-             if (!empty($_SESSION['error'])) {
-              echo ("<p style='color: red;'>".$_SESSION['error']."</p>");
-              unset($_SESSION['error']);
-             }
-         ?>
-
-         </span>
+    
     <h1></h1>
     <div class="main-nav">
         <nav class="nav">
@@ -120,9 +112,22 @@
             <h4>Already have an account? <a href="" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">sign in</a></h4>    
     </div>
 
+    <!--- Catching errors PHP --->
+    <span id="error">
+
+         <!---- Initializing Session for errors --->
+         <?php
+             if (!empty($_SESSION['error'])) {
+              echo ("<p style='color: red; text-align: center;'>".$_SESSION['error']."</p>");
+              unset($_SESSION['error']);
+             }
+         ?>
+
+         </span>
 
 
-    <form action="signup-2.php" method="POST">
+
+    <form action="signup_ind.php" method="POST" id="form-id">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
@@ -142,11 +147,13 @@
           </div>
           <div class="form-group">
             <p class="help-block">
-              <select name="user-type">
-                <option value="Individual Artist">Individual Artist</option>
-                <option value="Individual Viewer">Individual Viewer</option>
-                <option value="Company Artist">Company Artist</option>
-                <option value="Company Viewer">Company Viewer</option>
+              Select Your Role: &nbsp
+              <select name="user-type" id="select">
+                <!-- <option value="" selected disabled="">Select</option> -->
+                <option value="1">Individual Viewer</option>
+                <option value="3">Individual Artist</option>
+                <option value="2">Company Artist</option>
+                <option value="4">Company Viewer</option>
               </select>
             </p>
           </div>    
@@ -157,6 +164,8 @@
       <script type="text/javascript">
         const acceptBox = document.getElementById("accept");
         const btn = document.getElementById("popUpYes");
+        const userSelected = document.getElementById("select");
+        let userValue = userSelected.value;
 
         acceptBox.addEventListener("change", (e) => {
           e.preventDefault();
@@ -166,6 +175,19 @@
             btn.disabled = "disabled";
 
           }
+          
+
+        })
+
+
+        userSelected.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (userSelected.value != userValue) {
+            userValue = userSelected.value;
+            document.getElementById("form-id").action = parseInt(userValue)%2 != 0 ? "signup_ind.php" : "signup_com.php";
+            
+          }
+          
           
 
         })

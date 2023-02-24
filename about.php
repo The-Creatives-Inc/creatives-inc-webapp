@@ -1,4 +1,3 @@
-<<<<<<< HEAD:about.html
 <!doctype html>
 <html lang="en">
   <head>
@@ -148,11 +147,12 @@
   <body>
     <h1></h1>
     <div class="main-nav">
-        <nav class="nav">
-            <a class="nav-link" href="#">HOME</a>
-            <a class="nav-link" href="#">ABOUT</a>
-            <a class="nav-link" href="#">CONTACT</a>
-            <a class="nav-link" href="#">PRESS</a>    
+    <nav class="nav">
+      <a class="nav-link" href="#top" id='current'>HOME</a>
+      <a class="nav-link" href="about.php">ABOUT</a>
+      <a class="nav-link" href="artist.php">ARTISTS</a>
+      <a class="nav-link" href="#arts">ARTWORKS</a>   
+      <a class="nav-link" href="login.php">SIGN IN</a>    
     </nav>
     </div>
 
@@ -256,7 +256,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
-=======
 <!doctype html>
 <html lang="en">
   <head>
@@ -500,5 +499,4 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
->>>>>>> 126800dc79c948d8d508675e9ee24d33566a5924:about.php
 </html>

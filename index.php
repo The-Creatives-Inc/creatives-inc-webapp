@@ -324,7 +324,7 @@
       <a class="nav-link" href="#top" id='current'>HOME</a>
       <a class="nav-link" href="about.php">ABOUT</a>
       <a class="nav-link" href="artist.php">ARTISTS</a>
-      <a class="nav-link" href="#arts">ARTWORKS</a>   
+      <a class="nav-link" href="arts.php">ARTWORKS</a>   
       <a class="nav-link" href="login.php">SIGN IN</a>    
     </nav>  
     <hr class="new1">

@@ -127,10 +127,11 @@
     <h1></h1>
     <div class="main-nav">
         <nav class="nav">
-            <a class="nav-link" href="#">HOME</a>
-            <a class="nav-link" href="#">ABOUT</a>
-            <a class="nav-link" href="#">CONTACT</a>
-            <a class="nav-link" href="#">PRESS</a>    
+            <a class="nav-link" href="index.php" id='current'>HOME</a>
+            <a class="nav-link" href="about.php">ABOUT</a>
+            <a class="nav-link" href="artist.php">ARTISTS</a>
+            <a class="nav-link" href="arts.php">ARTWORKS</a>   
+            <a class="nav-link" href="login.php">SIGN IN</a> 
     </nav>
     </div>
 
@@ -164,16 +165,16 @@
                 <p style="font-size: 30px; text-align:center">Other Works</p>
               </div>
               <div class="col-md-3">
-                <img src="images/i3.jpg" style="height: 150px; width: 80%">          
+                <a href="individualartwork.php"><img src="images/i3.jpg" style="height: 150px; width: 80%"> </a>         
               </div>
               <div class="col-md-3">
-                <img src="images/i4.jpg" style="height: 150px; width: 100%"/>
+                <a href="individualartwork.php"><img src="images/i4.jpg" style="height: 150px; width: 100%"/></a>
               </div>
               <div class="col-md-3">
-                <img src="images/i5.jpg" style="height: 150px; width: 100%"/>
-              </div>
+                <a href="individualartwork.php"><img src="images/i5.jpg" style="height: 150px; width: 100%"/>
+              </div></a>
               <div class="col-md-3">
-                <img src="images/i6.jpg" style="height: 150px; width: 100%"/>
+                <a href="individualartwork.php"><img src="images/i6.jpg" style="height: 150px; width: 100%"/></a>
               </div>
             </div>
 

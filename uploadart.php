@@ -109,7 +109,7 @@
                     <form>
                         <div class="form-group" style="text-align: left;">
                           <label for="">Title</label>
-                          <input style="width: 480px;" type="text" class="form-control" id="InputTitle" name="email" placeholder="Title">
+                          <input style="width: 100%;" type="text" class="form-control" id="InputTitle" name="email" placeholder="Title">
                         </div>
                         <div class="form-group">
                           <label for="">Description</label>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="form-group" style="text-align: left;">
                             <label for="">Hashtag</label>
-                            <input style="width: 480px;" type="text" class="form-control" id="Hashtag" name="email" placeholder="Hashtag">
+                            <input style="width: 100%;" type="text" class="form-control" id="Hashtag" name="email" placeholder="Hashtag">
                         </div>  
                     </form>
                 </div>
@@ -145,10 +145,10 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <button type="submit" id="popUpYes" name="login" disabled>Done</button>
+                    <button type="submit" id="popUpYes" name="login" onclick="location.href = 'individualartist.php';" >Done</button>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" id="popUpYes" name="login" disabled>Cancel</button>
+                    <button type="submit" id="popUpYes" name="login"onclick="location.href = 'individualartist.php';">Cancel</button>
                 </div>
             </div>
         </div>

@@ -95,10 +95,10 @@
     <h1></h1>
     <div class="main-nav">
     <nav class="nav">
-      <a class="nav-link" href="#top" id='current'>HOME</a>
+      <a class="nav-link" href="index.php" id='current'>HOME</a>
       <a class="nav-link" href="about.php">ABOUT</a>
       <a class="nav-link" href="artist.php">ARTISTS</a>
-      <a class="nav-link" href="#arts">ARTWORKS</a>   
+      <a class="nav-link" href="arts.php">ARTWORKS</a>   
       <a class="nav-link" href="login.php">SIGN IN</a>    
     </nav>
     </div>
@@ -111,25 +111,25 @@
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/thirteen.jpg" class="rounded float-left" style="height: 150px; width: 80%">          
+              <a href="individualartist.php"><img src="images/thirteen.jpg" class="rounded float-left" style="height: 150px; width: 80%"></a>           
             </div>
             </div>
           <div class="col-md-2">
-            <p>Pen Down <br> Category: Poetry</p>
+            <a href="individualartist.php"><p>Pen Down <br> Category: Poetry</p></a> 
           </div>
           <div class="col-md-2">
             <div class="grow">
-              <img src="images/fourteen.jpg"  style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/fourteen.jpg"  style="height: 150px; width: 100%"></a>         
             </div>
           </div>
           <div class="col-md-2">
             <div class="grow">
-              <img src="images/fifteen.jpg"  style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/fifteen.jpg"  style="height: 150px; width: 100%"></a>           
             </div>
           </div>
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/sixteen.jpg" style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/sixteen.jpg" style="height: 150px; width: 100%"> </a>         
             </div>
           </div>
 
@@ -140,12 +140,12 @@
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/eighteen.jpg" class="rounded float-left" style="height: 150px; width: 80%">          
+              <a href="individualartist.php"><img src="images/eighteen.jpg" class="rounded float-left" style="height: 150px; width: 80%"></a>           
             </div>
           </div>
           <div class="col-md-2">
-            <p>Kalers <br>
-              Category: Painting</p>
+            <a href="individualartist.php"><p>Kalers <br>
+              Category: Painting</p></a> 
           </div>
           <div class="col-md-2">
             <!-- <img src="images/hero_2.jpg" style="height: 150px; width: 100%"/> -->
@@ -155,7 +155,7 @@
           </div>
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/nineteen.jpg" style="height: 150px; width: 80%">          
+              <a href="individualartwork.php"><img src="images/nineteen.jpg" style="height: 150px; width: 80%"></a>          
             </div>
           </div>
 
@@ -167,24 +167,24 @@
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/twenty.jpg" class="rounded float-left" style="height: 150px; width: 80%">          
+              <a href="individualartist.php"><img src="images/twenty.jpg" class="rounded float-left" style="height: 150px; width: 80%"></a>           
             </div>
           </div>
           <div class="col-md-2">
-            <p>The C_Master <br>
-              Category: Digital Design</p>
+            <a href="individualartist.php"><p>The C_Master <br>
+              Category: Digital Design</p></a> 
           </div>
           <div class="col-md-2">
             <!-- <img src="images/hero_2.jpg" style="height: 150px; width: 100%"/> -->
           </div>
           <div class="col-md-2">
             <div class="grow">
-              <img src="images/eight.png"style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/eight.png"style="height: 150px; width: 100%"></a>          
             </div>
           </div>
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/sixteen.jpg" style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/sixteen.jpg" style="height: 150px; width: 100%"></a>          
             </div>
           </div>
 
@@ -195,26 +195,26 @@
         <div class="row">
           <div class="col-md-3 no">
             <div class="grow">
-              <img src="images/eleven.png" class="rounded float-left" style="height: 150px; width: 80%">          
+              <a href="individualartist.php"><img src="images/eleven.png" class="rounded float-left" style="height: 150px; width: 80%"></a>           
             </div>
           </div>
           <div class="col-md-2">
-            <p>Sound of Africa <br>
-              Category:  Beat Making</p>
+            <a href="individualartist.php"><p>Sound of Africa <br>
+              Category:  Beat Making</p></a> 
           </div>
           <div class="col-md-2">
             <div class="grow">
-              <img src="images/nine.png" style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/nine.png" style="height: 150px; width: 100%"></a>          
             </div>
           </div>
           <div class="col-md-2">
             <div class="grow">
-              <img src="images/ten.png" style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/ten.png" style="height: 150px; width: 100%"></a>          
             </div>
           </div>
           <div class="col-md-3">
             <div class="grow">
-              <img src="images/eleven.png" style="height: 150px; width: 100%">          
+              <a href="individualartwork.php"><img src="images/eleven.png" style="height: 150px; width: 100%"></a>          
             </div>
           </div>
 

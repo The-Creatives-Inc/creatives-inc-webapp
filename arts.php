@@ -165,10 +165,10 @@
     <h1></h1>
     <div class="main-nav">
     <nav class="nav">
-      <a class="nav-link" href="#top" id='current'>HOME</a>
+      <a class="nav-link" href="index.php" id='current'>HOME</a>
       <a class="nav-link" href="about.php">ABOUT</a>
       <a class="nav-link" href="artist.php">ARTISTS</a>
-      <a class="nav-link" href="#arts">ARTWORKS</a>   
+      <a class="nav-link" href="arts.php">ARTWORKS</a>   
       <a class="nav-link" href="login.php">SIGN IN</a>    
     </nav>
     </div>
@@ -184,8 +184,8 @@
                 <p>Valeri by Mastermind</p>
 
                 <div class="overlay">
-                         <h2>Hover effect 1</h2>
-                         <a class="info" href="#">link here</a>
+                         <h2>Artwork 1</h2>
+                         <a class="info" href="individualartwork.php">View Artwork</a>
                 </div>
               </div>
 
@@ -196,8 +196,8 @@
               <p>Valeri by Mastermind</p>
 
               <div class="overlay">
-                       <h2>Hover effect 1</h2>
-                       <a class="info" href="#">link here</a>
+                       <h2>Artwork 2</h2>
+                       <a class="info" href="individualartwork.php">View Artwork</a>
               </div>
               </div>
 
@@ -209,8 +209,8 @@
                 <p>Valeri by Mastermind</p>
 
                 <div class="overlay">
-                         <h2>Hover effect 1</h2>
-                         <a class="info" href="#">link here</a>
+                         <h2>Artwork 3</h2>
+                         <a class="info" href="individualartwork.php">View Artwork</a>
                 </div>
               </div>
 
@@ -227,8 +227,8 @@
               <p>Valeri by Mastermind</p>
 
               <div class="overlay">
-                       <h2>Hover effect 1</h2>
-                       <a class="info" href="#">link here</a>
+                       <h2>Artwork 1</h2>
+                       <a class="info" href="individualartwork.php">View Artwork</a>
               </div>
             </div>
             </div>
@@ -238,8 +238,8 @@
             <p>Valeri by Mastermind</p>
 
             <div class="overlay">
-                     <h2>Hover effect 1</h2>
-                     <a class="info" href="#">link here</a>
+                     <h2>Artwork </h2>
+                     <a class="info" href="individualartwork.php">View Artwork</a>
             </div>
           </div>
           </div>
@@ -249,8 +249,8 @@
           <p>Valeri by Mastermind</p>
 
           <div class="overlay">
-                   <h2>Hover effect 1</h2>
-                   <a class="info" href="#">link here</a>
+                   <h2>Artwork </h2>
+                   <a class="info" href="individualartwork.php">View Artwork</a>
           </div>
         </div>
         </div>
@@ -261,8 +261,8 @@
         <p>Valeri by Mastermind</p>
 
         <div class="overlay">
-                 <h2>Hover effect 1</h2>
-                 <a class="info" href="#">link here</a>
+                 <h2>Artwork </h2>
+                 <a class="info" href="individualartwork.php">View Artwork</a>
         </div>
       </div>
       </div>

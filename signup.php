@@ -175,9 +175,6 @@
             btn.disabled = "disabled";
 
           }
-          
-
-        
 
 
         userSelected.addEventListener("click", (e) => {

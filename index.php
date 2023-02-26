@@ -324,7 +324,7 @@
       <a class="nav-link" href="#top" id='current'>HOME</a>
       <a class="nav-link" href="about.php">ABOUT</a>
       <a class="nav-link" href="artist.php">ARTISTS</a>
-      <a class="nav-link" href="#arts">ARTWORKS</a>   
+      <a class="nav-link" href="arts.php">ARTWORKS</a>   
       <a class="nav-link" href="login.php">SIGN IN</a>    
     </nav>  
     <hr class="new1">
@@ -344,8 +344,8 @@
             <img src="images/one.png" style="height: 400px; width: 90%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -353,10 +353,10 @@
         <div class="col-md-4">
           <div class="hovereffect">
             <img src="images/two.png" style="height: 400px; width: 90%"/>
-            <p>Valeri by Mastermind</p>
+            <p>Violet by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Violet</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -364,10 +364,10 @@
         <div class="col-md-4">
           <div class="hovereffect">
             <img src="images/three.png" style="height: 400px; width: 90%"/>
-            <p>Valeri by Mastermind</p>
+            <p>Ashis by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Ashis</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -381,8 +381,8 @@
             <img src="images/four.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -392,8 +392,8 @@
             <img src="images/five.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -403,8 +403,8 @@
             <img src="images/six.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -414,8 +414,8 @@
             <img src="images/seven.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -427,8 +427,8 @@
             <img src="images/four.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -438,8 +438,8 @@
             <img src="images/five.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -449,8 +449,8 @@
             <img src="images/six.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -460,8 +460,8 @@
             <img src="images/seven.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -473,8 +473,8 @@
             <img src="images/four.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -484,8 +484,8 @@
             <img src="images/five.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -495,8 +495,8 @@
             <img src="images/six.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -506,8 +506,8 @@
             <img src="images/seven.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -519,8 +519,8 @@
             <img src="images/four.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -530,8 +530,8 @@
             <img src="images/five.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -541,8 +541,8 @@
             <img src="images/six.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>
@@ -552,8 +552,8 @@
             <img src="images/seven.png" style="height: 140px; width: 100%"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
-              <h2>Hover effect 1</h2>
-              <a class="info" href="#">link here</a>
+              <h2>Valeri</h2>
+              <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
         </div>

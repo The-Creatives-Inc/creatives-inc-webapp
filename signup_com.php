@@ -18,7 +18,7 @@ if (isset($_POST['next'])){
          $_POST['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
         //  $passwordRegex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/';
-        $passwordRegex = '/^[0-9]{3}/';
+        $passwordRegex = '/^[0-9]{3}/';      
 
          $isPassValid = preg_match($passwordRegex, $_POST['password']);
 
@@ -55,8 +55,6 @@ if (isset($_POST['next'])){
  }
 }
 ?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -126,6 +124,7 @@ if (isset($_POST['next'])){
             background-color: rgb(255, 255, 255);
             color: #000000;
             margin: auto 15%;
+
           }
           
           #popUpYes:hover {
@@ -151,6 +150,7 @@ if (isset($_POST['next'])){
             padding-right: 20%;
           }
           
+
           #country{
             display: block;
             margin-top: 7%;
@@ -200,6 +200,7 @@ if (isset($_POST['next'])){
           <input type="file" class="form-control" accept="image/*" placeholder="Select image">
         </div> 
         <div class="form-group">
+
           <select name="country" id="country">
             <option value="dummy" selected disabled>Select country</option>
             <?php
@@ -218,12 +219,8 @@ if (isset($_POST['next'])){
                 <?php
                     }
                 ?>               
-            ?>
+           ?>
           </select>
-          <input type="text" class="form-control" id='code' value="" readonly>
-          <input type="text" class="form-control" id='number' value="">
-          
-          
         </div> 
         <div class="form-group float-none">
           <label for="address">Address</label>
@@ -250,10 +247,10 @@ if (isset($_POST['next'])){
         })
       
       </script>
-      
-      
-    </body>
-  </html>
+
+      </div>
+
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

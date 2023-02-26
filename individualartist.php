@@ -295,11 +295,11 @@
     <h1></h1>
     <div class="main-nav">
         <nav class="nav">
-            <a class="nav-link" href="#">HOME</a>
-            <a class="nav-link" href="#">ABOUT</a>
-            <a class="nav-link" href="#" id='current'>ARTISTS</a>
-            <a class="nav-link" href="#">ARTWORKS</a>   
-            <a class="nav-link" href="#">SIGN IN</a>    
+            <a class="nav-link" href="index.php">HOME</a>
+            <a class="nav-link" href="about.php">ABOUT</a>
+            <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
+            <a class="nav-link" href="arts.php">ARTWORKS</a>   
+            <a class="nav-link" href="login.php">SIGN IN</a>    
 
         </nav>
         
@@ -318,7 +318,7 @@
       </div>
       
       <div id='buttons'>
-        <span><a href=''>Create</a></span>
+        <span><a href="uploadart.php">Create</a></span>
         <span><a href=''>Blank</a></span>
       </div>
       
@@ -371,7 +371,7 @@
         <div class="col-md-8 col-sm-8">
           <!-- 1 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -388,7 +388,7 @@
           
           <!-- 2 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -406,7 +406,7 @@
           
           <!-- 3 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -424,7 +424,7 @@
           
           <!-- 4 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -441,7 +441,7 @@
           
           <!-- 5 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -458,7 +458,7 @@
           
           <!-- 6 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -475,7 +475,7 @@
           
           <!-- 7 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -492,7 +492,7 @@
           
           <!-- 8 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -509,7 +509,7 @@
           
           <!-- 9 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">
@@ -526,7 +526,7 @@
           
           <!-- 10 -->
           <div class="inside col-md-4 col-sm-6">
-            <img src="images/i1.jpg" style="height: 100%; width: 100%"> <br>
+            <a href="individualartwork.php"><img src="images/i1.jpg" style="height: 100%; width: 100%"> <br></a>
             
             <div class="next-inside">
               <div class="">

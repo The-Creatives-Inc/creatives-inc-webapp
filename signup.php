@@ -173,9 +173,11 @@
           } else {
             btn.disabled = "disabled";
           }
+
         })
-        
-        userSelected.addEventListener("click", (e) => {
+
+
+       userSelected.addEventListener("click", (e) => {
           e.preventDefault();
           if (userSelected.value != userValue) {
             userValue = userSelected.value;

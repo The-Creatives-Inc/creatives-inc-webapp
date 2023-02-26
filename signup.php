@@ -85,7 +85,7 @@
             text-align: center;
           }
 
-          #exampleInputPassword1{
+          #exampleInputPassword1, #exampleInputPassword2{
             border-radius: 10px;
             background-color: black;
             color: white;
@@ -127,7 +127,7 @@
 
 
 
-    <form action="signup_ind.php" method="POST" id="form-id">
+    <form action="signup_com.php" method="POST" id="form-id">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
@@ -138,7 +138,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="confirm-password" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword2" name="confirm-password" placeholder="Password">
           </div>
           <p id="error-message"></p>  
           <div class="form-group">
@@ -149,11 +149,10 @@
             <p class="help-block">
               Select Your Role: &nbsp
               <select name="user-type" id="select">
-                <!-- <option value="" selected disabled="">Select</option> -->
                 <option value="1">Individual Viewer</option>
                 <option value="3">Individual Artist</option>
                 <option value="2">Company Artist</option>
-                <option value="4">Company Viewer</option>
+                <option value="4" selected>Company Viewer</option>
               </select>
             </p>
           </div>    
@@ -173,25 +172,17 @@
             btn.removeAttribute("disabled");
           } else {
             btn.disabled = "disabled";
-
           }
-          
-
+        })
         
-
-
         userSelected.addEventListener("click", (e) => {
           e.preventDefault();
           if (userSelected.value != userValue) {
             userValue = userSelected.value;
             document.getElementById("form-id").action = parseInt(userValue)%2 != 0 ? "signup_ind.php" : "signup_com.php";
-            
           }
-          
-          
-
         })
-        
+  
       </script>
     </body>
   </html>

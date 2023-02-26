@@ -200,7 +200,7 @@
                 margin-right: 1%;
                 margin: 0;
                 margin-bottom: 5%; 
-                margin-right: 3%;
+                margin-right: 2%;
               }
             }
             

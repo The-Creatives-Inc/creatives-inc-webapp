@@ -7,11 +7,11 @@ if (isset($_POST['login']))
   $userEmail =  $_POST['email'];
   $password = $_POST['password'];
 
-  //database connection parameters
-  $servername = "localhost";
-  $username = "root";
-  $db_password = "";
-  $dbname = "creative_db";
+  // database connection parameters
+  // $servername = "18.168.199.7";
+  // $username = "ubuntu";
+  // $db_password = "creatives@23";
+  // $dbname = "creative_db";
 
   // Create connection
   $conn = new mysqli($servername, $username, $db_password, $dbname);

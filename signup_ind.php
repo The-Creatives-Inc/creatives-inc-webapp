@@ -168,14 +168,13 @@ if (isset($_POST['next'])){
     </div>
 
     <?php
-        if ($_SESSION['user-type'] == 1) {
+        if ($_SESSION['post']['user-type'] == 1) {
          echo ("<form action='signup-final.php' method='POST'>");
         } else {
           echo ("<form action='signup-artist.php' method='POST'>");
         }
         
     ?>
-    <form action="<? =$_SESSION['user-type'] == 1 ? 'signup-final.php' : 'signup-artist.php' ?>" method="POST">
      <div class="container">
         <div class="row">
           <div class="col-md-4">

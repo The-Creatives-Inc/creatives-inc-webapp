@@ -393,188 +393,70 @@
     <!-- </div>
   
     <div class="container"> -->
-      <div class="row">
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/four.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
+      <?php
+          require_once('configuration.php');
+          
+          $query = "SELECT linkID, link FROM link";
+          $result = $conn->query($query);
+          
+          if($result->num_rows > 0){
+              $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
+          }
+          
+          
+          // foreach ($options as $option){
+            for ($x = 0; $x < count($options); $x+=4){
+      ?>
+     
+        <div class="row">
+          <div class="col-md-3">
+            <div class="hovereffect">
+              <img src="<?= $options[$x + 0]['link']; ?>" style="height: 140px; width: 100%"/>
+              <p>Valeri by Mastermind</p>
+              <div class="overlay">
+                <h2>Valeri</h2>
+                <a class="info" href="individualartwork.php">link here</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="hovereffect">
+              <img src="<?= $options[$x + 1]['link']; ?>" style="height: 140px; width: 100%"/>
+              <p>Valeri by Mastermind</p>
+              <div class="overlay">
+                <h2>Valeri</h2>
+                <a class="info" href="individualartwork.php">link here</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="hovereffect">
+              <img src="<?= $options[$x + 2]['link']; ?>" style="height: 140px; width: 100%"/>
+              <p>Valeri by Mastermind</p>
+              <div class="overlay">
+                <h2>Valeri</h2>
+                <a class="info" href="individualartwork.php">link here</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="hovereffect">
+              <img src="<?= $options[$x + 3]['link']; ?>" style="height: 140px; width: 100%"/>
+              <p>Valeri by Mastermind</p>
+              <div class="overlay">
+                <h2>Valeri</h2>
+                <a class="info" href="individualartwork.php">link here</a>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/five.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/six.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/seven.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-      </div>
       
-      <div class="row">
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/four.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/five.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/six.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/seven.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/four.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/five.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/six.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/seven.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/four.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/five.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/six.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="hovereffect">
-            <img src="images/seven.png" style="height: 140px; width: 100%"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
+      <?php
+         }
+      ?>  
       </div>
     </div>
   </div>

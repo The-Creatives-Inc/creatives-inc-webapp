@@ -15,53 +15,71 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
+        a{
+          color: white;
+        }
+        
+        a:hover{
+          color: #DF9322;
+          text-decoration: none;
+        
+        }
+        
         body{
             background: #000000;
             color: white;
             font-family: 'Montserrat', sans-serif;
         }
+        .main-nav{
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          background-color: rgba(0,0,0,0.8);
+          margin-bottom: 70px;
+        }
+        
         .nav {
-            margin-top: 2%;
-            margin-bottom: 2.5%;
-            border-radius: 0;
-            background-color: black;
+          padding: 1% 0;
+          border-radius: 0;
+          background-color: black;
+          color: white;
+          border-color: white;
+          font-family: 'Fira Sans', sans-serif;
+          justify-content: center;
+          background-color: rgba(0,0,0,0);
+        }
+       
+        hr.new1 {
+          border-top: 3px solid white;
+          margin: 0px;
+          width: 100%;
+        }
+        
+        .nav a{
+            padding-bottom: 10px;
+            margin-left: 15px;
+            position: relative;
+            text-decoration: none;
             color: white;
-            border-color: white;
-            text-align: center;
-            margin-left: 35%;
-          }
-          
-          .nav a{
-              padding-bottom: 10px;
-              margin-left: 15px;
-              position: relative;
-              text-decoration: none;
-              color: white;
-          }
-          .nav a::before{
-              content: '';
-              position: absolute;
-              width: 100%;
-              height: 2.2px;
-              border-radius: 40px;
-              background-color: white;
-              bottom: 0;
-              left: 0;
-              transform-origin: right;
-              transform: scaleX(0);
-              transition: transform .2s ease-in-out;
-          }
-          
-          .nav a:hover::before {
-              transform-origin: left;
-              transform: scaleX(1);
-            }
-          
-
-
-          .new1 {
-            border-top: 3px solid white;
-            margin-bottom: 60px;
+            font-size: 1.2em;
+        }
+        .nav a::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2.2px;
+            border-radius: 40px;
+            background-color: white;
+            bottom: 0;
+            left: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .2s ease-in-out;
+        }
+        
+        .nav a:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
           }
 
           img{
@@ -90,42 +108,44 @@
             transition: 1s ease;
             }
   
-
+            #current{
+              color: #DF9322;
+            }
+    
+    
     </style>
 
     <title>Artist</title>
   </head>
   <body>
-    <h1></h1>
+  
     <div class="main-nav">
-    <nav class="nav">
-      <a class="nav-link" href="index.php" id='current'>HOME</a>
-      <a class="nav-link" href="about.php">ABOUT</a>
-      <a class="nav-link" href="artist.php">ARTISTS</a>
-      <a class="nav-link" href="arts.php">ARTWORKS</a>   
-      <?php
-        if (!empty($_SESSION['userID'])) {
-         echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
-        } else {
-         echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
-        }
-        
-    ?>   
-    </nav>
+      <nav class="nav">
+        <a class="nav-link" href="#top">HOME</a>
+        <a class="nav-link" href="about.php">ABOUT</a>
+        <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
+        <a class="nav-link" href="index.php#last-arrow">CONTACT</a>
+        <?php
+          if (!empty($_SESSION['userID'])) {
+           echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
+          } else {
+           echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
+          }
+          
+      ?>
+      </nav>  
+      <hr class="new1">
     </div>
-
-
-    <hr class="new1">
 
 
     <div class="container nopadding">
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <a href="individualartist.php"><img src="images/thirteen.jpg" class="rounded float-left" style="height: 150px; width: 80%"></a>           
+              <a href="individualartist.php"><img src="images/thirteen.jpg" class="rounded float-left" style="height: 200px; width: 100%"></a>           
             </div>
             </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <a href="individualartist.php"><p>Pen Down <br> Category: Poetry</p></a> 
           </div>
           <div class="col-md-2">
@@ -138,7 +158,7 @@
               <a href="individualartwork.php"><img src="images/fifteen.jpg"  style="height: 150px; width: 100%"></a>           
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <div class="grow">
               <a href="individualartwork.php"><img src="images/sixteen.jpg" style="height: 150px; width: 100%"> </a>         
             </div>
@@ -151,10 +171,10 @@
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <a href="individualartist.php"><img src="images/eighteen.jpg" class="rounded float-left" style="height: 150px; width: 80%"></a>           
+              <a href="individualartist.php"><img src="images/eighteen.jpg" class="rounded float-left" style="height: 200px; width: 100%"></a>           
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <a href="individualartist.php"><p>Kalers <br>
               Category: Painting</p></a> 
           </div>
@@ -164,9 +184,9 @@
           <div class="col-md-2">
             <!-- <img src="images/hero_2.jpg" style="height: 150px; width: 100%"/> -->
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <div class="grow">
-              <a href="individualartwork.php"><img src="images/nineteen.jpg" style="height: 150px; width: 80%"></a>          
+              <a href="individualartwork.php"><img src="images/nineteen.jpg" style="height: 150px; width: 100%"></a>          
             </div>
           </div>
 
@@ -178,10 +198,10 @@
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <a href="individualartist.php"><img src="images/twenty.jpg" class="rounded float-left" style="height: 150px; width: 80%"></a>           
+              <a href="individualartist.php"><img src="images/twenty.jpg" class="rounded float-left" style="height: 200px; width: 100%"></a>           
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <a href="individualartist.php"><p>The C_Master <br>
               Category: Digital Design</p></a> 
           </div>
@@ -193,7 +213,7 @@
               <a href="individualartwork.php"><img src="images/eight.png"style="height: 150px; width: 100%"></a>          
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <div class="grow">
               <a href="individualartwork.php"><img src="images/sixteen.jpg" style="height: 150px; width: 100%"></a>          
             </div>
@@ -206,10 +226,10 @@
         <div class="row">
           <div class="col-md-3 no">
             <div class="grow">
-              <a href="individualartist.php"><img src="images/eleven.png" class="rounded float-left" style="height: 150px; width: 80%"></a>           
+              <a href="individualartist.php"><img src="images/eleven.png" class="rounded float-left" style="height: 200px; width: 100%"></a>           
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <a href="individualartist.php"><p>Sound of Africa <br>
               Category:  Beat Making</p></a> 
           </div>
@@ -223,7 +243,7 @@
               <a href="individualartwork.php"><img src="images/ten.png" style="height: 150px; width: 100%"></a>          
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <div class="grow">
               <a href="individualartwork.php"><img src="images/eleven.png" style="height: 150px; width: 100%"></a>          
             </div>

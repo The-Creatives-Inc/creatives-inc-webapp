@@ -22,14 +22,22 @@
             font-family: 'Montserrat', sans-serif;
         }
         
+        .main-nav{
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          background-color: rgba(0,0,0,0.8);
+        }
+        
         .nav {
-            margin-top: 1%;
-            margin-bottom: 1%;
-            border-radius: 0;
-            background-color: black;
-            color: white;
-            border-color: white;
-            justify-content: center;
+          padding: 2% 0;
+          border-radius: 0;
+          background-color: black;
+          color: white;
+          border-color: white;
+          font-family: 'Fira Sans', sans-serif;
+          justify-content: center;
+          background-color: rgba(0,0,0,0);
           }
           
           .nav a{
@@ -296,24 +304,20 @@
     <title>Individual Artist</title>
   </head>
   <body>
-    <h1></h1>
     <div class="main-nav">
         <nav class="nav">
             <a class="nav-link" href="index.php">HOME</a>
             <a class="nav-link" href="about.php">ABOUT</a>
             <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
-            <a class="nav-link" href="arts.php">ARTWORKS</a>   
+            <a class="nav-link" href="index.php#last-arrow">CONTACT</a>   
             <?php
               if (!empty($_SESSION['userID'])) {
                echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
               } else {
                echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
-              }
-              
+              }            
           ?>  
-
         </nav>
-        
         <hr class="new1">
     </div>
     
@@ -374,6 +378,7 @@
                 </div>
               </div>
             </div>
+            
             
           </div>
       

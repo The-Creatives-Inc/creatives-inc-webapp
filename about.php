@@ -18,20 +18,40 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
+        html {
+          scroll-behavior: smooth;
+        }
+        
         body{
             background-color: black;
             color: white;
             font-family: 'Montserrat', sans-serif;
         }
-        .nav {
-            margin-top: 2%;
-            margin-bottom: 2.5%;
+      
+          
+          .main-nav{
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: rgba(0,0,0,0.8);
+          }
+          
+          .nav {
+            padding: 2% 0;
             border-radius: 0;
             background-color: black;
             color: white;
             border-color: white;
-            text-align: center;
-            margin-left: 35%;
+            font-family: 'Fira Sans', sans-serif;
+            justify-content: center;
+            background-color: rgba(0,0,0,0);
+            
+          }
+         
+          hr.new1 {
+            border-top: 3px solid white;
+            margin: 0px;
+            width: 100%;
           }
           
           .nav a{
@@ -40,6 +60,7 @@
               position: relative;
               text-decoration: none;
               color: white;
+              /* font-size: 1.2em; */
           }
           .nav a::before{
               content: '';
@@ -59,13 +80,6 @@
               transform-origin: left;
               transform: scaleX(1);
             }
-          
-
-
-          .new1 {
-            border-top: 3px solid white;
-            margin-bottom: 60px;
-          }
 
           
           .new2 {
@@ -85,14 +99,6 @@
             text-align: left;
           }
 
-          #img1{
-            position: absolute;
-            width: 703px;
-            height: 670px;
-            left: 80px;
-            top: 12px;
-          }
-
           #comments{
             margin-top: 2%;
             border-style: solid;
@@ -109,7 +115,10 @@
             'GRAD' 0,
             'opsz' 48
           }
-
+          
+          .empty{
+            background-color: white;
+          }
 
           button{
             margin-top: 5%;
@@ -131,20 +140,80 @@
             color: white;
           }
 
-
+          #current{
+            color: #DF9322;
+          }
+          
+          #last-arrow{
+            background-color: black;
+            width: 2%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+          }
+          
+          #last-arrow img{
+            width: 40px;
+            transform: rotate(180deg);
+          }
+          
+          footer{
+            color: white;
+            height: 300px;
+          }
+          
+          footer p {
+            text-align: center;
+          }
+          
+          footer div{
+            margin: 20px auto;
+          
+          }
+          
+          .orange{
+            color: #DF9322;
+            margin-top: 50px;
+          }
+          
+          .head{
+            margin: 0;
+          }
+          
+          #arts{
+            padding: 10% 0;
+          }
+          
+          #img1{
+            position: absolute;
+            width: 703px;
+            height: 670px;
+            left: 0;
+            top: 12px;
+          }
+          
+          img.grow{
+            transition: 4s ease;
+          }
+          
+          img.grow:hover{
+            -webkit-transform: scale(1.15);
+            -ms-transform: scale(1.15);
+            transform: scale(1.15);
+            transition: 4s ease;
+          }
 
     </style>
 
     <title>About</title>
   </head>
   <body>
-    <h1></h1>
     <div class="main-nav">
         <nav class="nav">
             <a class="nav-link" href="index.php">HOME</a>
-            <a class="nav-link" href="#top">ABOUT</a>
-            <a class="nav-link" href="#contact-topic">CONTACT</a>
-            <a class="nav-link" href="#news-header">PRESS</a>
+            <a class="nav-link" href="#top" id='current'>ABOUT</a>
+            <a class="nav-link" href="artist.php">ARTISTS</a>
+            <a class="nav-link" href="#last-arrow">CONTACT</a>
             <?php
               if (!empty($_SESSION['userID'])) {
                echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
@@ -153,11 +222,9 @@
               }
               
           ?>
-    </nav>
+        </nav>
+      <hr class="new1">
     </div>
-
-
-    <hr class="new1">
 
         <div class="container-fluid">
             <div class="row">
@@ -168,7 +235,7 @@
               </div>
               <div class="col-md-6">
                 <!-- <img src="images/a2.png" alt=""> -->
-                <img src="images/a1.png" alt="" id="img1">
+                <img src="images/a1.png" class='grow' alt="" id="img1">
               </div>
             </div>
 
@@ -236,15 +303,42 @@
               <button type="submit" id="popUpYes">Subscribe</button>
             </div>
           </div> 
-
-            
-
-
-
         </div>
-        
- 
       </div>
+      
+      <div class='empty'>
+          end
+      </div>
+      
+      <div id='last-arrow'>
+        <a href="#top"><img src="images/arrow.png" alt=""></a> 
+      </div>
+      
+      <footer class="container-fluid text-center">
+        <div>
+          <p class='orange'>Contact US</p>
+          
+          <div class='row'>
+            <div class="col-md-4">
+              <p>Street Address</p>
+              <p class='head'>1 University</p>
+              <p class='head'>Avenue, Berekuso, E/R</p>
+            </div>
+            <div class="col-md-4">
+              <p>Postal Address</p>
+              <p class='head'>PMB CT3</p>
+              <p class='head'>Cantonments, Accra</p>
+            </div>
+            <div class="col-md-4">
+              <p>Phone & Email</p>
+              <p class='head'>+233546396053</p>
+              <p class='head'>theCreatives@gmail.com</p>
+            </div>
+          </div>
+          <div class='orange'><p>&copy; The Creatives. All rights reserved</p></div>
+        </div>
+      </footer>
+
     </body>
   </html>
 

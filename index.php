@@ -88,6 +88,7 @@
         text-decoration: none;
         color: white;
         font-size: 1.2em;
+        padding: 0.5rem 1rem;
     }
     .nav a::before{
         content: '';
@@ -246,7 +247,7 @@
       position:absolute;
       overflow:hidden;
       top:0;
-      left:2%;
+      left:0;
       opacity:0;
       background-color:rgba(0,0,0,0.5);
       -webkit-transition:all .4s ease-in-out;
@@ -310,6 +311,11 @@
       -webkit-transition-delay:.2s;
       transition-delay:.2s;
     }  
+    
+    .col-md-3{
+      padding-left: 25px;
+      padding-right: 25px;
+    }
 
     </style>
 <body>
@@ -329,7 +335,7 @@
       <a class="nav-link" href="#top" id='current'>HOME</a>
       <a class="nav-link" href="about.php">ABOUT</a>
       <a class="nav-link" href="artist.php">ARTISTS</a>
-      <a class="nav-link" href="arts.php">ARTWORKS</a>
+      <a class="nav-link" href="#last-arrow">CONTACT</a>
       <?php
         if (!empty($_SESSION['userID'])) {
          echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
@@ -353,7 +359,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="hovereffect">
-            <img src="images/one.png" style="height: 400px; width: 90%"/>
+            <img src="images/one.png" style="height: 400px; width: 90%; margin:auto;"/>
             <p>Valeri by Mastermind</p>
             <div class="overlay">
               <h2>Valeri</h2>
@@ -364,7 +370,7 @@
         
         <div class="col-md-4">
           <div class="hovereffect">
-            <img src="images/two.png" style="height: 400px; width: 90%"/>
+            <img src="images/two.png" style="height: 400px; width: 90%; margin:auto;"/>
             <p>Violet by Mastermind</p>
             <div class="overlay">
               <h2>Violet</h2>
@@ -375,7 +381,7 @@
   
         <div class="col-md-4">
           <div class="hovereffect">
-            <img src="images/three.png" style="height: 400px; width: 90%"/>
+            <img src="images/three.png" style="height: 400px; width: 90%; margin:auto;"/>
             <p>Ashis by Mastermind</p>
             <div class="overlay">
               <h2>Ashis</h2>

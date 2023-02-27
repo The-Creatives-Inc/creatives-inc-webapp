@@ -1,3 +1,6 @@
+<?php
+  session_start(); // Session starts here.
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -107,6 +110,14 @@
     <div class="main-nav-info">
             <h4>New? Create an account <a href="signup.php" style="color: white; text-decoration:underline; font-family: 'Croissant One', cursive;">here</a></h4>    
     </div>
+    
+    <!---- Initializing Session for successful registration --->
+    <?php
+        if (!empty($_SESSION['success'])) {
+         echo ("<p style='color: green; text-align: center;'>".$_SESSION['success']."</p>");
+         unset($_SESSION['success']);
+        }
+    ?>
 
 
 

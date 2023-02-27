@@ -37,6 +37,8 @@ if (isset($_POST['next'])){
                 foreach ($_POST as $key => $value) {
                     $_SESSION['post'][$key] = $value;
                 }
+                
+                $_SESSION['post']['password'] = password_hash($_SESSION['post']['password'], PASSWORD_DEFAULT);
               } else {
 
                  $_SESSION['error'] = "Password does not match with Confirm Password.";
@@ -185,19 +187,35 @@ if (isset($_POST['next'])){
             <a class="nav-link" href="#"><h1>The Creative</h1></a>  
         </nav>
     </div>
+    
+    <span id="error">
 
-    <form>
+<!---- Initializing Session for errors --->
+<?php
+    if (!empty($_SESSION['error_2'])) {
+     echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_2']."</p>");
+     unset($_SESSION['error_2']);
+    }
+?>
+
+</span>
+
+    <form action="signup-final.php" method="POST">
         <div class="form-group">
             <label for="name">Organization name</label>
-            <input type="text" class="form-control" placeholder="">
+            <input type="text" name="org-name" class="form-control" placeholder="">
         </div>  
         <div class="form-group">
           <label for="desc">Description</label>
-          <input type="text" class="form-control"  placeholder="">
-        </div> 
+          <input type="text" class="form-control" name="org-description" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="desc">Account</label>
+          <input type="text" class="form-control" name="account" placeholder="">
+        </div>
         <div class="form-group">
           <label for="">Add image</label>
-          <input type="file" class="form-control" accept="image/*" placeholder="Select image">
+          <input type="file" class="form-control" accept="image/*" name="image" placeholder="Select image">
         </div> 
         <div class="form-group">
 
@@ -214,20 +232,24 @@ if (isset($_POST['next'])){
                 }
                 
                 foreach ($options as $option){
-                ?>
-                    <option value="<?= $option['countryID']."+".$option['country_code']; ?>"><?= $option['country_name']; ?> </option>
-                <?php
-                    }
-                ?>               
-           ?>
+            ?>
+            <option value="<?= $option['countryID']."+".$option['country_code']; ?>"><?= $option['country_name']; ?> </option>
+            <?php
+               }
+            ?>               
+           
           </select>
         </div> 
+        <div class="form-group">
+          <input id="code" class="form-control" type="text" value="" readonly>
+          <input id="number" class="form-control" name="number" type="text" value="">
+        </div>
         <div class="form-group float-none">
           <label for="address">Address</label>
-          <input type="address" class="form-control" placeholder="">
+          <input type="address" class="form-control" name="address" placeholder="">
         </div> 
            
-        <button type="submit" id="popUpYes">Almost There</button>
+        <button type="submit" id="popUpYes" name="com-submit">Almost There</button>
       </form>
 
       </div>
@@ -239,7 +261,7 @@ if (isset($_POST['next'])){
           e.preventDefault();
           
           if (userSelected.value != "dummy") {
-          
+              
               let userValue = userSelected.value.split("+")[1];
               document.getElementById("code").value = "+" + userValue;
           }

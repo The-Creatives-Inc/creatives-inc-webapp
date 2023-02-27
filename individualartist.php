@@ -1,3 +1,7 @@
+<?php
+  session_start(); // Session starts here.
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -299,7 +303,14 @@
             <a class="nav-link" href="about.php">ABOUT</a>
             <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
             <a class="nav-link" href="arts.php">ARTWORKS</a>   
-            <a class="nav-link" href="login.php">SIGN IN</a>    
+            <?php
+              if (!empty($_SESSION['userID'])) {
+               echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
+              } else {
+               echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
+              }
+              
+          ?>  
 
         </nav>
         

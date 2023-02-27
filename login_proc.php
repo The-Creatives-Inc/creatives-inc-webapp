@@ -1,5 +1,6 @@
 
 <?php
+
 if (isset($_POST['login'])) 
 {
   //collection form data
@@ -45,6 +46,7 @@ if (isset($_POST['login']))
                 if($password == $passcode){
 
                   //save session variables
+                  session_start();
                   $_SESSION["userID"] = $userID;
               
                     header("Location: index.php");
@@ -55,10 +57,9 @@ if (isset($_POST['login']))
                     header ("location: login.php");
                   }
             } else {
-            echo "Failed to fetch";
           //redirect to login page
-          // header("Location: login.php");
-          // exit();
+          header("Location: login.php");
+          exit();
         }
           } else {
             // redirect to login page

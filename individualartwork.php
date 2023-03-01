@@ -65,12 +65,12 @@
           }
 
           img{
-            border: 5px solid white;
+            border: 2px solid white;
             border-radius: 20px;
-            box-shadow: 5px 5px 5px #DF9322;
+            /* box-shadow: 5px 5px 5px #DF9322;
             -moz-box-shadow: 5px 5px 5px #DF9322;
             -webkit-box-shadow: 5px 5px 5px #DF9322;
-            -khtml-box-shadow: 5px 5px 5px ;
+            -khtml-box-shadow: 5px 5px 5px ; */
           }
 
           .nopadding{
@@ -152,27 +152,47 @@
 
 
     <div class="container-fluid">
+      <?php
+            $uid = $_GET['uid'];
+            
+            require_once('configuration.php');
+            
+            $query = "SELECT artwork.artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription FROM 
+            users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID  LEFT JOIN comment ON artwork.artworkID = comment.artworkID
+       WHERE artwork.artworkID ='$uid';";
+            $result = $conn->query($query);
+            
+            if($result->num_rows > 0){
+                $options = mysqli_fetch_assoc($result);
+            }
+          
+        ?>
+    
         <div class="row">
           <div class="col-md-6">
-            <img src="images/i1.jpg" style="height: 380px; width: 80%"> <br>
+            <img src="<?= $options['link']; ?> " style="height: 380px; width: 80%"> <br>
             
             <div class="row" style="margin-top: 5%;">
               <div class="col-md-6">
                 <span class="material-symbols-outlined">
-                  favorite 20
+                  favorite 0
                   </span>
               </div>
+              
+              <p>
+              <?= $options['artworkDescription']; ?> 
+              </p>
 
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <span class="material-symbols-outlined">
                   ios_share 100
                   </span>
-              </div>
+              </div> -->
 
             </div>
 
 
-            <div class="row" style="margin-top: 5%;">
+            <!-- <div class="row" style="margin-top: 5%;">
               <div class="col-md-12">
                 <p style="font-size: 30px; text-align:center">Other Works</p>
               </div>
@@ -188,22 +208,29 @@
               <div class="col-md-3">
                 <a href="individualartwork.php"><img src="images/i6.jpg" style="height: 150px; width: 100%"/></a>
               </div>
-            </div>
+            </div> -->
 
 
 
           </div>
           <div class="col-md-6">
-            <h1>Johnny Joker   <span class="material-symbols-outlined">
+            <h1><?= $options['artworkTitle']; ?> <span class="material-symbols-outlined">
               verified
               </span></h1><br>
               <!-- <img src="images/i2.jpg" class="rounded-circle" style="height: 100px; width:20%" alt="Cinque Terre">  -->
               <div class="row">
                 <div class="col-md-3">
-                  <img src="images/i2.jpg" class="rounded-circle" style="height: 100px; width:100%" alt="Cinque Terre"> 
+                <?php  
+                  if(!$options['image']){
+                    echo '<img src="artists/profile.png" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                  } else{
+                    echo '<img src="'.$options['image'].'" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                  }
+                ?> 
+                  
                 </div>
                 <div class="col-md-3">
-                  The Creator <br> The CMaster
+                <?= $options['signature_name']; ?> 
                   <button type="submit" id="popUpYes">Subscribe</button>
                 </div>
               </div>      

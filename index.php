@@ -475,11 +475,12 @@
       <?php
           require_once('configuration.php');
           
-          $query = "SELECT linkID, link FROM link";
+          $query = "SELECT linkID, link, artworkID, artworkTitle, artwork.artistID, dateCreated, artworkDescription, signature_name FROM link INNER JOIN artwork ON linkID = artworkID INNER JOIN artist ON artist.artistID = artwork.artistID";
           $result = $conn->query($query);
           
           if($result->num_rows > 0){
               $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
+              
           }
           
           
@@ -491,10 +492,11 @@
           <div class="col-md-3">
             <div class="hovereffect">
               <img src="<?= $options[$x + 0]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p>Valeri by Mastermind</p>
+              <p><?= $options[$x + 0]['artworkTitle']; ?> by <?= $options[$x + 0]['signature_name']; ?> </p>
               <div class="overlay">
-                <h2>Valeri</h2>
-                <a class="info" href="individualartwork.php">link here</a>
+                <h2><?= $options[$x + 0]['artworkTitle']; ?></h2>
+                <p><?= $options[$x + 0]['artworkDescription']; ?></p>
+                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 0]['artworkID']; ?>">link here</a>
               </div>
             </div>
           </div>
@@ -502,10 +504,11 @@
           <div class="col-md-3">
             <div class="hovereffect">
               <img src="<?= $options[$x + 1]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p>Valeri by Mastermind</p>
+              <p><?= $options[$x + 1]['artworkTitle']; ?> by <?= $options[$x + 1]['signature_name']; ?> </p>
               <div class="overlay">
-                <h2>Valeri</h2>
-                <a class="info" href="individualartwork.php">link here</a>
+                <h2><?= $options[$x + 1]['artworkTitle']; ?></h2>
+                <p><?= $options[$x + 1]['artworkDescription']; ?></p>
+                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 1]['artworkID']; ?>">link here</a>
               </div>
             </div>
           </div>
@@ -513,10 +516,11 @@
           <div class="col-md-3">
             <div class="hovereffect">
               <img src="<?= $options[$x + 2]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p>Valeri by Mastermind</p>
+              <p><?= $options[$x + 2]['artworkTitle']; ?> by <?= $options[$x + 2]['signature_name']; ?> </p>
               <div class="overlay">
-                <h2>Valeri</h2>
-                <a class="info" href="individualartwork.php">link here</a>
+                <h2><?= $options[$x + 2]['artworkTitle']; ?></h2>
+                <p><?= $options[$x + 2]['artworkDescription']; ?></p>
+                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 2]['artworkID']; ?>">link here</a>
               </div>
             </div>
           </div>
@@ -524,10 +528,11 @@
           <div class="col-md-3">
             <div class="hovereffect">
               <img src="<?= $options[$x + 3]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p>Valeri by Mastermind</p>
+              <p><?= $options[$x + 3]['artworkTitle']; ?> by <?= $options[$x + 3]['signature_name']; ?> </p>
               <div class="overlay">
-                <h2>Valeri</h2>
-                <a class="info" href="individualartwork.php">link here</a>
+                <h2><?= $options[$x + 3]['artworkTitle']; ?></h2>
+                <p><?= $options[$x + 3]['artworkDescription']; ?></p>
+                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 3]['artworkID']; ?>">link here</a>
               </div>
             </div>
           </div>

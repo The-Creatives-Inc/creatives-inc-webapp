@@ -61,7 +61,7 @@
             position: relative;
             text-decoration: none;
             color: white;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
         .nav a::before{
             content: '';
@@ -121,10 +121,15 @@
   
     <div class="main-nav">
       <nav class="nav">
-        <a class="nav-link" href="#top">HOME</a>
+        <a class="nav-link" href="index.php">HOME</a>
         <a class="nav-link" href="about.php">ABOUT</a>
         <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
         <a class="nav-link" href="index.php#last-arrow">CONTACT</a>
+        <?php
+          if (!empty($_SESSION['userID']) && $_SESSION['isAdmin'] == 1) {
+           echo ("<a class='nav-link' href='adminverification.php'>ADMIN</a>");
+          }        
+        ?>
         <?php
           if (!empty($_SESSION['userID'])) {
            echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");

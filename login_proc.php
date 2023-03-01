@@ -12,6 +12,12 @@ if (isset($_POST['login']))
   // $username = "ubuntu";
   // $db_password = "creatives@23";
   // $dbname = "creative_db";
+  
+    // database connection parameters
+    $servername = "localhost";
+    $username = "root";
+    $db_password = "";
+    $dbname = "creative_db";
 
   // Create connection
   $conn = new mysqli($servername, $username, $db_password, $dbname);
@@ -25,7 +31,7 @@ if (isset($_POST['login']))
   }
 
   // Prepare a select statement
-  $sql = "SELECT userID, email, passcode FROM users WHERE email = ?";
+  $sql = "SELECT userID, email, passcode, isAdmin FROM users WHERE email = ?";
  
 
   if($stmt = mysqli_prepare($conn, $sql)){
@@ -40,7 +46,7 @@ if (isset($_POST['login']))
           // Check if user exists, if yes then verify password
           if(mysqli_stmt_num_rows($stmt) == 1){                    
               // Bind result variables
-              mysqli_stmt_bind_result($stmt, $userID, $email, $passcode);
+              mysqli_stmt_bind_result($stmt, $userID, $email, $passcode, $isAdmin);
               if(mysqli_stmt_fetch($stmt)){
                   // if(password_verify($curr_user_pass, $user_pass)){
                 if($password == $passcode){
@@ -48,7 +54,8 @@ if (isset($_POST['login']))
                   //save session variables
                   session_start();
                   $_SESSION["userID"] = $userID;
-              
+                  $_SESSION["isAdmin"] = $isAdmin;
+                  
                     header("Location: index.php");
                       // Password is correct, so start a new session
         

@@ -99,6 +99,8 @@
             #popUpYes {
               background-color: rgb(255, 255, 255);
               color: #000000;
+              cursor: pointer;
+              transition: all 0.6s ease;
             }
             
             #popUpYes:hover {

@@ -1,3 +1,8 @@
+<?php
+  session_start(); // Session starts here.
+  $_SESSION["page"] = "adminverification.php";
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,10 +23,61 @@
         }          
 
 
-          .new1 {
-            border-top: 3px solid white;
-            margin-bottom: 60px;
+        .main-nav{
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          background-color: rgba(0,0,0,0.8);
+        }
+        
+        .nav {
+          padding: 2% 0;
+          border-radius: 0;
+          background-color: black;
+          color: white;
+          border-color: white;
+          font-family: 'Fira Sans', sans-serif;
+          justify-content: center;
+          background-color: rgba(0,0,0,0);
+        }
+       
+        hr.new1 {
+          border-top: 3px solid white;
+          margin: 0px;
+          width: 100%;
+        }
+        
+        .nav a{
+            padding-bottom: 10px;
+            margin-left: 15px;
+            position: relative;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            padding: 0.5rem 1rem;
+        }
+        .nav a::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2.2px;
+            border-radius: 40px;
+            background-color: white;
+            bottom: 0;
+            left: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .2s ease-in-out;
+        }
+        
+        .nav a:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
           }
+          
+          #current{
+          color: #DF9322;
+        }
 
           img{
             border: 5px solid white;
@@ -58,40 +114,55 @@
           #popUpYes2{
             background-color: #DF9322;
           }
-
-          input[type="checkbox"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ffffff;
-            background-clip: content-box;
-            padding: 3px;
-        }
-        
-        input[type="checkbox"]:checked {
-            background-color: #ffffff;
-        }
-
-        #input1[type="checkbox"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #000000;
-            background-clip: content-box;
-            padding: 3px;
-        }
-        
-        #input1[type="checkbox"]:checked {
-            background-color: #000000;
-        }
-
-
+          
+          #popUpYes2:hover{
+            background-color: white;
+          }
+                   
+          
+          #popUpYes1:hover{
+            background-color: #DF9322;
+          }
+          
+          #check-all{
+            display: flex;
+            text-align: center;
+            margin: 50px auto;
+            justify-content: center;
+          }      
+          
+          #check-all input{
+            height: 35px;
+            width: 30px;
+          }
     </style>
 
     <title>Admin Verification</title>
   </head>
   <body>
-
+  <div class="main-nav">
+    <nav class="nav">
+      <a class="nav-link" href="index.php">HOME</a>
+      <a class="nav-link" href="about.php">ABOUT</a>
+      <a class="nav-link" href="artist.php">ARTISTS</a>
+      <a class="nav-link" href="index.php#last-arrow">CONTACT</a>
+      <?php
+        if (!empty($_SESSION['userID']) && $_SESSION['isAdmin'] == 1) {
+         echo ("<a class='nav-link' href='adminverification.php' id='current'>ADMIN</a>");
+        }  else{
+          header ("location: index.php");
+        }      
+      ?>
+      <?php
+        if (!empty($_SESSION['userID'])) {
+         echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
+        } else {
+         echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
+        }  
+      ?>
+    </nav>  
+    <hr class="new1">
+  </div>
 
     <div class="container-fluid">
         <div class="row">
@@ -193,20 +264,25 @@
         </div>
         </div>
     </div>
+    
+    <div id='check-all'>
+      <input type="checkbox" name = 'all' value=''>
+      <label for="all" class="col-sm-2 col-form-label">Select all users</label>
+    </div>
+    
 
     <div class="container nopadding">
         <div class="row">
-        <div class="col-md-4">
+          <div class="col-md-4">
         </div>
         <div class="col-md-4">
-          <button type="submit" id="popUpYes1">Verify All  <input type="checkbox" value="Apple" id="input1"/>
-          </button>
+          <button type="submit" id="popUpYes1">Verify All</button>
         </div>
         <div class="col-md-4">
         </div>  
         </div>
     </div>
-
+  
 
 
       </div>

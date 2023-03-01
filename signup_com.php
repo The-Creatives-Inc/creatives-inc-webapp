@@ -126,7 +126,8 @@ if (isset($_POST['next'])){
             background-color: rgb(255, 255, 255);
             color: #000000;
             margin: auto 15%;
-
+            cursor: pointer;
+            transition: all 0.6s ease;
           }
           
           #popUpYes:hover {
@@ -175,6 +176,7 @@ if (isset($_POST['next'])){
             align-items: center;
             justify-content: center;
           }
+
     </style>
 
     <title>Sign Up</title>
@@ -182,23 +184,21 @@ if (isset($_POST['next'])){
   <body>
     <h1></h1>
     <div class="main-nav">
-    <h4><a href="signup.php" style="color: white; font-family: 'Croissant One', cursive;">X</a></h4>
+    <h4><a href="index.php" style="color: white; font-family: 'Croissant One', cursive; text-decoration: none;">X</a></h4>
         <nav class="nav">
             <a class="nav-link" href="#"><h1>The Creative</h1></a>  
         </nav>
     </div>
     
     <span id="error">
-
-<!---- Initializing Session for errors --->
-<?php
-    if (!empty($_SESSION['error_2'])) {
-     echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_2']."</p>");
-     unset($_SESSION['error_2']);
-    }
-?>
-
-</span>
+      <!---- Initializing Session for errors --->
+      <?php
+          if (!empty($_SESSION['error_2'])) {
+           echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_2']."</p>");
+           unset($_SESSION['error_2']);
+          }
+      ?>
+    </span>
 
     <form action="signup-final.php" method="POST">
         <div class="form-group">

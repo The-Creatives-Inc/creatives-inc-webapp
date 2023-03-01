@@ -37,7 +37,7 @@
           }
           
           .nav {
-            padding: 2% 0;
+            padding: 1% 0;
             border-radius: 0;
             background-color: black;
             color: white;
@@ -60,7 +60,7 @@
               position: relative;
               text-decoration: none;
               color: white;
-              /* font-size: 1.2em; */
+              font-size: 1.1em;
           }
           .nav a::before{
               content: '';
@@ -133,6 +133,8 @@
           #popUpYes {
             background-color: rgb(255, 255, 255);
             color: #000000;
+            cursor: pointer;
+            transition: all 0.6s ease;
           }
           
           #popUpYes:hover {
@@ -214,6 +216,11 @@
             <a class="nav-link" href="#top" id='current'>ABOUT</a>
             <a class="nav-link" href="artist.php">ARTISTS</a>
             <a class="nav-link" href="#last-arrow">CONTACT</a>
+            <?php
+              if (!empty($_SESSION['userID']) && $_SESSION['isAdmin'] == 1) {
+               echo ("<a class='nav-link' href='adminverification.php'>ADMIN</a>");
+              }        
+            ?>
             <?php
               if (!empty($_SESSION['userID'])) {
                echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");

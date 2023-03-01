@@ -5,8 +5,12 @@
 	unset($_SESSION["userID"]);
 	
 	$location = $_SESSION["page"];
-	$location = "Location: ".$location;
 	
+	if($location == 'adminverification.php'){
+		$location = "location: index.php";
+	}else{
+		$location = "Location: ".$location;
+	}
 
 	header($location);
 	exit();

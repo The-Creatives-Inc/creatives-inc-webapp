@@ -9,6 +9,13 @@
   <title>The Creative</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Style CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="swiper-bundle.min.css">
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +23,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css" /> </head>
+
   <style>
     html {
       scroll-behavior: smooth;
+      background-color: rgb(0, 0, 0);
     }
 
     .material-symbols-outlined {
@@ -32,16 +40,15 @@
       'opsz' 48
     }
     
-    *{
+    body{
       /* width: 100%; */
       font-family: 'Montserrat', sans-serif;
-      background-color: rgb(0, 0, 0);
-      
+      background-color: white;
+      margin: 0;
     }
     
     body {
       margin-bottom: 0%;
-      background-color: 0%;
       padding-bottom: 0%;
     }
     
@@ -60,17 +67,17 @@
       position: sticky;
       top: 0;
       margin-top: 2%;
-      z-index: 1;
       background-color: rgba(0,0,0,0.8);
+      z-index: 2;
     }
     
     .nav {
-      padding: 3% 0;
+      padding: 2% 0;
       border-radius: 0;
       background-color: black;
       color: white;
+      /* font-family: 'Fira Sans', sans-serif; */
       border-color: white;
-      font-family: 'Fira Sans', sans-serif;
       text-align: center;
       background-color: rgba(0,0,0,0);
     }
@@ -83,11 +90,12 @@
     
     .nav a{
         padding-bottom: 10px;
-        margin-left: 15px;
+        margin-left: 20px;
         position: relative;
         text-decoration: none;
         color: white;
-        font-size: 1.2em;
+        font-size: 1.4em;
+        font-weight: 10px;
         padding: 0.5rem 1rem;
     }
     .nav a::before{
@@ -178,31 +186,30 @@
     }
     
     #last-arrow{
-      background-color: black;
-      width: 2%;
+      
+      width: 2.5%;
       margin-left: auto;
       margin-right: auto;
       margin-top: 50px;
     }
     
     #last-arrow img{
+      background-color: black;
       width: 40px;
       transform: rotate(180deg);
     }
     
     footer{
       color: white;
-      height: 300px;
     }
     
     footer div{
-      margin: 20px auto;
-    
+      margin-bottom: 20px;
     }
     
     .orange{
       color: #DF9322;
-      margin-top: 50px;
+      padding-top: 50px;
     }
     
     .head{
@@ -210,7 +217,7 @@
     }
     
     #arts{
-      padding: 10% 0;
+      padding: 7% 0;
     }
     
     /* artworkssss */
@@ -316,18 +323,37 @@
       padding-left: 25px;
       padding-right: 25px;
     }
+    
+    #buttondown{
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 40vh;
+    }
+    
+    div{
+      background-color: black;
+    }
+    
+    .row{
+      margin: 0;
+    }
 
     </style>
+</head>
+
 <body>
   <div id='top' class="main-content">
     <div class="sub-container">
       <img src="images/black background.png" id="main-img" class="rounded mx-auto d-block" alt="...">
-      <div class="search-container">
+      <!-- <div class="search-container">
         <i class="material-symbols-outlined">search</i>
         <input type="search" id="site-search" name="search" placeholder="Search this space">  
-      </div>
+      </div> -->
     </div>
-    <a href="#arts"><img src="images/arrow.png" alt=""></a> 
+    <div id='buttondown'>
+      <a href="#arts"><img src="images/arrow.png" alt=""></a> 
+    </div>
   </div>
   
   <div class="main-nav">
@@ -337,13 +363,18 @@
       <a class="nav-link" href="artist.php">ARTISTS</a>
       <a class="nav-link" href="#last-arrow">CONTACT</a>
       <?php
+        if (!empty($_SESSION['userID']) && $_SESSION['isAdmin'] == 1) {
+         echo ("<a class='nav-link' href='adminverification.php'>ADMIN</a>");
+        }        
+      ?>
+      <?php
         if (!empty($_SESSION['userID'])) {
          echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
         } else {
          echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
         }
         
-    ?>
+      ?>
     </nav>  
     <hr class="new1">
   </div>
@@ -356,7 +387,54 @@
 
   <div id='arts'>
     <div class="container">
-      <div class="row">
+      <div class="body">
+          <div class="slide-container swiper">
+              <div class="slide-content">
+                  <div class="card-wrapper swiper-wrapper">
+                    
+                      <div class="card swiper-slide">
+                          <div class="image-content">
+                              <span class="overlay"></span>
+  
+                              <div class="card-image">
+                                  <img src="images/profile8.jpg" alt="" class="card-img">
+                              </div>
+                          </div>
+  
+                          <div class="card-content">
+                              <h2 class="name">David Dell</h2>
+                              <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+  
+                              <button class="button">View More</button>
+                          </div>
+                      </div>
+                      <div class="card swiper-slide">
+                          <div class="image-content">
+                              <span class="overlay"></span>
+  
+                              <div class="card-image">
+                                  <img src="images/profile9.jpg" alt="" class="card-img">
+                              </div>
+                          </div>
+  
+                          <div class="card-content">
+                              <h2 class="name">David Dell</h2>
+                              <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+  
+                              <button class="button">View More</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          
+              <div class="swiper-button-next swiper-navBtn"></div>
+              <div class="swiper-button-prev swiper-navBtn"></div>
+              <div class="swiper-pagination"></div>
+          </div>
+        </div>
+    
+      
+      <!-- <div class="row">
         <div class="col-md-4">
           <div class="hovereffect">
             <img src="images/one.png" style="height: 400px; width: 90%; margin:auto;"/>
@@ -388,11 +466,12 @@
               <a class="info" href="individualartwork.php">link here</a>
             </div>
           </div>
-        </div>
-      </div>
-    <!-- </div>
-  
-    <div class="container"> -->
+        </div> -->
+      </div> 
+    </div>
+    
+    <div>
+    <div class="container">
       <?php
           require_once('configuration.php');
           
@@ -411,7 +490,7 @@
         <div class="row">
           <div class="col-md-3">
             <div class="hovereffect">
-              <img src="<?= $options[$x + 0]['link']; ?>" style="height: 140px; width: 100%"/>
+              <img src="<?= $options[$x + 0]['link']; ?>" style="height: 200px; width: 100%"/>
               <p>Valeri by Mastermind</p>
               <div class="overlay">
                 <h2>Valeri</h2>
@@ -422,7 +501,7 @@
           
           <div class="col-md-3">
             <div class="hovereffect">
-              <img src="<?= $options[$x + 1]['link']; ?>" style="height: 140px; width: 100%"/>
+              <img src="<?= $options[$x + 1]['link']; ?>" style="height: 200px; width: 100%"/>
               <p>Valeri by Mastermind</p>
               <div class="overlay">
                 <h2>Valeri</h2>
@@ -433,7 +512,7 @@
           
           <div class="col-md-3">
             <div class="hovereffect">
-              <img src="<?= $options[$x + 2]['link']; ?>" style="height: 140px; width: 100%"/>
+              <img src="<?= $options[$x + 2]['link']; ?>" style="height: 200px; width: 100%"/>
               <p>Valeri by Mastermind</p>
               <div class="overlay">
                 <h2>Valeri</h2>
@@ -444,7 +523,7 @@
           
           <div class="col-md-3">
             <div class="hovereffect">
-              <img src="<?= $options[$x + 3]['link']; ?>" style="height: 140px; width: 100%"/>
+              <img src="<?= $options[$x + 3]['link']; ?>" style="height: 200px; width: 100%"/>
               <p>Valeri by Mastermind</p>
               <div class="overlay">
                 <h2>Valeri</h2>
@@ -460,14 +539,14 @@
       </div>
     </div>
   </div>
-
+  </div>
 
 
 <div id='last-arrow'>
   <a href="#top"><img src="images/arrow.png" alt=""></a> 
 </div>
 
-<footer class="container-fluid text-center">
+<footer class="text-center">
   <div>
     <p class='orange'>Contact US</p>
     
@@ -492,5 +571,11 @@
   </div>
 </footer>
 
+
+<!-- Swiper JS -->
+<script src="swiper-bundle.min.js"></script>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
 </body>
 </html>

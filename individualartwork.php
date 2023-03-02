@@ -20,16 +20,36 @@
             color: white;
             font-family: 'Montserrat', sans-serif;
         }
+        
+        .main-nav{
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: rgba(0,0,0,0.8);
+          }
+          
         .nav {
-            margin-top: 2%;
-            margin-bottom: 2.5%;
+            padding: 1% 0;
             border-radius: 0;
             background-color: black;
             color: white;
             border-color: white;
-            text-align: center;
-            margin-left: 35%;
+            font-family: 'Fira Sans', sans-serif;
+            justify-content: center;
+            background-color: rgba(0,0,0,0);
+            
           }
+          
+          #current{
+            color: #DF9322;
+          }
+         
+          hr.new1 {
+            border-top: 3px solid white;
+            margin: 0px;
+            width: 100%;
+          }
+          
           
           .nav a{
               padding-bottom: 10px;
@@ -37,6 +57,7 @@
               position: relative;
               text-decoration: none;
               color: white;
+              font-size: 1.1em;
           }
           .nav a::before{
               content: '';
@@ -55,9 +76,7 @@
           .nav a:hover::before {
               transform-origin: left;
               transform: scaleX(1);
-            }
-          
-
+            }       
 
           .new1 {
             border-top: 3px solid white;
@@ -129,22 +148,26 @@
     <title>Individual Artwork</title>
   </head>
   <body>
-    <h1></h1>
     <div class="main-nav">
-        <nav class="nav">
-            <a class="nav-link" href="index.php" id='current'>HOME</a>
-            <a class="nav-link" href="about.php">ABOUT</a>
-            <a class="nav-link" href="artist.php">ARTISTS</a>
-            <a class="nav-link" href="arts.php">ARTWORKS</a>   
-            <?php
-              if (!empty($_SESSION['userID'])) {
-               echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
-              } else {
-               echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
-              }
-              
-          ?>
-    </nav>
+      <nav class="nav">
+        <a class="nav-link" href="index.php">HOME</a>
+        <a class="nav-link" href="about.php">ABOUT</a>
+        <a class="nav-link" href="artist.php">ARTISTS</a>
+        <a class="nav-link" href="index.php#last-arrow">CONTACT</a>
+        <?php
+          if (!empty($_SESSION['userID']) && $_SESSION['isAdmin'] == 1) {
+           echo ("<a class='nav-link' href='adminverification.php'>ADMIN</a>");
+          }        
+        ?>
+        <?php
+          if (!empty($_SESSION['userID'])) {
+           echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
+          } else {
+           echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
+          }
+          
+        ?>
+      </nav>  
     </div>
 
 
@@ -170,6 +193,9 @@
     
         <div class="row">
           <div class="col-md-6">
+            <h1>
+              <?= $options['artworkTitle']; ?>
+            </h1>
             <img src="<?= $options['link']; ?> " style="height: 380px; width: 80%"> <br>
             
             <div class="row" style="margin-top: 5%;">
@@ -191,33 +217,11 @@
 
             </div>
 
-
-            <!-- <div class="row" style="margin-top: 5%;">
-              <div class="col-md-12">
-                <p style="font-size: 30px; text-align:center">Other Works</p>
-              </div>
-              <div class="col-md-3">
-                <a href="individualartwork.php"><img src="images/i3.jpg" style="height: 150px; width: 80%"> </a>         
-              </div>
-              <div class="col-md-3">
-                <a href="individualartwork.php"><img src="images/i4.jpg" style="height: 150px; width: 100%"/></a>
-              </div>
-              <div class="col-md-3">
-                <a href="individualartwork.php"><img src="images/i5.jpg" style="height: 150px; width: 100%"/>
-              </div></a>
-              <div class="col-md-3">
-                <a href="individualartwork.php"><img src="images/i6.jpg" style="height: 150px; width: 100%"/></a>
-              </div>
-            </div> -->
-
-
-
           </div>
           <div class="col-md-6">
             <h1><?= $options['artworkTitle']; ?> <span class="material-symbols-outlined">
               verified
               </span></h1><br>
-              <!-- <img src="images/i2.jpg" class="rounded-circle" style="height: 100px; width:20%" alt="Cinque Terre">  -->
               <div class="row">
                 <div class="col-md-3">
                 <?php  

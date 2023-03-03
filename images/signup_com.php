@@ -200,7 +200,7 @@ if (isset($_POST['next'])){
       ?>
     </span>
 
-    <form action="signup-final.php" method="POST" enctype="multipart/form-data">
+    <form action="signup-final.php" method="POST">
         <div class="form-group">
             <label for="name">Organization name</label>
             <input type="text" name="org-name" class="form-control" placeholder="">
@@ -244,6 +244,10 @@ if (isset($_POST['next'])){
           <input id="code" class="form-control" type="text" value="" readonly>
           <input id="number" class="form-control" name="number" type="text" value="">
         </div>
+        <div class="form-group float-none">
+          <label for="address">Address</label>
+          <input type="address" class="form-control" name="address" placeholder="">
+        </div> 
            
         <button type="submit" id="popUpYes" name="com-submit">Almost There</button>
       </form>

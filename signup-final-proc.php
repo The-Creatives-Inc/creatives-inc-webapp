@@ -10,37 +10,17 @@ if (isset($_POST['end'])) {
      header ("Location: signup-final.php");
   } else {
   
-      $servername = "localhost";
-      $username = "root";
-      $db_password = "";
-      $dbname = "creative_db";
-    
-      // database connection parameters
-      // $servername = "localhost";
-      // $username = "root";
-      // $db_password = "creativeS@23";
-      // $dbname = "creative_db";
-    
-      // Create connection
-      $conn = mysqli_connect($servername, $username, $db_password, $dbname);
-      // Check connection
-      if ($conn->connect_error) {
-        //stop executing the code and echo error
-        echo ("Connection failed: " . $conn->connect_error);
-    
-        header("Location: signup-final.php");
-    
-      }
+      require_once("configuration.php");
        
       //collect data from the sessions
       $phone_number = $_SESSION['post']['number'];
       $email = $_SESSION['post']['email'];
-      $image = $_SESSION['post']['image'] == "" ? $_SESSION['post']['image'] : null;
+      $image = $_SESSION['post']['image'];
       $password = $_SESSION['post']['password'];
       $account = $_SESSION['post']['account'];
       $country = explode("+", $_SESSION['post']['country'])[0];
       
-      $fieldID = $_SESSION['post']['field'];
+      $fieldID = $_POST['interest'];
      
       $sql = "INSERT INTO users(phone_number, email, `image`, `passcode`, account_number, countryID, fieldID)
       VALUES ('$phone_number', '$email', '$image', '$password', '$account', '$country', '$fieldID')";
@@ -53,21 +33,66 @@ if (isset($_POST['end'])) {
 
         if ($_SESSION['post']['user-type'] == 1) {
 
-          $sql1 = "INSERT INTO visitor(visitorID) VALUES ('$last_id')";
-          $sql2 = "INSERT INTO individual_visitor(f_name, l_name, `gender`, `date_of_birth`)
-          VALUES ('$phone_number', '$email', '$image', '$password', '$account', '$country', '$fieldID')";
+          $firstname = $_SESSION['post']['firstname'];
+          $lastname = $_SESSION['post']['lastname'];
+          $gender = $_SESSION['post']['gender'] == "" ? "-" : $_SESSION['post']['gender'];
+          $dob = $_SESSION['post']['dob'];
 
+          $sql1 = "INSERT INTO visitor(visitorID) VALUES ('$last_id');";
+          $conn->query($sql1);
+          $sql2 = "INSERT INTO individual_visitor VALUES ('$last_id', '$firstname', '$lastname', '$gender', '$dob');";
+          $conn->query($sql2);
 
+        }
 
+        if ($_SESSION['post']['user-type'] == 3) {
 
+          $firstname = $_SESSION['post']['firstname'];
+          $lastname = $_SESSION['post']['lastname'];
+          $gender = $_SESSION['post']['gender'] == "" ? "-" : $_SESSION['post']['gender'];
+          $dob = $_SESSION['post']['dob'];
+          $website = $_SESSION['post']['website'];
+          $signname = $_SESSION['post']['artist-name'];
+
+          $sql1 = "INSERT INTO artist VALUES ('$last_id', '$website', '$signname');";
+          $conn->query($sql1);
+          $sql2 = "INSERT INTO individual_artist VALUES ('$last_id', '$firstname', '$lastname', '$gender', '$dob');";
+          $conn->query($sql2);
+
+        }
+
+        if ($_SESSION['post']['user-type'] == 4) {
+
+          $organizationname = $_SESSION['post']['org-name'];
+          $description = $_SESSION['post']['org-description'];
+
+          $sql1 = "INSERT INTO visitor(visitorID) VALUES ('$last_id');";
+          $conn->query($sql1);
+
+          $sql2 = "INSERT INTO company_visitor VALUES ('$last_id', '$organizationname', '$description');";
+          $conn->query($sql2);
+
+        }
+
+         if ($_SESSION['post']['user-type'] == 2) {
+
+          $organizationname = $_SESSION['post']['org-name'];
+          $description = $_SESSION['post']['org-description'];
+          $website = $_SESSION['post']['website'];
+          $signname = $_SESSION['post']['artist-name'];
+
+          $sql1 = "INSERT INTO artist VALUES ('$last_id', '$website', '$signname');";
+          $conn->query($sql1);
+          $sql2 = "INSERT INTO company_artist VALUES ('$last_id', '$organizationname', '$description');";
+          $conn->query($sql2);
 
         }
         
-          //redirect to homepage
-          session_unset();
-          $_SESSION['success'] = "Registration Successfully";
-          header("Location: login.php");
-          exit();
+        //redirect to homepage
+        session_unset();
+        $_SESSION['success'] = "Registration Successfully";
+        header("Location: login.php");
+        exit();
   
       } else {
           //echo error but continue executing the code to close the session

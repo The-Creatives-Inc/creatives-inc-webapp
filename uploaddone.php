@@ -8,6 +8,8 @@ $aid = $_POST["aid"];
 
 if (isset($_POST['button'])) 
 {
+
+  require_once("configuration.php");
     
   //collection form data
       $title = $_POST['title'];
@@ -35,25 +37,6 @@ if (isset($_POST['button']))
         exit();
       }
       
-    
-    // database connection parameters
-    $servername = "localhost";
-    $username = "root";
-    $db_password = "";
-    $dbname = "creative_db";
-
-      // Create connection
-      $conn = new mysqli($servername, $username, $db_password, $dbname);
-      
-      // Check connection
-      if ($conn->connect_error) {
-        //stop executing the code and echo error
-        echo ("Connection failed: " . $conn->connect_error);
-        $_SESSION['wcomment'] = "Connection error";
-        header("Location: uploadart.php?aid=".$aid);
-        exit();
-    
-      }
 
   // Prepare a select statement
 

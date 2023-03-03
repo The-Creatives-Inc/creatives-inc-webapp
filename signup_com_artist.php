@@ -204,11 +204,19 @@ if (isset($_POST['next'])){
         <div class="form-group">
             <label for="name">Organization name</label>
             <input type="text" name="org-name" class="form-control" placeholder="">
+        </div> 
+        <div class="form-group">
+            <label for="name">Signature name</label>
+            <input type="text" name="artist-name" class="form-control" placeholder="">
         </div>  
         <div class="form-group">
           <label for="desc">Description</label>
           <input type="text" class="form-control" name="org-description" placeholder="">
         </div>
+        <div class="col-12">
+           <label for="website">Website</label>
+            <input type="text" class="form-control" id="website" name="website" placeholder="www.example.com">
+          </div>
         <div class="form-group">
           <label for="desc">Account</label>
           <input type="text" class="form-control" name="account" placeholder="">
@@ -245,7 +253,7 @@ if (isset($_POST['next'])){
           <input id="number" class="form-control" name="number" type="text" value="">
         </div>
            
-        <button type="submit" id="popUpYes" name="com-submit">Almost There</button>
+        <button type="submit" id="popUpYes" name="next">Almost There</button>
       </form>
 
       </div>

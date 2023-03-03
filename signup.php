@@ -133,15 +133,15 @@
     <form action="signup_com.php" method="POST" id="form-id">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword2" name="confirm-password" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword2" name="confirm-password" placeholder="Password" required>
           </div>
           <p id="error-message"></p>  
           <div class="form-group">
@@ -163,6 +163,8 @@
       </form>
 
       </div>
+
+
       <script type="text/javascript">
         const acceptBox = document.getElementById("accept");
         const btn = document.getElementById("popUpYes");
@@ -184,15 +186,25 @@
           e.preventDefault();
           if (userSelected.value != userValue) {
             userValue = userSelected.value;
-            document.getElementById("form-id").action = parseInt(userValue)%2 != 0 ? "signup_ind.php" : "signup_com.php";
+            if ( parseInt(userValue)%2 != 0) {
+               document.getElementById("form-id").action = "signup_ind.php";
+
+            } else {
+              if ( parseInt(userValue) === 2) {
+                document.getElementById("form-id").action = "signup_com_artist.php";
+              } else {
+                document.getElementById("form-id").action = "signup_com.php";
+              }
+            }
+            
           }
         })
-  
       </script>
+
+
     </body>
   </html>
 
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -1,40 +1,3 @@
-<?php 
-  session_start();
-
-  if (isset($_POST['move'])) {
-    if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['number']) || empty($_POST['account']) || empty($_POST['dob']) || empty($_POST['country'])) {
-       $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
-    } else {
-    
-      $img = $_FILES['image'];
-
-      $uploaded_file_name = $_FILES['image']['name'];
-      $uploaded_file_size = $_FILES['image']['size'];
-      $uploaded_file_tmp  = $_FILES['image']['tmp_name'];
-      $uploaded_file_type = $_FILES['image']['type'];
-      
-      $file_compositions = explode('.', $uploaded_file_name);
-      $file_ext = strtolower(end($file_compositions));
-
-      $sub_name = $_POST['firstname'].'-'.$uploaded_file_name;
-      $saved_file_name = "images/".$sub_name;
-    
-      foreach ($_POST as $key => $value) { 
-        $_SESSION['post'][$key] = $value;
-      }
-      $_SESSION['post']['image'] = $saved_file_name;
-    
-    } 
-  }   else {
-    if(empty($_SESSION['error_3'])) {
-      session_unset();
-      header("location:signup_ind.php");
-    }//redirecting to first page
-  }
-
-
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -158,16 +121,32 @@
 
       <div class="col-md-4 col-md-offset-4 center">
 
-        <form class="row g-3" action="signup-final.php" method="POST">
-
+        <form class="row g-3">
           <div class="col-md-8">
-            <label for="signature-name" class="form-label">Signature Name</label>
+            <label for="artist-name" class="form-label">Artist Name</label>
           <input type="text" class="form-control" id="artist-name" name="artist-name" placeholder="theAtarist">
+          </div>
+          <div class="col-md-4">
+            <label for="gender-select">Gender</label>
+            <select name="user-type" class="form-select" id="gender-select">
+              <option value="" disabled selected hidden>Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" placeholder="1 University Ave, Ashesi" name="address">
           </div>
           <div class="col-12">
            <label for="website">Website</label>
             <input type="text" class="form-control" id="website" name="website" placeholder="www.example.com">
           </div>
+          <div class="col-12">
+           <label for="acccount-num">Account Number</label>
+            <input type="text" class="form-control" id="account-num" name="account-num" placeholder="1234567890">
+          </div>
+
           <div class="col-12">
             <div class="form-check">
               <label class="form-check-label" for="gridCheck">

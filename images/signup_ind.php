@@ -57,7 +57,6 @@ if (isset($_POST['next'])){
  }
 }
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -79,6 +78,7 @@ if (isset($_POST['next'])){
             font-family: 'Montserrat', sans-serif;
         }
         .nav {
+            margin-top: 6%;
             border-radius: 0;
             background-color: black;
             color: white;
@@ -90,6 +90,8 @@ if (isset($_POST['next'])){
           .main-nav-info{
             text-align: center;
             font-family: 'Montserrat', sans-serif;
+            margin-top: 3%;
+            margin-bottom: 3%;
           }
 
           .nav a{
@@ -101,6 +103,7 @@ if (isset($_POST['next'])){
           }
           
           form{
+            text-align: center;
             margin-left: 35%;
             margin-right: 35%;
           }
@@ -119,13 +122,13 @@ if (isset($_POST['next'])){
             padding-right: 35%;
             padding-top: 1%;
             padding-bottom: 1%;
-            border-radius: 10px;      
+            border-radius: 10px;
+            
           }
           
           #popUpYes {
             background-color: rgb(255, 255, 255);
             color: #000000;
-            margin: auto 15%;
             cursor: pointer;
             transition: all 0.6s ease;
           }
@@ -135,140 +138,112 @@ if (isset($_POST['next'])){
             color: white;
           }
 
-          .form-control{
+          #InputFirstName,#InputLastName, #InputPassword1, #InputPhone, #InputAccount, #InputDate{
             border-radius: 10px;
             background-color: black;
             color: white;
-          }
-          
-          h4{
-            text-align: right;
-            margin-right: 20%;
-          }
-          
-          form button#popUpYes{
             text-align: center;
-            justify-items: center;
-            padding-left: 20%;
-            padding-right: 20%;
           }
           
+          #upload{
+            background-color: #000000;
+            border-color: white;
+          }
 
-          #country{
-            display: block;
-            margin-top: 7%;
-            margin-bottom: 2%;
-          }
-          
-          #code{
-            display: inline;
-            width: 20%;
-            border: none;
-            background-color: black;
-          }
-          
-          #number{
-            display: inline;
-            width: 75%;
-          }
-          
-          .container {
-            align-items: center;
-            justify-content: center;
-          }
 
     </style>
 
     <title>Sign Up</title>
   </head>
   <body>
-    <h1></h1>
+  <h1></h1>
     <div class="main-nav">
-    <h4><a href="index.php" style="color: white; font-family: 'Croissant One', cursive; text-decoration: none;">X</a></h4>
+        <h4><a href="index.php" style="color: white; font-family: 'Croissant One', cursive;">X</a></h4>
         <nav class="nav">
             <a class="nav-link" href="#"><h1>The Creative</h1></a>  
         </nav>
     </div>
-    
-    <span id="error">
-      <!---- Initializing Session for errors --->
-      <?php
-          if (!empty($_SESSION['error_2'])) {
-           echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_2']."</p>");
-           unset($_SESSION['error_2']);
-          }
-      ?>
-    </span>
+    <h1></h1>
 
-    <form action="signup-final.php" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="name">Organization name</label>
-            <input type="text" name="org-name" class="form-control" placeholder="">
-        </div>  
-        <div class="form-group">
-          <label for="desc">Description</label>
-          <input type="text" class="form-control" name="org-description" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="desc">Account</label>
-          <input type="text" class="form-control" name="account" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="">Add image</label>
-          <input type="file" class="form-control" accept="image/*" name="image" placeholder="Select image">
-        </div> 
-        <div class="form-group">
+    <div class="main-nav-info">
+            <h4>Few steps away from becoming part of this space ... </h4>    
+    </div>
 
-          <select name="country" id="country">
-            <option value="dummy" selected disabled>Select country</option>
-            <?php
-                require_once('configuration.php');
-                
-                $query = "SELECT countryID, country_code, country_name FROM country";
-                $result = $conn->query($query);
-                
-                if($result->num_rows > 0){
-                    $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                }
-                
-                foreach ($options as $option){
-            ?>
-            <option value="<?= $option['countryID']."+".$option['country_code']; ?>"><?= $option['country_name']; ?> </option>
-            <?php
-               }
-            ?>               
-           
-          </select>
-        </div> 
-        <div class="form-group">
-          <input id="code" class="form-control" type="text" value="" readonly>
-          <input id="number" class="form-control" name="number" type="text" value="">
-        </div>
-           
-        <button type="submit" id="popUpYes" name="com-submit">Almost There</button>
-      </form>
-
-      </div>
-      <script>
-        const userSelected = document.getElementById("country");
+    <?php
+        if ($_SESSION['post']['user-type'] == 1) {
+         echo ("<form action='signup-final.php' method='POST'>");
+        } else {
+          echo ("<form action='signup-artist.php' method='POST'>");
+        }
         
-        
-        userSelected.addEventListener("change", (e) => {
-          e.preventDefault();
-          
-          if (userSelected.value != "dummy") {
-              
-              let userValue = userSelected.value.split("+")[1];
-              document.getElementById("code").value = "+" + userValue;
-          }
-          
-        })
+    ?>
+     <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style="width: 110%;" alt="Avatar" />
+        </div>
+          <div class="col-md-6">
+                <div class="form-group">
+                
+                    <div class="d-flex justify-content-center">
+                        <div class="btn btn-primary btn-rounded" id="upload">
+                            <label class="form-label text-white m-1" for="customFile1"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="17" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                              </svg>  Upload Image  </label>
+                            <input type="file" class="form-control d-none" id="customFile1" />
+                        </div>
+                    </div>
+                
+                </div>  
+         </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="InputEmail1">Firstname</label>
+                    <input type="name" class="form-control" id="InputFirstName" placeholder="Firstname">
+                </div>  
+        </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="">Lastname</label>
+                      <input type="name" class="form-control" id="InputLastName" placeholder="Lastname">
+                  </div>  
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="phone" class="form-control" id="InputPhone" placeholder="+48 999-999-99" data-mdb-input-mask="+48 999-999-999">
+                </div>  
+        </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="">AccountNo</label>
+                      <input type="text" class="form-control" id="InputAccount" placeholder="AccountNo">
+                  </div>  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="">DOB</label>
+                    <input type="date" class="form-control" id="InputDate">
+                </div>  
+            </div>
+        </div>
+        <button type="submit" id="popUpYes" style="margin-top: 8%;">Move Ahead</button>
+    </form>      
       
-      </script>
-
       </div>
-
-    
+    </body>
+  </html>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

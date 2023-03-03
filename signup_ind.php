@@ -17,10 +17,9 @@ if (isset($_POST['next'])){
          // Sanitizing email field to remove unwanted characters.
          $_POST['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-        //  $passwordRegex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/';
-        $passwordRegex = '/^[0-9]{3}/';      
+        $passwordRegex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/';     
 
-         $isPassValid = preg_match($passwordRegex, $_POST['password']);
+        $isPassValid = preg_match($passwordRegex, $_POST['password']);
 
 
          // After sanitization Validation is performed.
@@ -182,7 +181,7 @@ if (isset($_POST['next'])){
     <div class="main-nav">
         <h4><a href="index.php" style="color: white; font-family: 'Croissant One', cursive;">X</a></h4>
         <nav class="nav">
-            <a class="nav-link" href="#"><h1>The Creative</h1></a>  
+            <a class="nav-link" href="#top"><h1>The Creative</h1></a>  
         </nav>
     </div>
     <h1></h1>
@@ -204,9 +203,9 @@ if (isset($_POST['next'])){
 
     <?php
         if ($_SESSION['post']['user-type'] == 1) {
-         echo ("<form action='signup-final.php' method='POST'>");
+         echo ("<form action='signup-final.php' method='POST' enctype='multipart/form-data'>");
         } else {
-          echo ("<form action='signup-artist.php' method='POST'>");
+          echo ("<form action='signup-artist.php' method='POST' enctype='multipart/form-data'>");
         }
         
     ?>
@@ -236,13 +235,13 @@ if (isset($_POST['next'])){
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="InputEmail1">Firstname</label>
-                    <input type="name" name="firstname" class="form-control" id="InputFirstName" placeholder="Firstname">
+                    <input type="text" name="firstname" class="form-control" id="InputFirstName" placeholder="Firstname" required>
                 </div>  
         </div>
             <div class="col-md-6">
                   <div class="form-group">
                       <label for="">Lastname</label>
-                      <input type="name" name="lastname" class="form-control" id="InputLastName" placeholder="Lastname">
+                      <input type="text" name="lastname" class="form-control" id="InputLastName" placeholder="Lastname" required>
                   </div>  
             </div>
         </div>
@@ -258,7 +257,7 @@ if (isset($_POST['next'])){
             <div class="col-md-6">
                   <div class="form-group">
                       <label for="">AccountNo</label>
-                      <input type="text" name="account" class="form-control" id="InputAccount" placeholder="AccountNo">
+                      <input type="number" name="account" class="form-control" id="InputAccount" placeholder="AccountNo">
                   </div>  
             </div>
         </div>
@@ -271,29 +270,45 @@ if (isset($_POST['next'])){
                 </div>  
             </div>
         </div>
-        <div class="form-group">
 
-          <select name="country" id="country">
-            <option value="dummy" selected disabled>Select country</option>
-            <?php
-                require_once('configuration.php');
-                
-                $query = "SELECT countryID, country_code, country_name FROM country";
-                $result = $conn->query($query);
-                
-                if($result->num_rows > 0){
-                    $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                }
-                
-                foreach ($options as $option){
-            ?>
-            <option value="<?= $option['countryID']."+".$option['country_code']; ?>"><?= $option['country_name']; ?> </option>
-            <?php
-               }
-            ?>               
-           
-          </select>
-        </div> 
+        <div class="row">
+            <div class="col-md-4">
+                <label for="gender-select">Gender</label>
+                <select name="gender" class="form-select" id="gender-select">
+                  <option value="" disabled selected hidden>Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="country">Country</label>
+
+              <select name="country" id="country">
+                <option value="dummy" selected disabled>Select country</option>
+                <?php
+                    require_once('configuration.php');
+                    
+                    $query = "SELECT countryID, country_code, country_name FROM country";
+                    $result = $conn->query($query);
+                    
+                    if($result->num_rows > 0){
+                        $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    }
+                    
+                    foreach ($options as $option){
+                ?>
+                <option value="<?= $option['countryID']."+".$option['country_code']; ?>"><?= $option['country_name']; ?> </option>
+                <?php
+                   }
+                ?>               
+               
+              </select>
+            </div>  
+            </div>
+        </div>
+
+
         <button type="submit" name="move" id="popUpYes" style="margin-top: 8%;">Move Ahead</button>
     </form>      
       

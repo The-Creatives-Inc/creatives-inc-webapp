@@ -163,6 +163,29 @@
               color:#DF9322;
               text-decoration: none;
             }
+            
+            .unveri{
+              margin: 30px auto;
+            }
+            
+            .lg-row{
+              margin: auto;
+            
+            }
+            
+            .col-md-4{
+              border: 2px solid white;
+              width: 100%;
+              max-width: 30%;
+              border-radius: 20px;
+              margin: 10px;
+              padding: 10px;
+            }
+            
+            .down{
+              display: flex;
+              align-items: flex-end;
+            }
     </style>
 
     <title>Admin Verification</title>
@@ -202,6 +225,16 @@
     
 
     <div class="container nopadding">
+        <?php
+          if (!empty($_SESSION['done'])) {
+              echo ("<p style='color: green; text-align: center;'>".$_SESSION['done']."</p>");
+              unset($_SESSION['done']);
+             }
+           if (!empty($_SESSION['wrong'])) {
+            echo ("<p style='color: red; text-align: center;'>".$_SESSION['wrong']."</p>");
+            unset($_SESSION['wrong']);
+           }
+        ?>
         <div role="tablist" id='myTab'>
           <span class="nav-item" role="presentation">
             <a 
@@ -224,9 +257,7 @@
         
         <div class="tab-content" id="myTabContent">
           <!-- 1 -->
-          <!-- <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab"> -->
-          <div>
-            <div class="row">
+          <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <?php
               require_once('configuration.php');
               
@@ -243,11 +274,12 @@
               
               for ($z = 0; $z < count($options2); $z++){ 
             ?>
+            <div class="row unveri">
               <div class="col-md-3">
-                <img src="<?= $options1[$z]['link']; ?>" class="rounded float-left" style="height: 150px; width: 80%">       
+                <img src="<?= $options2[$z]['link']; ?>" class="rounded float-left" style="height: 150px; width: 80%">       
               </div>
               <div class="col-md-2">
-                <p>"<?= $options1[$z]['artworkTitle']; ?>" <br> Category: "<?= $options1[$z]['field_name']; ?>" <br> by "<?= $options1[$z]['signature_name']; ?>"</p>
+                <p>"<?= $options2[$z]['artworkTitle']; ?>" <br> Category: "<?= $options2[$z]['field_name']; ?>" <br> by "<?= $options2[$z]['signature_name']; ?>"</p>
               </div>
               <div class="col-md-1">
               </div>
@@ -255,23 +287,24 @@
                 <input type="checkbox" value="Apple">
               </div>
               <div class="col-md-2">
-                <button type="submit" id="popUpYes1" value="<?= $options1[$z]['artworkID']; ?> 1">Approve</button>
+                <button type="submit" id="popUpYes1" value="">
+                <a href="adminverify_proc.php?answer=1&artid=<?= $options2[$z]['artworkID'];?>">Approve</a>
+                </button>
               </div>
               <div class="col-md-2">
-                <button type="submit" id="popUpYes2" value="<?= $options1[$z]['artworkID']; ?> 2">Disapprove</button>
+                <button type="submit" id="popUpYes2" value="">
+                <a href="adminverify_proc.php?answer=2&artid=<?= $options2[$z]['artworkID'];?>">Disapprove</a> 
+                </button> 
               </div>
               </div>
-            
-            <?php }} ?> 
-
-            </div>
+              </div>
+            <?php }} ?>          
           </div>
           
           <!-- 2 -->
-          <!-- <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab"> -->
-          <div>
+          <div class="row lg-row tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <?php
-                $query = "SELECT * FROM users INNER JOIN field ON users.fieldID = field.fieldID INNER JOIN country ON country.countryID = users.countryID = country.countryID;";
+                $query = "SELECT * FROM users INNER JOIN field ON users.fieldID = field.fieldID INNER JOIN country ON country.countryID = users.countryID;";
                 $result = $conn->query($query);
               
               if($result->num_rows > 0){
@@ -281,7 +314,8 @@
               for ($x = 0; $x < count($options); $x++){ 
               ?> 
               
-              <div>
+              <div class='row sub-row col-md-4'>
+                <div class='col-md-3'>
                   <?php  
                     if(!$options[$x]['image']){
                       echo '<img src="artists/profile.png" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
@@ -289,37 +323,21 @@
                       echo '<img src="'.$options[$x]['image'].'" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
                     }
                   ?> 
-                <p><?= $options[$x]['email'];?></p>
-                <p><?= $options[$x]['phone_number'];?></p>
-                <p><?= $options[$x]['date_joined'];?></p>
-                <p><?= $options[$x]['country_name'];?></p>
-                <p><?= $options[$x]['field_name'];?></p>     
+                </div>
+                <div class="col-md-6">
+                  <p><?= $options[$x]['email'];?></p>
+                  <p><?= $options[$x]['phone_number'];?></p>
+                  <p><?= $options[$x]['date_joined'];?></p>
+                  <p><?= $options[$x]['country_name'];?></p>
+                  <p><?= $options[$x]['field_name'];?></p> 
+                </div>
+                <div class='down'><a href="delete.php?userid=<?= $options[$x]['userID'];?>">Delete Me</a></div>
               </div>
               <?php } ?>
           </div>          
         </div>
       </div>
     </div>
-    
-    <!-- <div id='check-all'>
-      <input type="checkbox" name = 'all' value=''>
-      <label for="all" class="col-sm-2 col-form-label">Select all users</label>
-    </div> -->
-    
-
-    <!-- <div class="container nopadding">
-        <div class="row">
-          <div class="col-md-4">
-        </div>
-        <div class="col-md-4">
-          <button type="submit" id="popUpYes1">Verify All</button>
-        </div>
-        <div class="col-md-4">
-        </div>  
-        </div> 
-    </div>-->
-  
-
 
       </div>
     </body>

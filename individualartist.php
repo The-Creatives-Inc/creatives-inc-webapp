@@ -502,7 +502,7 @@
               for ($z = 0; $z < count($options2); $z++){ 
             ?>
               <div class="inside col-md-4 col-sm-6">
-                <a href="individualartwork.php?uid=<?= $options1[$z]['artworkID'];?>"><img src="<?= $options1[$z]['link']; ?>" style="height: 180px; width: 200px"> <br></a>
+                <a href="individualartwork.php?uid=<?= $options2[$z]['artworkID'];?>"><img src="<?= $options2[$z]['link']; ?>" style="height: 180px; width: 200px"> <br></a>
                 
                 <div class="next-inside">
                   <div class="">

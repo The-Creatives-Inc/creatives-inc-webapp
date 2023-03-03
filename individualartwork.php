@@ -174,20 +174,22 @@
     <hr class="new1">
 
 
+
+
     <div class="container-fluid">
       <?php
             $uid = $_GET['uid'];
             
             require_once('configuration.php');
             
-            $query = "SELECT artwork.artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription FROM 
-            users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID  LEFT JOIN comment ON artwork.artworkID = comment.artworkID
-       WHERE artwork.artworkID ='$uid';";
+            $query = "SELECT artwork.artworkID as artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription, numLikes FROM users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID LEFT JOIN `artworkLikes` ON linkID = artworklikes.artworkID LEFT JOIN comment ON artwork.artworkID = comment.artworkID WHERE artwork.artworkID ='$uid';";
             $result = $conn->query($query);
+
             
             if($result->num_rows > 0){
                 $options = mysqli_fetch_assoc($result);
             }
+            $_SESSION['artworkID'] = $options['artworkID'];
           
         ?>
     
@@ -200,20 +202,14 @@
             
             <div class="row" style="margin-top: 5%;">
               <div class="col-md-6">
-                <span class="material-symbols-outlined">
-                  favorite 0
-                  </span>
+                <a href="like.php"><span id="like-btn" class="material-symbols-outlined">
+                  favorite <span id="numOfLikes"><?= $options['numLikes']; ?></span>
+                  </span></a>
               </div>
               
               <p>
               <?= $options['artworkDescription']; ?> 
               </p>
-
-              <!-- <div class="col-md-6">
-                <span class="material-symbols-outlined">
-                  ios_share 100
-                  </span>
-              </div> -->
 
             </div>
 
@@ -303,6 +299,36 @@
     </div> -->
 
       </div>
+ 
+      <!--- 
+      Check for session, if there is no session, that is user not logged in don't add like\, report sign in first
+      -->
+      <!-- <script>
+        like = document.getElementById("like-bt");
+        numLikes = document.getElementById("numOfLikes");
+
+        var artworkId = <?= $options['artworkID']; ?>;
+        var numLikes = <?= $options['numLikes']; ?>;
+
+        like.addEventListener("click", (e) => {
+          e.preventDefault();
+          sendData();
+
+          
+        })
+
+        function sendData() {
+          const xhttp = new XMLHttpRequest();
+          xhttp.onload = function() {
+            // document.getElementById("demo").innerHTML = this.responseText;
+             console.log(this.responseText);
+            }
+          xhttp.open("GET", "like.php?uid=" + artworkId, true);
+          xhttp.send();
+          
+        }
+         
+      </script> -->
     </body>
   </html>
 
@@ -311,5 +337,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script
   </body>
 </html>

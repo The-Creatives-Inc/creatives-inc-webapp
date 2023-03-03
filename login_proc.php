@@ -9,9 +9,9 @@ if (isset($_POST['login']))
   $password = $_POST['password'];
 
   // database connection parameters
-  // $servername = "18.168.199.7";
+  // $servername = "localhost";
   // $username = "root";
-  // $db_password = "creatives@23";
+  // $db_password = "creativeS@23";
   // $dbname = "creative_db";
   
     // database connection parameters
@@ -21,7 +21,7 @@ if (isset($_POST['login']))
     $dbname = "creative_db";
 
   // Create connection
-  $conn = new mysqli($servername, $username, $db_password, $dbname);
+  $conn = mysqli_connect($servername, $username, $db_password, $dbname);
   // Check connection
   if ($conn->connect_error) {
     //stop executing the code and echo error

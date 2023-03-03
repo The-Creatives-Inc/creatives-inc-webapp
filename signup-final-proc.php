@@ -9,15 +9,20 @@ if (isset($_POST['end'])) {
      $_SESSION['error_3'] = "Please select one area of interest";
      header ("Location: signup-final.php");
   } else {
-    
-      //database connection parameters
+  
       $servername = "localhost";
       $username = "root";
-      $db_password = "creativeS@23";
+      $db_password = "";
       $dbname = "creative_db";
     
+      // database connection parameters
+      // $servername = "localhost";
+      // $username = "root";
+      // $db_password = "creativeS@23";
+      // $dbname = "creative_db";
+    
       // Create connection
-      $conn = new mysqli($servername, $username, $db_password, $dbname);
+      $conn = mysqli_connect($servername, $username, $db_password, $dbname);
       // Check connection
       if ($conn->connect_error) {
         //stop executing the code and echo error

@@ -259,14 +259,18 @@
                      
             require_once('configuration.php');
             
-            $query = "SELECT artwork.artworkID as artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription, numLikes FROM users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID LEFT JOIN `artworkLikes` ON linkID = artworklikes.artworkID LEFT JOIN comment ON artwork.artworkID = comment.artworkID WHERE artwork.artworkID ='$uid';";
-            $result = $conn->query($query);
+            $uid = $_GET['uid'];
+            
+            // $q = "SELECT artwork.artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription, numLikes FROM users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID LEFT JOIN `artworkLikes` ON artwork.artworkID= artworklikes.artworkID LEFT JOIN comment ON artwork.artworkID = comment.artworkID WHERE artwork.artworkID =1;";
+            $q = "SELECT * FROM  users INNER JOIN artist ON artist.artistID = users.userID inner join artwork ON artwork.artistID = users.userID inner join link ON linkID = artwork.artworkID left JOIN `artworklikes` ON artwork.artworkID = artworklikes.artworkID WHERE artwork.artworkID ='$uid';";
+            $result = $conn->query($q);
 
             
             if($result->num_rows > 0){
                 $options = mysqli_fetch_assoc($result);
             }
             $_SESSION['artworkID'] = $options['artworkID'];
+            
           
         ?>
     

@@ -15,7 +15,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style>
+
+     <style>
         body{
             background: #000000;
             color: white;
@@ -135,6 +136,33 @@
             height: 35px;
             width: 30px;
           }
+          
+          #myTab{
+            display: flex;
+            justify-content: center;
+          }
+          
+          #myTab span{
+              display: inline-block;
+              background-color: white;
+              border-radius: 10px;
+              padding: 7px 20px;
+              margin: 0 20px 50px 0;
+              
+            }
+            
+            #myTab span:hover{
+              background-color: black;  
+            }
+            
+            #myTab span a{
+              color: black;
+            }
+            
+            #myTab span a:hover{
+              color:#DF9322;
+              text-decoration: none;
+            }
     </style>
 
     <title>Admin Verification</title>
@@ -171,107 +199,115 @@
           </div>
         </div>
     </div>
-
-
-
-    <div class="container nopadding">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/eight.png" class="rounded float-left" style="height: 150px; width: 80%">          </div>
-          <div class="col-md-2">
-            <p>Pen Down <br> Category: Poetry</p>
-          </div>
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-1">
-            <input type="checkbox" value="Apple" />
-          </div>
-          <div class="col-md-2">
-            <button type="submit" id="popUpYes1">Approve</button>
-          </div>
-          <div class="col-md-2">
-            <button type="submit" id="popUpYes2">Disapprove</button>
-          </div>
-
-        </div>
-    </div>
+    
 
     <div class="container nopadding">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/nine.png" class="rounded float-left" style="height: 150px; width: 80%">          </div>
-          <div class="col-md-2">
-            <p>Kalers <br>
-              Category: Painting</p>
+        <div role="tablist" id='myTab'>
+          <span class="nav-item" role="presentation">
+            <a 
+              id='home-tab' 
+              data-toggle='tab'
+              href='#home' 
+              role='tab' 
+              aria-controls='home'
+              aria-selected='true'>Unverified Arts</a>
+          </span>
+          <span class='nav-item' role='presentation'><a 
+            id='profile-tab' 
+            data-toggle='tab'
+            href='#profile' 
+            role='tab' 
+            aria-controls='profile'
+            aria-selected='false'>Users</a>
+          </span>
+        </div>
+        
+        <div class="tab-content" id="myTabContent">
+          <!-- 1 -->
+          <!-- <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab"> -->
+          <div>
+            <div class="row">
+            <?php
+              require_once('configuration.php');
+              
+              $query2 = "SELECT artworkID, link, artworkTitle, field_name, signature_name FROM artwork INNER JOIN link ON link.linkID = artwork.artworkID
+              INNER JOIN artist ON artwork.artistID = artist.artistID INNER JOIN field ON artwork.fieldID=field.fieldID WHERE artwork.status = 0";
+              
+              $result2 = $conn->query($query2);
+              
+              if($result2->num_rows > 0){
+                  $options2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+              }
+              
+              if($result2->num_rows){
+              
+              for ($z = 0; $z < count($options2); $z++){ 
+            ?>
+              <div class="col-md-3">
+                <img src="<?= $options1[$z]['link']; ?>" class="rounded float-left" style="height: 150px; width: 80%">       
+              </div>
+              <div class="col-md-2">
+                <p>"<?= $options1[$z]['artworkTitle']; ?>" <br> Category: "<?= $options1[$z]['field_name']; ?>" <br> by "<?= $options1[$z]['signature_name']; ?>"</p>
+              </div>
+              <div class="col-md-1">
+              </div>
+              <div class="col-md-1">
+                <input type="checkbox" value="Apple">
+              </div>
+              <div class="col-md-2">
+                <button type="submit" id="popUpYes1" value="<?= $options1[$z]['artworkID']; ?> 1">Approve</button>
+              </div>
+              <div class="col-md-2">
+                <button type="submit" id="popUpYes2" value="<?= $options1[$z]['artworkID']; ?> 2">Disapprove</button>
+              </div>
+              </div>
+            
+            <?php }} ?> 
+
+            </div>
           </div>
-          <div class="col-md-1">
+          
+          <!-- 2 -->
+          <!-- <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab"> -->
+          <div>
+              <?php
+                $query = "SELECT * FROM users INNER JOIN field ON users.fieldID = field.fieldID INNER JOIN country ON country.countryID = users.countryID = country.countryID;";
+                $result = $conn->query($query);
+              
+              if($result->num_rows > 0){
+                  $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
+              }
+              
+              for ($x = 0; $x < count($options); $x++){ 
+              ?> 
+              
+              <div>
+                  <?php  
+                    if(!$options[$x]['image']){
+                      echo '<img src="artists/profile.png" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                    } else{
+                      echo '<img src="'.$options[$x]['image'].'" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                    }
+                  ?> 
+                <p><?= $options[$x]['email'];?></p>
+                <p><?= $options[$x]['phone_number'];?></p>
+                <p><?= $options[$x]['date_joined'];?></p>
+                <p><?= $options[$x]['country_name'];?></p>
+                <p><?= $options[$x]['field_name'];?></p>     
+              </div>
+              <?php } ?>
+          </div>          
         </div>
-        <div class="col-md-1">
-          <input type="checkbox" value="Apple" />
-        </div>
-        <div class="col-md-2">
-          <button type="submit" id="popUpYes1">Approve</button>
-        </div>
-        <div class="col-md-2">
-          <button type="submit" id="popUpYes2">Disapprove</button>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="container nopadding">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/ten.png" class="rounded float-left" style="height: 150px; width: 80%">          </div>
-          <div class="col-md-2">
-            <p>The C_Master <br>
-              Category: Digital Design</p>
-          </div>
-          <div class="col-md-1">
-        </div>
-        <div class="col-md-1">
-          <input type="checkbox" value="Apple" />
-        </div>
-        <div class="col-md-2">
-          <button type="submit" id="popUpYes1">Approve</button>
-        </div>
-        <div class="col-md-2">
-          <button type="submit" id="popUpYes2">Disapprove</button>
-        </div>
-
-        </div>
-    </div>
-
-    <div class="container nopadding">
-        <div class="row">
-          <div class="col-md-3 no">
-            <img src="images/eleven.png" class="rounded float-left" style="height: 150px; width: 80%">          </div>
-          <div class="col-md-2">
-            <p>Sound of Africa <br>
-              Category:  Beat Making</p>
-          </div>
-          <div class="col-md-1">
-        </div>
-        <div class="col-md-1">
-          <input type="checkbox" value="Apple" />
-        </div>
-        <div class="col-md-2">
-          <button type="submit" id="popUpYes1">Approve</button>
-        </div>
-        <div class="col-md-2">
-          <button type="submit" id="popUpYes2">Disapprove</button>
-        </div>
-        </div>
+      </div>
     </div>
     
-    <div id='check-all'>
+    <!-- <div id='check-all'>
       <input type="checkbox" name = 'all' value=''>
       <label for="all" class="col-sm-2 col-form-label">Select all users</label>
-    </div>
+    </div> -->
     
 
-    <div class="container nopadding">
+    <!-- <div class="container nopadding">
         <div class="row">
           <div class="col-md-4">
         </div>
@@ -280,8 +316,8 @@
         </div>
         <div class="col-md-4">
         </div>  
-        </div>
-    </div>
+        </div> 
+    </div>-->
   
 
 

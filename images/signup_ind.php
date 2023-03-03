@@ -17,9 +17,10 @@ if (isset($_POST['next'])){
          // Sanitizing email field to remove unwanted characters.
          $_POST['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-        $passwordRegex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/';     
+        //  $passwordRegex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/';
+        $passwordRegex = '/^[0-9]{3}/';      
 
-        $isPassValid = preg_match($passwordRegex, $_POST['password']);
+         $isPassValid = preg_match($passwordRegex, $_POST['password']);
 
 
          // After sanitization Validation is performed.
@@ -147,29 +148,7 @@ if (isset($_POST['next'])){
           #upload{
             background-color: #000000;
             border-color: white;
-          },
-
-          #country{
-            display: block;
-            margin-top: 7%;
-            margin-bottom: 2%;
           }
-          
-          #code{
-            display: inline;
-            width: 20%;
-            border: none;
-            background-color: black;
-          }
-          
-          #number{
-            display: inline;
-            width: 75%;
-          }
-
-          ::-webkit-calendar-picker-indicator {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
-}
 
 
     </style>
@@ -181,7 +160,7 @@ if (isset($_POST['next'])){
     <div class="main-nav">
         <h4><a href="index.php" style="color: white; font-family: 'Croissant One', cursive;">X</a></h4>
         <nav class="nav">
-            <a class="nav-link" href="#top"><h1>The Creative</h1></a>  
+            <a class="nav-link" href="#"><h1>The Creative</h1></a>  
         </nav>
     </div>
     <h1></h1>
@@ -189,17 +168,6 @@ if (isset($_POST['next'])){
     <div class="main-nav-info">
             <h4>Few steps away from becoming part of this space ... </h4>    
     </div>
-     <span id="error">
-
-        <!---- Initializing Session for errors --->
-        <?php
-            if (!empty($_SESSION['error_2'])) {
-             echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_2']."</p>");
-             unset($_SESSION['error_2']);
-            }
-        ?>
-
-      </span>
 
     <?php
         if ($_SESSION['post']['user-type'] == 1) {
@@ -223,7 +191,7 @@ if (isset($_POST['next'])){
                                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                                 <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
                               </svg>  Upload Image  </label>
-                            <input type="file" class="form-control d-none" id="customFile1" name="image" />
+                            <input type="file" class="form-control d-none" id="customFile1" />
                         </div>
                     </div>
                 
@@ -235,13 +203,13 @@ if (isset($_POST['next'])){
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="InputEmail1">Firstname</label>
-                    <input type="text" name="firstname" class="form-control" id="InputFirstName" placeholder="Firstname" required>
+                    <input type="name" class="form-control" id="InputFirstName" placeholder="Firstname">
                 </div>  
         </div>
             <div class="col-md-6">
                   <div class="form-group">
                       <label for="">Lastname</label>
-                      <input type="text" name="lastname" class="form-control" id="InputLastName" placeholder="Lastname" required>
+                      <input type="name" class="form-control" id="InputLastName" placeholder="Lastname">
                   </div>  
             </div>
         </div>
@@ -251,13 +219,13 @@ if (isset($_POST['next'])){
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Phone</label>
-                    <input type="phone" name="number" class="form-control" id="InputPhone" placeholder="+48 999-999-99" data-mdb-input-mask="+48 999-999-999">
+                    <input type="phone" class="form-control" id="InputPhone" placeholder="+48 999-999-99" data-mdb-input-mask="+48 999-999-999">
                 </div>  
         </div>
             <div class="col-md-6">
                   <div class="form-group">
                       <label for="">AccountNo</label>
-                      <input type="number" name="account" class="form-control" id="InputAccount" placeholder="AccountNo">
+                      <input type="text" class="form-control" id="InputAccount" placeholder="AccountNo">
                   </div>  
             </div>
         </div>
@@ -266,54 +234,14 @@ if (isset($_POST['next'])){
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="">DOB</label>
-                    <input type="date" name="dob" class="form-control" id="InputDate">
+                    <input type="date" class="form-control" id="InputDate">
                 </div>  
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <label for="gender-select">Gender</label>
-                <select name="gender" class="form-select" id="gender-select">
-                  <option value="" disabled selected hidden>Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-            <div class="form-group">
-                <label for="country">Country</label>
-
-              <select name="country" id="country">
-                <option value="dummy" selected disabled>Select country</option>
-                <?php
-                    require_once('configuration.php');
-                    
-                    $query = "SELECT countryID, country_code, country_name FROM country";
-                    $result = $conn->query($query);
-                    
-                    if($result->num_rows > 0){
-                        $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                    }
-                    
-                    foreach ($options as $option){
-                ?>
-                <option value="<?= $option['countryID']."+".$option['country_code']; ?>"><?= $option['country_name']; ?> </option>
-                <?php
-                   }
-                ?>               
-               
-              </select>
-            </div>  
-            </div>
-        </div>
-
-
-        <button type="submit" name="move" id="popUpYes" style="margin-top: 8%;">Move Ahead</button>
+        <button type="submit" id="popUpYes" style="margin-top: 8%;">Move Ahead</button>
     </form>      
       
       </div>
-      
     </body>
   </html>
 

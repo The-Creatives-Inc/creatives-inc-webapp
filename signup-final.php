@@ -27,7 +27,7 @@ if ($_SESSION['post']["user-type"] == 1) {
 if ($_SESSION['post']["user-type"] == 4) {
 
   if (isset($_POST['com-submit'])) {
-    if (empty($_POST['org-name']) || empty($_POST['org-description']) || empty($_POST['country']) || empty($_POST['number']) || empty($_POST['address'])) {
+    if (empty($_POST['org-name']) || empty($_POST['org-description']) || empty($_POST['country']) || empty($_POST['number']) || empty($_POST['account'])) {
        $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
     } else {
     
@@ -52,7 +52,7 @@ if ($_SESSION['post']["user-type"] == 4) {
 if ($_SESSION['post']["user-type"] == 3) {
 
   if (isset($_POST['next'])) {
-    if (empty($_POST['signature-name']) || empty($_POST['gender']) || empty($_POST['website'])) {
+    if (empty($_POST['artist-name']) || empty($_POST['website'])) {
        $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
     } else {
     
@@ -65,6 +65,27 @@ if ($_SESSION['post']["user-type"] == 3) {
     if(empty($_SESSION['error_3'])) {
       session_unset();
       header("location:signup_ind.php");
+    }//redirecting to first page
+  }
+
+}
+
+if ($_SESSION['post']["user-type"] == 2) {
+
+  if (isset($_POST['next'])) {
+    if (empty($_POST['artist-name']) || empty($_POST['website']) || empty($_POST['org-name']) || empty($_POST['org-description']) || empty($_POST['country']) || empty($_POST['number']) || empty($_POST['account'])) {
+       $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
+    } else {
+    
+      foreach ($_POST as $key => $value) { 
+        $_SESSION['post'][$key] = $value;
+      }
+    
+    } 
+  }   else {
+    if(empty($_SESSION['error_3'])) {
+      session_unset();
+      header("location:signup_com_artist.php");
     }//redirecting to first page
   }
 

@@ -25,6 +25,7 @@ if (isset($_POST['comment-submit']))
     // database connection parameters
     $servername = "localhost";
     $username = "root";
+    // $db_password = "creativeS@23";
     $db_password = "";
     $dbname = "creative_db";
 

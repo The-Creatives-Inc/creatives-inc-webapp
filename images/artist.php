@@ -1,6 +1,6 @@
+
 <?php
   session_start(); // Session starts here.
-  $_SESSION["page"] = "artist.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -121,7 +121,7 @@
   
     <div class="main-nav">
       <nav class="nav">
-        <a class="nav-link" href="index.php#arts">HOME</a>
+        <a class="nav-link" href="index.php">HOME</a>
         <a class="nav-link" href="about.php">ABOUT</a>
         <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
         <a class="nav-link" href="index.php#last-arrow">CONTACT</a>
@@ -141,71 +141,126 @@
       </nav>  
       <hr class="new1">
     </div>
-    
-    <?php
-      require_once('configuration.php');
-      
-      //$query = "SELECT signature_name, `image`, link, field_name, artworkID FROM artist INNER JOIN users ON users.userID = artist.artistID 
-      //INNER JOIN field ON field.fieldID = users.fieldID INNER JOIN artwork ON artwork.artistID = artist.artistID INNER JOIN link ON link.linkID = artwork.artworkID";
-      
-      $query = "SELECT artistID, signature_name, `image`, field_name FROM artist INNER JOIN users ON users.userID = artist.artistID 
-      INNER JOIN field ON field.fieldID = users.fieldID";
-      
-      $result = $conn->query($query);
-      
-      if($result->num_rows > 0){
-          $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
-          
-      }
-      
-    ?>
 
-    <?php 
-      for ($x = 0; $x < count($options); $x++){ 
-    ?>
-      <div class="container nopadding">
+
+    <div class="container nopadding">
         <div class="row">
           <div class="col-md-3">
             <div class="grow">
-              <a href="individualartist.php?aid=<?= $options[$x]['artistID']; ?>">
-                <?php  
-                  if(!$options[$x]['image']){
-                    echo '<img src="artists/profile.png" class="rounded float-left" style="height: 200px; width: 200px"';
-                  } else{
-                    echo '<img src="'.$options[$x]['image'].'" class="rounded float-left" style="height: 200px; width: 200px">';
-                  }
-                ?> 
-              </a>           
+              <a href="individualartist.php"><img src="images/thirteen.jpg" class="rounded float-left" style="height: 200px; width: 100%"></a>           
+            </div>
+            </div>
+          <div class="col-md-3">
+            <a href="individualartist.php"><p>Pen Down <br> Category: Poetry</p></a> 
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/fourteen.jpg"  style="height: 150px; width: 100%"></a>         
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/fifteen.jpg"  style="height: 150px; width: 100%"></a>           
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/sixteen.jpg" style="height: 150px; width: 100%"> </a>         
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="container nopadding">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="grow">
+              <a href="individualartist.php"><img src="images/eighteen.jpg" class="rounded float-left" style="height: 200px; width: 100%"></a>           
             </div>
           </div>
           <div class="col-md-3">
-            <a href="individualartist.php?aid=<?= $options[$x]['artistID']; ?>">
-              <p><?= $options[$x]['signature_name']; ?><br> Category: <?= $options[$x]['field_name']; ?></p>
-            </a> 
+            <a href="individualartist.php"><p>Kalers <br>
+              Category: Painting</p></a> 
           </div>
-          <?php
-            $aid= $options[$x]['artistID'];
-            
-            $query1 = "SELECT artworkID, link FROM artwork INNER JOIN link ON link.linkID = artwork.artworkID 
-            INNER JOIN artist ON artwork.artistID = artist.artistID WHERE artist.artistID='$aid' LIMIT 3";
-            
-            $result1 = $conn->query($query1);
-            
-            if($result1->num_rows > 0){
-                $options1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-            }
-            
-            for ($y = 0; $y < count($options); $y++){ 
-          ?>
-            <div class="grow col-md-2">
-              <a href="individualartwork.php?uid=<?= $options1[$y]['artworkID'];?>"><img src="<?= $options1[$y]['link']; ?>" style="height: 150px; width: 150px"></a>          
+          <div class="col-md-2">
+            <!-- <img src="images/hero_2.jpg" style="height: 150px; width: 100%"/> -->
+          </div>
+          <div class="col-md-2">
+            <!-- <img src="images/hero_2.jpg" style="height: 150px; width: 100%"/> -->
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/nineteen.jpg" style="height: 150px; width: 100%"></a>          
             </div>
-          <?php } ?>   
-        </div>   
+          </div>
+
+        </div>
+    </div>
+
+
+    <div class="container nopadding">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="grow">
+              <a href="individualartist.php"><img src="images/twenty.jpg" class="rounded float-left" style="height: 200px; width: 100%"></a>           
+            </div>
+          </div>
+          <div class="col-md-3">
+            <a href="individualartist.php"><p>The C_Master <br>
+              Category: Digital Design</p></a> 
+          </div>
+          <div class="col-md-2">
+            <!-- <img src="images/hero_2.jpg" style="height: 150px; width: 100%"/> -->
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/eight.png"style="height: 150px; width: 100%"></a>          
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/sixteen.jpg" style="height: 150px; width: 100%"></a>          
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="container nopadding">
+        <div class="row">
+          <div class="col-md-3 no">
+            <div class="grow">
+              <a href="individualartist.php"><img src="images/eleven.png" class="rounded float-left" style="height: 200px; width: 100%"></a>           
+            </div>
+          </div>
+          <div class="col-md-3">
+            <a href="individualartist.php"><p>Sound of Africa <br>
+              Category:  Beat Making</p></a> 
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/nine.png" style="height: 150px; width: 100%"></a>          
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/ten.png" style="height: 150px; width: 100%"></a>          
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="grow">
+              <a href="individualartwork.php"><img src="images/eleven.png" style="height: 150px; width: 100%"></a>          
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+
       </div>
-    <?php
-      }
-    ?>
+    </body>
+  </html>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

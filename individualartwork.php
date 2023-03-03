@@ -254,23 +254,23 @@
       <hr class="new1">
     </div>
 
-
-    <hr class="new1">
-
-
     <div class="container-fluid">
       <?php
                      
             require_once('configuration.php');
             
-            $query = "SELECT artwork.artworkID as artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription, numLikes FROM users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID LEFT JOIN `artworkLikes` ON linkID = artworklikes.artworkID LEFT JOIN comment ON artwork.artworkID = comment.artworkID WHERE artwork.artworkID ='$uid';";
-            $result = $conn->query($query);
+            $uid = $_GET['uid'];
+            
+            // $q = "SELECT artwork.artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription, numLikes FROM users INNER JOIN artist ON artist.artistID = users.userID INNER JOIN artwork ON artist.artistID = artwork.artistID INNER JOIN link ON linkID = artwork.artworkID LEFT JOIN `artworkLikes` ON artwork.artworkID= artworklikes.artworkID LEFT JOIN comment ON artwork.artworkID = comment.artworkID WHERE artwork.artworkID =1;";
+            $q = "SELECT * FROM  users INNER JOIN artist ON artist.artistID = users.userID inner join artwork ON artwork.artistID = users.userID inner join link ON linkID = artwork.artworkID left JOIN `artworklikes` ON artwork.artworkID = artworklikes.artworkID WHERE artwork.artworkID ='$uid';";
+            $result = $conn->query($q);
 
             
             if($result->num_rows > 0){
                 $options = mysqli_fetch_assoc($result);
             }
             $_SESSION['artworkID'] = $options['artworkID'];
+            
           
         ?>
     
@@ -278,20 +278,17 @@
           <div class="col-md-6 alignn">
             <h1 id='title'>
               <span><?= $options['artworkTitle']; ?></span>
-              <span class="material-symbols-outlined">favorite 0</span>
-            </h1>
-            
-            <div class="row" style="margin-top: 5%;">
-              <div class="col-md-6">
-                <a href="like.php"><span id="like-btn" class="material-symbols-outlined">
+              <a href="like.php"><span id="like-btn" class="material-symbols-outlined">
                   favorite <span id="numOfLikes"><?= $options['numLikes']; ?></span>
                   </span></a>
-              </div>
-              
+            </h1>
+            
+            <img src="<?= $options['link']; ?>" style="height: 400px; width: 500px;">
+            
+            <div style="margin-top: 5%; text-align:center;">    
               <p>
                 <?= $options['artworkDescription']; ?> 
               </p>
-
             </div>
           </div>
           

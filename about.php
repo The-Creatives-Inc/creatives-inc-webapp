@@ -212,7 +212,7 @@
   <body>
     <div class="main-nav">
         <nav class="nav">
-            <a class="nav-link" href="index.php">HOME</a>
+            <a class="nav-link" href="index.php#arts">HOME</a>
             <a class="nav-link" href="#top" id='current'>ABOUT</a>
             <a class="nav-link" href="artist.php">ARTISTS</a>
             <a class="nav-link" href="#last-arrow">CONTACT</a>

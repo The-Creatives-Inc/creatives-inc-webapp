@@ -1,5 +1,7 @@
 <?php
   session_start(); // Session starts here.
+  $uid = $_GET['uid'];
+  $_SESSION["page"] = "individualartwork.php?uid=".$uid;
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,10 +17,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
+        ::-webkit-scrollbar {
+          width: 15px;
+          margin: 5px;
+        }
+        
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: black; 
+          /* border: 1px solid white; */
+        }
+         
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.9); 
+          border-radius: 20px;
+        }
+        
         body{
             background: #000000;
             color: white;
             font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
         }
         
         .main-nav{
@@ -37,7 +57,6 @@
             font-family: 'Fira Sans', sans-serif;
             justify-content: center;
             background-color: rgba(0,0,0,0);
-            
           }
           
           #current{
@@ -48,6 +67,7 @@
             border-top: 3px solid white;
             margin: 0px;
             width: 100%;
+            margin-bottom: 60px;
           }
           
           
@@ -86,10 +106,6 @@
           img{
             border: 2px solid white;
             border-radius: 20px;
-            /* box-shadow: 5px 5px 5px #DF9322;
-            -moz-box-shadow: 5px 5px 5px #DF9322;
-            -webkit-box-shadow: 5px 5px 5px #DF9322;
-            -khtml-box-shadow: 5px 5px 5px ; */
           }
 
           .nopadding{
@@ -128,12 +144,13 @@
             }
             
             #comments{
-              margin-top: 2%;
+              margin-top: 5px;
               border-style: solid;
               border-width: 1px;
               border-radius: 30px;
               border-color: white;
-              padding: 10px;
+              width: 80%;
+              padding: 2% 10%;
             }
 
             #commentname{
@@ -141,16 +158,83 @@
             }
 
             #commenting{
-              font-size: 10px;
+              font-size: 12px;
+              margin-top: 2%
+            }
+            
+            .alignn{
+              justify-content: center;
+              text-align: center;
+            }
+            
+            .material-symbols-outlined{
+              margin-bottom: 30px;
+            }
+            
+            .single-comment{
+              margin-bottom: 30px;
+              
+            }
+            
+            div#comments {
+              overflow: auto;
+              height: 360px;
+              width: 80%;
+            }
+            
+            .col-md-10, .col-md-2{
+              margin: 0;
+              padding: 0;
+            }
+            
+            .col-md-10{
+              text-align: left;
+            }
+            
+            p#name, p#commenting{
+              margin: 0;
+            }
+            
+            span#name, span#date{
+              color: gray;  
+            }
+            
+            span#date{
+              margin-left: 130px;
+            }
+            
+            #title{
+              color: #DF9322;
+              margin-bottom: 15px;
+            }
+            
+            #title span.material-symbols-outlined{
+              margin-left: 30px;
+              font-size: 20px;
+            }
+            
+            .heading{
+              margin-bottom: 30px;
+              margin-left: 10px;
+            }
+            
+            .heading #signature{
+              font-size: 30px;
+              margin: auto 30px;
+            }
+            
+            form #comment{
+              width: 80%;
             }
     </style>
 
     <title>Individual Artwork</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="main-nav">
       <nav class="nav">
-        <a class="nav-link" href="index.php">HOME</a>
+        <a class="nav-link" href="index.php#arts">HOME</a>
         <a class="nav-link" href="about.php">ABOUT</a>
         <a class="nav-link" href="artist.php">ARTISTS</a>
         <a class="nav-link" href="index.php#last-arrow">CONTACT</a>
@@ -161,23 +245,19 @@
         ?>
         <?php
           if (!empty($_SESSION['userID'])) {
-           echo ("<a class='nav-link' href='logout.php'>SIGN OUT</a>");
+           echo ("<a class='nav-link' id='user' href='logout.php'>SIGN OUT</a>");
           } else {
-           echo ('<a class="nav-link" href="login.php">SIGN IN</a>');
+           echo ('<a class="nav-link" id="user" href="login.php">SIGN IN</a>');
           }
-          
         ?>
       </nav>  
+      <hr class="new1">
     </div>
-
-
-    <hr class="new1">
 
 
     <div class="container-fluid">
       <?php
-            $uid = $_GET['uid'];
-            
+                     
             require_once('configuration.php');
             
             $query = "SELECT artwork.artworkID, signature_name, artworkTitle, commentMessage, users.image, link, artworkDescription FROM 
@@ -192,120 +272,100 @@
         ?>
     
         <div class="row">
-          <div class="col-md-6">
-            <h1>
-              <?= $options['artworkTitle']; ?>
+          <div class="col-md-6 alignn">
+            <h1 id='title'>
+              <span><?= $options['artworkTitle']; ?></span>
+              <span class="material-symbols-outlined">favorite 0</span>
             </h1>
-            <img src="<?= $options['link']; ?> " style="height: 380px; width: 80%"> <br>
             
-            <div class="row" style="margin-top: 5%;">
-              <div class="col-md-6">
-                <span class="material-symbols-outlined">
-                  favorite 0
-                  </span>
-              </div>
-              
+            <img src="<?= $options['link']; ?>" style="height: 400px; width: 500px;">
+            
+            <div style="margin-top: 5%;">           
               <p>
-              <?= $options['artworkDescription']; ?> 
+                <?= $options['artworkDescription']; ?> 
               </p>
-
-              <!-- <div class="col-md-6">
-                <span class="material-symbols-outlined">
-                  ios_share 100
-                  </span>
-              </div> -->
-
             </div>
-
           </div>
-          <div class="col-md-6">
-            <h1><?= $options['artworkTitle']; ?> <span class="material-symbols-outlined">
-              verified
-              </span></h1><br>
-              <div class="row">
-                <div class="col-md-3">
-                <?php  
-                  if(!$options['image']){
-                    echo '<img src="artists/profile.png" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
-                  } else{
-                    echo '<img src="'.$options['image'].'" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
-                  }
-                ?> 
+          
+          <div class="col-md-6 alignn">
+              <div class="row heading">
+                <div>
+                  <?php  
+                    if(!$options['image']){
+                      echo '<img src="artists/profile.png" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                    } else{
+                      echo '<img src="'.$options['image'].'" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                    }
+                  ?> 
                   
-                </div>
-                <div class="col-md-3">
-                <?= $options['signature_name']; ?> 
-                  <button type="submit" id="popUpYes">Subscribe</button>
+                  <span id='signature'><?= $options['signature_name']; ?></span>
+                  <span class="material-symbols-outlined">verified</span> 
                 </div>
               </div>      
-              <div class="row">
-                <div class="col-md-8" id="comments">
-                  <div class="material-symbols-outlined" style="text-align: center;">
-                    forum
-                  </div>
+              
+              <!-- All comments -->
+              <div id="comments">
+                <div class="material-symbols-outlined" style="text-align: center;">forum</div>
+                
+                <?php
+                    require_once('configuration.php');
+                    
+                    $query = "SELECT commentMessage, datePosted, email, `image` FROM comment INNER JOIN users ON comment.userID = users.userID WHERE comment.artworkID='$uid'";
+                    $result = $conn->query($query);
+                    
+                    if($result->num_rows > 0){
+                        $options = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+                        
+                      for ($x = 0; $x < count($options); $x++){
+                ?>
+                
+                <div class="row single-comment">
+                  <div class="main-comment">
                     <div class="row">
-                      <div class="col-md-4">
-                        <img src="images/i2.jpg" class="rounded-circle" style="height: 50px; width:50%" alt="Cinque Terre"> 
-                       </div>
-                      <div class="col-md-8">
-                        <p style="font-size: 15px;">Kofi Ankrah</p>
-                        <p id="commenting">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit deleniti facere quo ut illo facilis ad molestias culpa, aperiam animi. Perferendis aliquam unde. 
-                          <div class="material-symbols-outlined">
-                            thumb_up
-                          </div> <span style="font-size: 10px;">1</span>
-                        </p>
+                      <div class='col-md-2'>
+                      <?php  
+                        if(!$options[$x]['image']){
+                          echo '<img src="artists/profile.png" class="rounded-circle" style="height: 100px; width:100px" alt="Cinque Terre">';
+                        } else{
+                          echo '<img src="'.$options[$x]['image'].'" class="rounded-circle" style="height: 50px; width:50px" alt="Cinque Terre">';
+                        }
+                      ?> 
                       </div>
-                   </div>
-
-                   <div class="row">
-                    <div class="col-md-4">
-                      <img src="images/i2.jpg" class="rounded-circle" style="height: 50px; width:50%" alt="Cinque Terre"> 
-                     </div>
-                    <div class="col-md-8">
-                      <p style="font-size: 15px;">Kofi Ankrah</p>
-                      <p id="commenting">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit deleniti facere quo ut illo facilis ad molestias culpa, aperiam animi. Perferendis aliquam unde. 
-                        <div class="material-symbols-outlined">
-                          thumb_up
-                        </div> <span style="font-size: 10px;">1</span>
-                      </p>
+                      <div class='col-md-10'>
+                        <span id='name' style="font-size: 15px;"><?= $options[$x]['email'] ?></span>
+                        <span id='date' style="font-size: 15px;"><?= $options[$x]['datePosted'] ?></span>
+                        <p id="commenting"><?= $options[$x]['commentMessage'] ?></p>
+                      </div>
+                    </div>  
+                    <hr style='background-color: gray; width: 470px;'>
                   </div>
-                 </div>
-
-                 <div class="row">
-                  <div class="col-md-4">
-                    <img src="images/i2.jpg" class="rounded-circle" style="height: 50px; width:50%" alt="Cinque Terre"> 
-                   </div>
-                  <div class="col-md-8">
-                    <p style="font-size: 15px;">Kofi Ankrah</p>
-                    <p id="commenting">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit deleniti facere quo ut illo facilis ad molestias culpa, aperiam animi. Perferendis aliquam unde. 
-                      <div class="material-symbols-outlined">
-                        thumb_up
-                      </div> <span style="font-size: 10px;">1</span>
-                    </p>
+                </div>
+                <?php  }} ?>
+                
+                <?php
+                   if (!empty($_SESSION['wcomment'])) {
+                    echo ("<p style='color: red; text-align: center;'>".$_SESSION['wcomment']."</p>");
+                    unset($_SESSION['wcomment']);
+                   }
+                   if (!empty($_SESSION['comment'])) {
+                    echo ("<p style='color: green; text-align: center;'>".$_SESSION['comment']."</p>");
+                    unset($_SESSION['comment']);
+                   }
+                ?>
+                
+                <form action="comment_proc.php" method='POST'>
+                    <input type="text" placeholder='comment' name='comment' id='comment'>
+                    <input type="text" value='<?= $uid ?>' name='uid' hidden>   
+                    <input type="submit" name='comment-submit' id='submit'>
+                </form>
               </div>
-               </div>
-
-              </div>      
-
+                
+            </div>      
           </div>
         </div>
-    </div>
-
-    <!-- <div class="container nopadding">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/i2.jpg" class="rounded-circle" style="height: 100px; width:20%" alt="Cinque Terre"> 
-          </div>
-          <div class="col-md-3">
-            The Creator <br> The CMaster
-          </div>
-        </div>
-    </div> -->
-
       </div>
-    </body>
-  </html>
-
+    </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

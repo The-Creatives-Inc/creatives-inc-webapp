@@ -56,7 +56,7 @@ if (isset($_POST['login']))
                   $_SESSION["userID"] = $userID;
                   $_SESSION["isAdmin"] = $isAdmin;
                   
-                    header("Location: index.php");
+                    header("Location: ".$_SESSION['page']);
                       // Password is correct, so start a new session
         
                   } else {

@@ -308,7 +308,7 @@
   <body>
     <div class="main-nav">
         <nav class="nav">
-            <a class="nav-link" href="index.php">HOME</a>
+            <a class="nav-link" href="index.php#arts">HOME</a>
             <a class="nav-link" href="about.php">ABOUT</a>
             <a class="nav-link" href="artist.php" id='current'>ARTISTS</a>
             <a class="nav-link" href="index.php#last-arrow">CONTACT</a>   

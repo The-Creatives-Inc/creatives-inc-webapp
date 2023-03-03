@@ -1,3 +1,13 @@
+<?php
+  session_start(); // Session starts here.
+  $aid = $_GET['aid'];
+  if(!isset($_SESSION['userID']) && $_SESSION['userID'] =! $aid){
+    $location = 'individualartist.php?uid='.$_SESSION['aid'];
+    header("location: ".$location);
+  }
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -90,34 +100,50 @@
     <title>Login</title>
   </head>
   <body>
-    <h1></h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4 columnone" style="background-color: white; color: black;">
+          <?php
+            require_once('configuration.php');
+            $query = "SELECT `image`, signature_name FROM artist INNER JOIN users ON artistID = userID WHERE artistID = '$aid'";
+            
+            $result = $conn->query($query);
+            
+            if($result->num_rows > 0){
+                $options = mysqli_fetch_assoc($result);
+            }
+            
+          ?>
             <div class="row">
                 <div class="col-md-12" style="background-color: rgb(255, 255, 255); color: black;">
-                <img src="images/profile.webp" class="rounded-circle mb-3 center" style="width: 50%; height: 100%; text-align:center;" alt="Avatar" />
+                <?php  
+                  if(!$options['image']){
+                    echo '<img src="artists/OMEN.png" class="rounded-circle mb-3 center" style="height: 300px; width: 300px; text-align:center;" alt="Avatar">';
+                  } else{
+                    echo '<img src="'.$options["image"].'" class="rounded-circle mb-3 center" style="width: 300px; height: 300px; text-align:center;" alt="Avatar" />';
+                  };
+                ?>      
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="background-color: rgb(255, 255, 255); color: black;">
-                <h4 style="font-weight: bolder; text-align:center;margin-top: 4%; margin-bottom: 4%;">Reagon Bones</h4>
+                <h4 style="font-weight: bolder; text-align:center;margin-top: 4%; margin-bottom: 4%;"><?= $options['signature_name']; ?></h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="background-color: rgb(255, 255, 255); color: black; padding-bottom: 7%">
-                    <form>
+                    <form action='uploaddone.php' method='POST' id='form1'>
                         <div class="form-group" style="text-align: left;">
                           <label for="">Title</label>
-                          <input style="width: 100%;" type="text" class="form-control" id="InputTitle" name="email" placeholder="Title">
+                          <input style="width: 100%;" type="text" class="form-control" id="InputTitle" name="title" placeholder="Title">
                         </div>
                         <div class="form-group">
                           <label for="">Description</label>
-                          <textarea class="form-control" id="InputDescription" rows="4"></textarea>                        
+                          <textarea class="form-control" id="InputDescription" name='desc' rows="4"></textarea>                        
                         </div>
                         <div class="form-group" style="text-align: left;">
                             <label for="">Hashtag</label>
-                            <input style="width: 100%;" type="text" class="form-control" id="Hashtag" name="email" placeholder="Hashtag">
+                            <input style="width: 100%;" type="text" class="form-control" id="Hashtag" name='hashtag' placeholder="separate with commas">
                         </div>  
                     </form>
                 </div>
@@ -133,27 +159,39 @@
                     <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
                   </svg>    
             </div>
-              <h6>Drag and Drop Here </h6>
-              <h6>Or</h6>
+             <h6>Upload Here </h6>
+             
+            <form action='uploaddone.php' method='POST' id='form2'>
               <input type="file" id="myfile" name="myfile">
-             <div class="progress" style="margin-bottom: 10%; margin-top:10%">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                aria-valuemin="0" aria-valuemax="100" style="width:60%;">
-                  60% Complete (warning)
+              <input type="text" value='<?php$aid ?>' hidden>
+               <div class="progress" style="margin-bottom: 10%; margin-top:10%">
+                  <!-- <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                  aria-valuemin="0" aria-valuemax="100" style="width:60%;">
+                    60% Complete (warning)
+                  </div> -->
                 </div>
               </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <button type="submit" id="popUpYes" name="login" onclick="location.href = 'individualartist.php';" >Done</button>
-                </div>
-                <div class="col-md-6">
-                    <button type="submit" id="popUpYes" name="login"onclick="location.href = 'individualartist.php';">Cancel</button>
-                </div>
-            </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <button type="submit" id="popUpYes" name="button" onclick="submitForms()" >Done</button>
+                  </div>
+                  <div class="col-md-6">
+                      <button type="submit" id="popUpYes" onclick="submitForms()">Cancel</button>
+                  </div>
+              </div>
+            </form>
         </div>
     </div>
 </div>
+  <script>
+      submitForms = function(){
+          document.getElementById("form1").submit();
+          document.getElementById("form2").submit();
+      }
+  
+
+  </script>
+
     </body>
   </html>
 

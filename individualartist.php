@@ -367,7 +367,10 @@
       </div>
       
       <div id='buttons'>
-        <span><a href=''"uploadart.php">Create</a></span>
+        <?php if(isset($_SESSION['userID']) && $_SESSION['userID'] == $aid){ 
+            echo "<span><a href='uploadart.php?aid=".$aid."'>Create</a></span>";}
+          ?>
+        
         <span class="nav-item" role="presentation">><a class="nav-link active"
           id="ex1-tab-1"
           data-mdb-toggle="tab"

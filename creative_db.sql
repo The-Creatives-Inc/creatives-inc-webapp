@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2023 at 05:33 PM
+-- Generation Time: Mar 03, 2023 at 12:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -99,9 +99,22 @@ CREATE TABLE `comment` (
   `commentID` int(11) NOT NULL,
   `artworkID` int(11) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
-  `datePosted` datetime DEFAULT NULL,
-  `commentMessage` varchar(50) DEFAULT NULL
+  `datePosted` datetime DEFAULT current_timestamp(),
+  `commentMessage` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`commentID`, `artworkID`, `userID`, `datePosted`, `commentMessage`) VALUES
+(1, 2, 2, '2023-03-02 20:47:36', 'Nice work'),
+(2, 2, 2, '2023-03-02 20:49:40', 'Very intersting'),
+(3, 2, 3, '2023-03-02 23:03:48', 'I love this design'),
+(4, 2, 2, '2023-03-02 23:11:26', 'Way to go'),
+(5, 1, 2, '2023-03-02 23:14:39', 'Can i get your contact'),
+(6, 3, 2, '2023-03-02 23:15:13', 'i would like to suppot your marvelous works'),
+(7, 5, 2, '2023-03-02 23:16:14', 'Awesome');
 
 -- --------------------------------------------------------
 
@@ -582,7 +595,6 @@ CREATE TABLE `users` (
   `userID` int(11) NOT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
-  `address` varchar(50) DEFAULT NULL,
   `image` varchar(20) DEFAULT NULL,
   `passcode` varchar(255) DEFAULT NULL,
   `account_number` int(11) DEFAULT NULL,
@@ -596,18 +608,18 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `phone_number`, `email`, `address`, `image`, `passcode`, `account_number`, `countryID`, `date_joined`, `isAdmin`, `fieldID`) VALUES
-(1, '0209246449', 'trodneyu@gamil.com', '1 University Drive, Berekuso', 'artists/ewurama.jpg', '123', 1234567890, 4, '2023-02-22', 0, 1),
-(2, '020202020', 'rey@gmail.com', '23 University Drive', 'artists/ewurama.jpg', '456', 1734567890, 70, '2023-02-05', 0, 2),
-(3, '0772111265', 'cliff@gmail.com', '23 blank street', 'artists/pic1.jpg', '000', 76767670, 10, '2023-01-29', 1, 2),
-(4, '0773538333', 'eun@gmail.com', '54 Rooiport Street', 'artists/i2.jpg', '789', 123456767, 23, '2022-12-01', 0, 3),
-(6, '055345678', 'other@gmail.com', '1 Chasside Ave', '', '111', 12323230, 2, '2023-02-05', 0, 1),
-(7, '0546396053', 'vivianaboagye04@gmail.com', '2333344', '', 'artists/piggy.jpg', 0, 1, NULL, 0, 1),
-(8, '55679', 'lekanestyve@gmail.com', 'G 223/2 Money T street, Accra', '', '$2y$10$WUgpIC9mplSEUG8M1qoP5uSJ54PIVQARpQDZUg5qUlejT.Tr9D/4y', 0, 1, NULL, 0, 1),
-(9, '4444444', 'reynolds.boakye@ashesi.edu.gh', 'G233/2 La-Accra, Ghana', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 1, NULL, 0, 1),
-(10, '4444444', 'reynolds.boakye@ashesi.edu.gh', 'G233/2 La-Accra, Ghana', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 19, NULL, 0, 1),
-(11, '4444444', 'reynolds.boakye@ashesi.edu.gh', 'G233/2 La-Accra, Ghana', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 19, NULL, 0, 1),
-(12, '4444444', '', 'G233/2 La-Accra, Ghana', '', '', 0, 19, '2023-02-26', 0, 1);
+INSERT INTO `users` (`userID`, `phone_number`, `email`, `image`, `passcode`, `account_number`, `countryID`, `date_joined`, `isAdmin`, `fieldID`) VALUES
+(1, '0209246449', 'trodneyu@gamil.com', 'artists/ewurama.jpg', '123', 1234567890, 4, '2023-02-22', 0, 2),
+(2, '020202020', 'rey@gmail.com', 'artists/ewurama.jpg', '456', 1734567890, 70, '2023-02-05', 0, 2),
+(3, '0772111265', 'cliff@gmail.com', 'artists/pic1.jpg', '000', 76767670, 10, '2023-01-29', 1, 2),
+(4, '0773538333', 'eun@gmail.com', 'artists/i2.jpg', '789', 123456767, 23, '2022-12-01', 0, 3),
+(6, '055345678', 'other@gmail.com', '', '111', 12323230, 2, '2023-02-05', 0, 4),
+(7, '0546396053', 'vivianaboagye04@gmail.com', '', 'artists/piggy.jpg', 0, 1, NULL, 0, 1),
+(8, '55679', 'lekanestyve@gmail.com', '', '$2y$10$WUgpIC9mplSEUG8M1qoP5uSJ54PIVQARpQDZUg5qUlejT.Tr9D/4y', 0, 1, NULL, 0, 1),
+(9, '4444444', 'reynolds.boakye@ashesi.edu.gh', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 1, NULL, 0, 1),
+(10, '4444444', 'reynolds.boakye@ashesi.edu.gh', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 19, NULL, 0, 1),
+(11, '4444444', 'reynolds.boakye@ashesi.edu.gh', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 19, NULL, 0, 1),
+(12, '4444444', '', '', '', 0, 19, '2023-02-26', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -774,7 +786,7 @@ ALTER TABLE `artwork`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `country`

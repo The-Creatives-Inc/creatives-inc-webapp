@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 
 if (isset($_POST['login'])) 
 {
@@ -61,20 +62,27 @@ if (isset($_POST['login']))
                   $_SESSION["userID"] = $userID;
                   $_SESSION["isAdmin"] = $isAdmin;
                   
-                    header("Location: index.php");
+                  if(!isset($_SESSION['page'])){
+                    $location = "location: index.php";
+                  }else{
+                    $location = "Location: ".$_SESSION['page'] ;
+                  }
+                    header($location);
                       // Password is correct, so start a new session
         
                   } else {
-                    
+                    $_SESSION['log-in'] = 'Email or Password is incorrect';
                     header ("location: login.php");
                   }
             } else {
           //redirect to login page
+          
           header("Location: login.php");
           exit();
         }
           } else {
             // redirect to login page
+            $_SESSION['log-in'] = 'Email or Password is incorrect';
             header("Location: login.php");
             exit();
       }

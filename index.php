@@ -220,6 +220,28 @@
       padding: 7% 0;
     }
     
+    ::-webkit-scrollbar {
+      width: 15px;
+      margin: 5px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: black; 
+      /* border: 1px solid white; */
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.9); 
+      border-radius: 20px;
+    }
+    
+    /* .make-scroll {
+      overflow: auto;
+      height: 900px;
+    } */
+    
     /* artworkssss */
     .container .row{
       margin: 5% 0;
@@ -253,8 +275,8 @@
       height:90%;
       position:absolute;
       overflow:hidden;
-      top:0;
-      left:0;
+      top:-3%;
+      left:5%;
       opacity:0;
       background-color:rgba(0,0,0,0.5);
       -webkit-transition:all .4s ease-in-out;
@@ -358,7 +380,7 @@
   
   <div class="main-nav">
     <nav class="nav">
-      <a class="nav-link" href="#top" id='current'>HOME</a>
+      <a class="nav-link" href="#arts" id='current'>HOME</a>
       <a class="nav-link" href="about.php">ABOUT</a>
       <a class="nav-link" href="artist.php">ARTISTS</a>
       <a class="nav-link" href="#last-arrow">CONTACT</a>
@@ -387,8 +409,8 @@
 
   <div id='arts'>
     <div class="container">
-      <div class="body">
-          <div class="slide-container swiper">
+      <!-- <div class="body">
+        <div class="slide-container swiper">
               <div class="slide-content">
                   <div class="card-wrapper swiper-wrapper">
                     
@@ -431,48 +453,9 @@
               <div class="swiper-button-prev swiper-navBtn"></div>
               <div class="swiper-pagination"></div>
           </div>
-        </div>
-    
-      
-      <!-- <div class="row">
-        <div class="col-md-4">
-          <div class="hovereffect">
-            <img src="images/one.png" style="height: 400px; width: 90%; margin:auto;"/>
-            <p>Valeri by Mastermind</p>
-            <div class="overlay">
-              <h2>Valeri</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-4">
-          <div class="hovereffect">
-            <img src="images/two.png" style="height: 400px; width: 90%; margin:auto;"/>
-            <p>Violet by Mastermind</p>
-            <div class="overlay">
-              <h2>Violet</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4">
-          <div class="hovereffect">
-            <img src="images/three.png" style="height: 400px; width: 90%; margin:auto;"/>
-            <p>Ashis by Mastermind</p>
-            <div class="overlay">
-              <h2>Ashis</h2>
-              <a class="info" href="individualartwork.php">link here</a>
-            </div>
-          </div>
         </div> -->
-      </div> 
-    </div>
-    
-    <div>
-    <div class="container">
-      <?php
+        
+        <?php
           require_once('configuration.php');
           
           $query = "SELECT linkID, link, artworkID, artworkTitle, artwork.artistID, dateCreated, artworkDescription, signature_name FROM link INNER JOIN artwork ON linkID = artworkID INNER JOIN artist ON artist.artistID = artwork.artistID";
@@ -483,9 +466,52 @@
               
           }
           
-          
+        ?>
+    
+      <div class="row">
+        <div class="col-md-4">
+          <div class="hovereffect">
+            <img src="<?= $options[0]['link']?>" style="height: 400px; width: 90%; margin:auto;"/>
+            <p><?= $options[0]['artworkTitle']; ?> by <?= $options[0]['signature_name']; ?></p>
+            <div class="overlay">
+              <h2><?= $options[0]['artworkTitle'];?></h2>
+              <p><?= $options[0]['artworkDescription']; ?></p>
+              <a class="info" href="individualartwork.php?uid=<?= $options[0]['artworkID']; ?>">link here</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="hovereffect">
+            <img src="<?= $options[1]['link']?>" style="height: 400px; width: 90%; margin:auto;"/>
+            <p><?= $options[1]['artworkTitle']; ?> by <?= $options[1]['signature_name']; ?></p>
+            <div class="overlay">
+              <h2><?= $options[1]['artworkTitle']; ?></h2>
+              <p><?= $options[1]['artworkDescription']; ?></p>
+              <a class="info" href="individualartwork.php?uid=<?= $options[1]['artworkID']; ?>">link here</a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4">
+          <div class="hovereffect">
+            <img src="<?= $options[2]['link']?>" style="height: 400px; width: 90%; margin:auto;"/>
+            <p>Ashis by Mastermind</p>
+            <div class="overlay">
+              <h2>Ashis</h2>
+              <p><?= $options[2]['artworkDescription']; ?></p>
+              <a class="info" href="individualartwork.php?uid=<?= $options[2]['artworkID']; ?>">link here</a>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+    
+    <div>
+    <div class="container make-scroll">
+      <?php
           // foreach ($options as $option){
-            for ($x = 0; $x < count($options); $x+=4){
+            for ($x = 3; $x < count($options); $x+=4){
       ?>
      
         <div class="row">
@@ -501,44 +527,51 @@
             </div>
           </div>
           
-          <div class="col-md-3">
-            <div class="hovereffect">
-              <img src="<?= $options[$x + 1]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p><?= $options[$x + 1]['artworkTitle']; ?> by <?= $options[$x + 1]['signature_name']; ?> </p>
-              <div class="overlay">
-                <h2><?= $options[$x + 1]['artworkTitle']; ?></h2>
-                <p><?= $options[$x + 1]['artworkDescription']; ?></p>
-                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 1]['artworkID']; ?>">link here</a>
+          <?php
+           if(array_key_exists($x + 1, $options)){?>
+            <div class="col-md-3">
+              <div class="hovereffect">
+                <img src="<?= $options[$x + 1]['link']; ?>" style="height: 200px; width: 100%"/>
+                <p><?= $options[$x + 1]['artworkTitle']; ?> by <?= $options[$x + 1]['signature_name']; ?> </p>
+                <div class="overlay">
+                  <h2><?= $options[$x + 1]['artworkTitle']; ?></h2>
+                  <p><?= $options[$x + 1]['artworkDescription']; ?></p>
+                  <a class="info" href="individualartwork.php?uid=<?= $options[$x + 1]['artworkID']; ?>">link here</a>
+                </div>
+              </div>
+            </div>
+            <? };
+            
+           if(array_key_exists($x + 2, $options)){ ?>
+            <div class="col-md-3">
+              <div class="hovereffect">
+                <img src="<?= $options[$x + 2]['link']; ?>" style="height: 200px; width: 100%"/>
+                <p><?= $options[$x + 2]['artworkTitle']; ?> by <?= $options[$x + 2]['signature_name']; ?> </p>
+                <div class="overlay">
+                  <h2><?= $options[$x + 2]['artworkTitle']; ?></h2>
+                  <p><?= $options[$x + 2]['artworkDescription']; ?></p>
+                  <a class="info" href="individualartwork.php?uid=<?= $options[$x + 2]['artworkID']; ?>">link here</a>
+                </div>
+              </div>
+            </div>
+          <?php };
+            
+            if(array_key_exists($x + 3, $options)){ ?>
+            <div class="col-md-3">
+              <div class="hovereffect">
+                <img src="<?= $options[$x + 3]['link']; ?>" style="height: 200px; width: 100%"/>
+                <p><?= $options[$x + 3]['artworkTitle']; ?> by <?= $options[$x + 3]['signature_name']; ?> </p>
+                <div class="overlay">
+                  <h2><?= $options[$x + 3]['artworkTitle']; ?></h2>
+                  <p><?= $options[$x + 3]['artworkDescription']; ?></p>
+                  <a class="info" href="individualartwork.php?uid=<?= $options[$x + 3]['artworkID']; ?>">link here</a>
+                </div>
               </div>
             </div>
           </div>
-          
-          <div class="col-md-3">
-            <div class="hovereffect">
-              <img src="<?= $options[$x + 2]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p><?= $options[$x + 2]['artworkTitle']; ?> by <?= $options[$x + 2]['signature_name']; ?> </p>
-              <div class="overlay">
-                <h2><?= $options[$x + 2]['artworkTitle']; ?></h2>
-                <p><?= $options[$x + 2]['artworkDescription']; ?></p>
-                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 2]['artworkID']; ?>">link here</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-3">
-            <div class="hovereffect">
-              <img src="<?= $options[$x + 3]['link']; ?>" style="height: 200px; width: 100%"/>
-              <p><?= $options[$x + 3]['artworkTitle']; ?> by <?= $options[$x + 3]['signature_name']; ?> </p>
-              <div class="overlay">
-                <h2><?= $options[$x + 3]['artworkTitle']; ?></h2>
-                <p><?= $options[$x + 3]['artworkDescription']; ?></p>
-                <a class="info" href="individualartwork.php?uid=<?= $options[$x + 3]['artworkID']; ?>">link here</a>
-              </div>
-            </div>
-          </div>
-        </div>
       
       <?php
+         }
          }
       ?>  
       </div>

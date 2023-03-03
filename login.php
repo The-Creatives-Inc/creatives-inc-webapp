@@ -1,5 +1,10 @@
 <?php
   session_start(); // Session starts here.
+
+  if(isset($_SESSION['userID'])){
+    unset($_SESSION['userID']);
+  }
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -116,9 +121,9 @@
     
     <!---- Initializing Session for successful registration --->
     <?php
-        if (!empty($_SESSION['success'])) {
-         echo ("<p style='color: green; text-align: center;'>".$_SESSION['success']."</p>");
-         unset($_SESSION['success']);
+        if (!empty($_SESSION['log-in'])) {
+         echo ("<p style='color: red; text-align: center;'>".$_SESSION['log-in']."</p>");
+         unset($_SESSION['log-in']);
         }
     ?>
 

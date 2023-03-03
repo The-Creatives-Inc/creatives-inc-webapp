@@ -43,8 +43,8 @@ if (isset($_POST['comment-submit']))
       }
 
   // Prepare a select statement
-  $sql = "INSERT INTO user_table (user_name, user_pass, user_role, user_status)
-	VALUES ('$user_name', '$encrypted_pass', '1', '1')";
+  // $sql = "INSERT INTO user_table (user_name, user_pass, user_role, user_status)
+	// VALUES ('$user_name', '$encrypted_pass', '1', '1')";
     $sql = "INSERT INTO comment (artworkID, userID, commentMessage) VALUES ('$artworkID', '$id', '$comment')";
     $result = $conn->query($sql);
     

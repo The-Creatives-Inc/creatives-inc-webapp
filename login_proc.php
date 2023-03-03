@@ -36,6 +36,8 @@ if (isset($_POST['login']))
                   $_SESSION["isAdmin"] = $isAdmin;
                   
                   if(isset($_SESSION['page'])){
+                    $location = "location: index.php";
+                  }else{
                     $location = "Location: ".$_SESSION['page'] ;
                     
                   }else{

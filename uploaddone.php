@@ -1,6 +1,10 @@
 
 <?php
 session_start();
+define("SAVED_DIRECTORY", "images/"); 
+$allowed_extensions = array("jpeg", "jpg", "png");
+
+$aid = $_POST["aid"];
 
 if (isset($_POST['button'])) 
 {
@@ -9,63 +13,86 @@ if (isset($_POST['button']))
       $title = $_POST['title'];
       $hashtag = $_POST['hashtag'];
       $desc = $_POST["desc"];
+      $img = $_FILES['myfile'];
+      $uploaded_file_name = $_FILES['myfile']['name'];
+      $uploaded_file_size = $_FILES['myfile']['size'];
+      $uploaded_file_tmp  = $_FILES['myfile']['tmp_name'];
+      $uploaded_file_type = $_FILES['myfile']['type'];
       
-      echo $title;
+      $file_compositions = explode('.', $uploaded_file_name);
+      $file_ext = strtolower(end($file_compositions));
+           
+
+      if (!$title || !$desc || !$img){
+        $_SESSION['wcomment'] = "one or more fields is/are empty";
+        header("Location: uploadart.php?aid=".$aid);
+        exit();
+      }
       
-//       if(empty($_SESSION['userID'])){
-//         $_SESSION['wcomment'] = "Login first";
-//         header("Location: individualartwork.php?uid=".$artworkID);
-//         exit();
-//       }
-//       if (!$comment){
-//         $_SESSION['wcomment'] = "Comment is empty";
-//         header("Location: individualartwork.php?uid=".$artworkID);
-//         exit();
-//       }
+      if(in_array($file_ext, $allowed_extensions) === false){
+        $_SESSION['wcomment'] = "Extension not allowed";
+		header("Location: uploadart.php?aid=".$aid);
+        exit();
+      }
       
     
-//     // database connection parameters
-//     $servername = "localhost";
-//     $username = "root";
-//     $db_password = "";
-//     $dbname = "creative_db";
+    // database connection parameters
+    $servername = "localhost";
+    $username = "root";
+    $db_password = "";
+    $dbname = "creative_db";
 
-//       // Create connection
-//       $conn = new mysqli($servername, $username, $db_password, $dbname);
+      // Create connection
+      $conn = new mysqli($servername, $username, $db_password, $dbname);
       
-//       // Check connection
-//       if ($conn->connect_error) {
-//         //stop executing the code and echo error
-//         echo ("Connection failed: " . $conn->connect_error);
+      // Check connection
+      if ($conn->connect_error) {
+        //stop executing the code and echo error
+        echo ("Connection failed: " . $conn->connect_error);
+        $_SESSION['wcomment'] = "Connection error";
+        header("Location: uploadart.php?aid=".$aid);
+        exit();
     
-//         header("Location: individualartwork.php?uid=".$artworkID);
-//         exit();
+      }
+
+  // Prepare a select statement
+
+    $sql1 = "INSERT INTO artwork (artworkTitle, artistID, fieldID, artworkDescription, quantity, price, `status`) 
+    VALUES ('$title', '$aid', 2, '$desc', 0, 0, 0)";
     
-//       }
-
-//   // Prepare a select statement
-//   $sql = "INSERT INTO user_table (user_name, user_pass, user_role, user_status)
-// 	VALUES ('$user_name', '$encrypted_pass', '1', '1')";
-//     $sql = "INSERT INTO comment (artworkID, userID, commentMessage) VALUES ('$artworkID', '$id', '$comment')";
-//     $result = $conn->query($sql);
+    $result1 = $conn->query($sql1);
+    $artworkID = $conn->insert_id;
+    $sub_name = $aid.'-'.$uploaded_file_name;
+    $saved_file_name = "images/".$sub_name;
     
-//     if ($result === TRUE) {
-//         $_SESSION['comment'] = "Comment added successfully";
-// 		header("Location: individualartwork.php?uid=".$artworkID);
-//         exit();
+    $sql2 = "INSERT INTO link (linkID, link) VALUES ('$artworkID', '$saved_file_name')";
+    
+    $sql3 = "INSERT INTO artworklikes (artworkID, numLikes) VALUES ('$artworkID', 0)";
+    
+    
+    
+    $result2 = $conn->query($sql2);
+    $result3 = $conn->query($sql3);
+    
+    if ($result1 === TRUE && $result2 === TRUE && $result3 === TRUE) {
+        $_SESSION['comment'] = "Artwork added successfully";
+        move_uploaded_file($uploaded_file_tmp, SAVED_DIRECTORY.$sub_name);
+        
+		header("Location: individualartist.php?aid=".$aid);
+        exit();
 
-// 	} else {
-// 		$_SESSION['wcomment'] = "Encountered an error";
-// 		header("Location: individualartwork.php?uid=".$artworkID);
-//         exit();
-// 	}
+	} else {
+		$_SESSION['wcomment'] = "Encountered an error";
+		header("Location: uploadart.php?aid=".$aid);
+        exit();
+	}
 
-// 	//close database connection
-// 	$conn->close();
+	//close database connection
+	$conn->close();
 } 
 else {
     // redirect to login page
-    $location = 'individualartist.php?aid='.$_POST['aid'];
+    $location = 'individualartist.php?aid='.$aid;
     header("Location: ".$location);
     exit();
 }

@@ -10,28 +10,7 @@ if (isset($_POST['end'])) {
      header ("Location: signup-final.php");
   } else {
   
-      // $servername = "localhost";
-      // $username = "root";
-      // $db_password = "";
-      // $dbname = "creative_db";
-    
-      // database connection parameters
-      $servername = "localhost";
-      $username = "root";
-      // $db_password = "creativeS@23";
-      $db_password = "";
-      $dbname = "creative_db";
-    
-      // Create connection
-      $conn = mysqli_connect($servername, $username, $db_password, $dbname);
-      // Check connection
-      if ($conn->connect_error) {
-        //stop executing the code and echo error
-        echo ("Connection failed: " . $conn->connect_error);
-    
-        header("Location: signup-final.php");
-    
-      }
+      require_once("configuration.php");
        
       //collect data from the sessions
       $phone_number = $_SESSION['post']['number'];

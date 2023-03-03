@@ -18,11 +18,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
-    <!-- MDB -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
-      rel="stylesheet">
-    
     <style>
         body{
             background: #000000;
@@ -156,7 +151,7 @@
               margin-bottom: 20px;
             }
             
-            #buttons span{
+            #myTab span{
               display: inline-block;
               background-color: white;
               border-radius: 10px;
@@ -164,15 +159,15 @@
               margin: 0 20px 50px 0;
             }
             
-            #buttons span:hover{
+            #myTab span:hover{
               background-color: black;  
             }
             
-            #buttons span a{
+            #myTab span a{
               color: black;
             }
             
-            #buttons span a:hover{
+            #myTab span a:hover{
               color:#DF9322;
               text-decoration: none;
             }
@@ -344,7 +339,12 @@
     <div id='rec'>
       <!-- for the colored-box -->
     </div>
-    
+        <?php
+        if (!empty($_SESSION['comment'])) {
+            echo ("<p style='color: green; text-align: center;'>".$_SESSION['comment']."</p>");
+            unset($_SESSION['comment']);
+           }
+        ?>
     <?php
       require_once('configuration.php');
       $aid = $_GET['aid'];
@@ -366,22 +366,36 @@
         We unite artists, collectors, and blockchain technology in service of groundbreaking artwork and remarkable experiences.</p>
       </div>
       
-      <div id='buttons'>
+      <div role="tablist" id='myTab'>
         <?php if(isset($_SESSION['userID']) && $_SESSION['userID'] == $aid){ 
             echo "<span><a href='uploadart.php?aid=".$aid."'>Create</a></span>";}
           ?>
         
-        <span class="nav-item" role="presentation">><a class="nav-link active"
-          id="ex1-tab-1"
-          data-mdb-toggle="tab"
-          href="#ex1-tabs-1"
-          role="tab"
-          aria-controls="ex1-tabs-1"
-          aria-selected="true">verified</a>
+        <span class="nav-item" role="presentation">
+          <a 
+            id='home-tab' 
+            data-toggle='tab'
+            href='#home' 
+            role='tab' 
+            aria-controls='home'
+            aria-selected='true'>verified</a>
         </span>
         <?php if($_SESSION["isAdmin"]==1 || isset($_SESSION['userID']) && $_SESSION['userID'] == $aid){ 
-          echo "<span class='nav-item' role='presentation'>><a class='nav-link' id='ex1-tab-2' data-mdb-toggle='tab' href='#ex1-tabs-2'
-          role='tab' aria-controls='ex1-tabs-2' aria-selected='false'>unverified</a></span>";}
+          echo "<span class='nav-item' role='presentation'><a 
+          id='profile-tab' 
+          data-toggle='tab'
+          href='#profile' 
+          role='tab' 
+          aria-controls='profile'
+          aria-selected='false'>unverified</a></span>";
+          
+          echo "<span class='nav-item' role='presentation'><a 
+          id='last-tab' 
+          data-toggle='tab'
+          href='#last' 
+          role='tab' 
+          aria-controls='last'
+          aria-selected='false'>disapproved</a></span>"; }
         ?>
       </div>
       
@@ -442,9 +456,9 @@
       
         </div>
         
-        <div class="col-md-8 col-sm-8">
+        <div class="col-md-8 col-sm-8 tab-content" id="myTabContent">
           <!-- 1 -->
-          <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <?php
    
               $query1 = "SELECT artworkID, link, artworkTitle FROM artwork INNER JOIN link ON link.linkID = artwork.artworkID 
@@ -480,7 +494,7 @@
           </div>
           
           <!-- 2 -->
-          <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <?php
               $query2 = "SELECT artworkID, link, artworkTitle FROM artwork INNER JOIN link ON link.linkID = artwork.artworkID 
               INNER JOIN artist ON artwork.artistID = artist.artistID WHERE artist.artistID='$aid' AND artwork.status = 0";
@@ -501,7 +515,39 @@
                 <div class="next-inside">
                   <div class="">
                     <p><?= $options2[$z]['artworkTitle'];?></p>
-                    <p class='edit'><?= $option2['signature_name']; ?></p>
+                    <p class='edit'><?= $options['signature_name']; ?></p>
+                  </div>
+                </div> 
+              </div>
+            
+            <?php }} ?> 
+          
+          </div>
+          
+          
+          <!-- 3 -->
+          <div class="tab-pane fade" id="last" role="tabpanel" aria-labelledby="last-tab">
+            <?php
+              $query3 = "SELECT artworkID, link, artworkTitle FROM artwork INNER JOIN link ON link.linkID = artwork.artworkID 
+              INNER JOIN artist ON artwork.artistID = artist.artistID WHERE artist.artistID='$aid' AND artwork.status = 2";
+              
+              $result3 = $conn->query($query3);
+              
+              if($result3->num_rows > 0){
+                  $options3 = mysqli_fetch_all($result3, MYSQLI_ASSOC);
+              }
+              
+              if($result3->num_rows){
+              
+              for ($w = 0; $w < count($options3); $w++){ 
+            ?>
+              <div class="inside col-md-4 col-sm-6">
+                <a href="individualartwork.php?uid=<?= $options1[$w]['artworkID'];?>"><img src="<?= $options1[$w]['link']; ?>" style="height: 180px; width: 200px"> <br></a>
+                
+                <div class="next-inside">
+                  <div class="">
+                    <p><?= $options3[$w]['artworkTitle'];?></p>
+                    <p class='edit'><?= $option3['signature_name']; ?></p>
                   </div>
                 </div> 
               </div>

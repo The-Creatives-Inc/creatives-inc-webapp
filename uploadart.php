@@ -1,9 +1,9 @@
 <?php
   session_start(); // Session starts here.
-  $aid = $_GET['aid'];
-  if(!isset($_SESSION['userID']) && $_SESSION['userID'] =! $aid){
-    $location = 'individualartist.php?uid='.$_SESSION['aid'];
-    header("location: ".$location);
+
+  if(!isset($_SESSION['userID']) && ( !isset($_GET['aid']) || $_SESSION['userID'] =! $aid)){
+    header("location: artist.php");
+    exit();
   }
 ?>
 
@@ -45,7 +45,7 @@
           
           #popUpYes {
             background-color: rgb(255, 255, 255);
-            color: #000000;
+            color: black;
           }
           
           #popUpYes:hover {
@@ -56,21 +56,21 @@
           #InputTitle{
             border-radius: 10px;
             background-color: black;
-            color: white;
+            color: black;
             text-align: center;
           }
 
           #InputDescription{
             border-radius: 10px;
             background-color: black;
-            color: white;
+            color: black;
             text-align: center;
           }
 
           #Hashtag{
             border-radius: 10px;
             background-color: black;
-            color: white;
+            color: black;
             text-align: center;
           }
 
@@ -95,6 +95,38 @@
             padding-left: 20%;
           }
           
+          .row{
+            display: block;
+            width: 70%;
+            margin: auto;
+          }
+          
+          #Hashtag, #InputDescription, #InputTitle{
+            background-color: white;
+          }
+          
+          h4, label, h6{
+            color: white;
+            margin-bottom: 20px;
+          }
+          
+          .col-md-6{
+            margin: 20px 0;
+            padding: 0;
+            width: 40px;
+          }
+          
+          .buttonss{
+            display: flex;
+            margin: auto;
+            width: 100%;
+          }
+          
+          input#myfile{
+            color: white;
+            margin: auto;
+            
+          }
     </style>
 
     <title>Login</title>
@@ -102,9 +134,10 @@
   <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 columnone" style="background-color: white; color: black;">
+        <div class="columnone" style="background-color: black; color: black;">
           <?php
             require_once('configuration.php');
+            $aid = $_GET['aid'];
             $query = "SELECT `image`, signature_name FROM artist INNER JOIN users ON artistID = userID WHERE artistID = '$aid'";
             
             $result = $conn->query($query);
@@ -115,7 +148,7 @@
             
           ?>
             <div class="row">
-                <div class="col-md-12" style="background-color: rgb(255, 255, 255); color: black;">
+                <div class="col-md-12" style="background-color: black; color: black;">
                 <?php  
                   if(!$options['image']){
                     echo '<img src="artists/OMEN.png" class="rounded-circle mb-3 center" style="height: 300px; width: 300px; text-align:center;" alt="Avatar">';
@@ -126,72 +159,63 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="background-color: rgb(255, 255, 255); color: black;">
+                <div class="col-md-12" style="background-color: black; color: black;">
                 <h4 style="font-weight: bolder; text-align:center;margin-top: 4%; margin-bottom: 4%;"><?= $options['signature_name']; ?></h4>
                 </div>
             </div>
+            <?php
+                   if (!empty($_SESSION['wcomment'])) {
+                    echo ("<p style='color: red; text-align: center;'>".$_SESSION['wcomment']."</p>");
+                    unset($_SESSION['wcomment']);
+                    }
+                   
+                ?>
             <div class="row">
-                <div class="col-md-12" style="background-color: rgb(255, 255, 255); color: black; padding-bottom: 7%">
-                    <form action='uploaddone.php' method='POST' id='form1'>
+                <div class="col-md-12" style="background-color: black; color: black; padding-bottom: 7%">
+                
+                    <form action='uploaddone.php' method='POST' enctype="multipart/form-data">
                         <div class="form-group" style="text-align: left;">
                           <label for="">Title</label>
                           <input style="width: 100%;" type="text" class="form-control" id="InputTitle" name="title" placeholder="Title">
                         </div>
                         <div class="form-group">
                           <label for="">Description</label>
-                          <textarea class="form-control" id="InputDescription" name='desc' rows="4"></textarea>                        
+                          <textarea class="form-control" id="InputDescription" name='desc' rows="3"></textarea>                        
                         </div>
                         <div class="form-group" style="text-align: left;">
                             <label for="">Hashtag</label>
                             <input style="width: 100%;" type="text" class="form-control" id="Hashtag" name='hashtag' placeholder="separate with commas">
                         </div>  
+                        <div class="columnone" style="text-align: center;">
+                        <h4 style="margin-bottom: 3%;">Add Document</h4>
+                            <div class="upload-section" style="margin-bottom: 3%;">
+                              <div class="icon" style="margin-bottom: 5%; margin-top:5%">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="white" class="bi bi-upload" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                  </svg>    
+                              </div>
+                            </div>
+                            <h6>Upload Here </h6>
+                            <input type="file" id="myfile" name="myfile">
+                            <input type="text" value='<?= $aid ?>' name='aid' hidden>
+                    
+                            <div class="row buttonss">
+                                <div class="col-md-6">
+                                    <button type="submit" id="popUpYes" name="button" value='yes'>Done</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" id="popUpYes">Cancel</button>
+                                </div>
+                            </div>     
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     
-        <div class="col-md-8 columnone" style="text-align: center;">
-        <h4 style="margin-bottom: 3%;">Add Document</h4>
-            <div class="upload-section" style="margin-bottom: 3%;">
-            <div class="icon" style="margin-bottom: 5%; margin-top:5%">
-                <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                  </svg>    
-            </div>
-             <h6>Upload Here </h6>
-             
-            <form action='uploaddone.php' method='POST' id='form2'>
-              <input type="file" id="myfile" name="myfile">
-              <input type="text" value='<?php$aid ?>' hidden>
-               <div class="progress" style="margin-bottom: 10%; margin-top:10%">
-                  <!-- <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                  aria-valuemin="0" aria-valuemax="100" style="width:60%;">
-                    60% Complete (warning)
-                  </div> -->
-                </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <button type="submit" id="popUpYes" name="button" onclick="submitForms()" >Done</button>
-                  </div>
-                  <div class="col-md-6">
-                      <button type="submit" id="popUpYes" onclick="submitForms()">Cancel</button>
-                  </div>
-              </div>
-            </form>
-        </div>
     </div>
 </div>
-  <script>
-      submitForms = function(){
-          document.getElementById("form1").submit();
-          document.getElementById("form2").submit();
-      }
-  
-
-  </script>
-
     </body>
   </html>
 

@@ -13,7 +13,7 @@ if (isset($_POST['end'])) {
       //database connection parameters
       $servername = "localhost";
       $username = "root";
-      $db_password = "";
+      $db_password = "creativeS@23";
       $dbname = "creative_db";
     
       // Create connection

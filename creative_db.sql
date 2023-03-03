@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2023 at 12:47 PM
+-- Generation Time: Mar 03, 2023 at 12:54 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,6 +92,24 @@ INSERT INTO `artwork` (`artworkID`, `artworkTitle`, `artistID`, `fieldID`, `artw
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `artworklikes`
+--
+
+CREATE TABLE `artworklikes` (
+  `artworkID` int(11) NOT NULL,
+  `numLikes` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `artworklikes`
+--
+
+INSERT INTO `artworklikes` (`artworkID`, `numLikes`) VALUES
+(1, 12);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `comment`
 --
 
@@ -99,22 +117,9 @@ CREATE TABLE `comment` (
   `commentID` int(11) NOT NULL,
   `artworkID` int(11) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
-  `datePosted` datetime DEFAULT current_timestamp(),
-  `commentMessage` varchar(100) DEFAULT NULL
+  `datePosted` datetime DEFAULT NULL,
+  `commentMessage` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`commentID`, `artworkID`, `userID`, `datePosted`, `commentMessage`) VALUES
-(1, 2, 2, '2023-03-02 20:47:36', 'Nice work'),
-(2, 2, 2, '2023-03-02 20:49:40', 'Very intersting'),
-(3, 2, 3, '2023-03-02 23:03:48', 'I love this design'),
-(4, 2, 2, '2023-03-02 23:11:26', 'Way to go'),
-(5, 1, 2, '2023-03-02 23:14:39', 'Can i get your contact'),
-(6, 3, 2, '2023-03-02 23:15:13', 'i would like to suppot your marvelous works'),
-(7, 5, 2, '2023-03-02 23:16:14', 'Awesome');
 
 -- --------------------------------------------------------
 
@@ -502,9 +507,17 @@ INSERT INTO `individual_visitor` (`visitorID`, `f_name`, `l_name`, `gender`, `da
 
 CREATE TABLE `like` (
   `artworkID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL,
-  `dateLiked` datetime DEFAULT NULL
+  `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `like`
+--
+
+INSERT INTO `like` (`artworkID`, `userID`) VALUES
+(1, 2),
+(1, 3),
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -609,17 +622,31 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `phone_number`, `email`, `image`, `passcode`, `account_number`, `countryID`, `date_joined`, `isAdmin`, `fieldID`) VALUES
-(1, '0209246449', 'trodneyu@gamil.com', 'artists/ewurama.jpg', '123', 1234567890, 4, '2023-02-22', 0, 2),
+(1, '0209246449', 'trodneyu@gamil.com', 'artists/ewurama.jpg', '123', 1234567890, 4, '2023-02-22', 0, 1),
 (2, '020202020', 'rey@gmail.com', 'artists/ewurama.jpg', '456', 1734567890, 70, '2023-02-05', 0, 2),
 (3, '0772111265', 'cliff@gmail.com', 'artists/pic1.jpg', '000', 76767670, 10, '2023-01-29', 1, 2),
 (4, '0773538333', 'eun@gmail.com', 'artists/i2.jpg', '789', 123456767, 23, '2022-12-01', 0, 3),
-(6, '055345678', 'other@gmail.com', '', '111', 12323230, 2, '2023-02-05', 0, 4),
+(6, '055345678', 'other@gmail.com', '', '111', 12323230, 2, '2023-02-05', 0, 1),
 (7, '0546396053', 'vivianaboagye04@gmail.com', '', 'artists/piggy.jpg', 0, 1, NULL, 0, 1),
 (8, '55679', 'lekanestyve@gmail.com', '', '$2y$10$WUgpIC9mplSEUG8M1qoP5uSJ54PIVQARpQDZUg5qUlejT.Tr9D/4y', 0, 1, NULL, 0, 1),
 (9, '4444444', 'reynolds.boakye@ashesi.edu.gh', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 1, NULL, 0, 1),
 (10, '4444444', 'reynolds.boakye@ashesi.edu.gh', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 19, NULL, 0, 1),
 (11, '4444444', 'reynolds.boakye@ashesi.edu.gh', '', '$2y$10$/HN1OUwkDrJcGk7FLwI5Y.miXpv6LOSAo4KkhiywRcA3jI3oaapq.', 0, 19, NULL, 0, 1),
-(12, '4444444', '', '', '', 0, 19, '2023-02-26', 0, 1);
+(12, '4444444', '', '', '', 0, 19, '2023-02-26', 0, 1),
+(15, '298272727', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$LmwZKWE1GmHx9U9usbkvkOpjviX16A9GK//KOJ7GqJOhDUQvdjJRW', 0, 83, '2023-03-03', 0, 1),
+(16, '+233209246449', 'ti@gmail.com', '', '$2y$10$Mkdbfgzdf0Cv4RBydPgvEewdJoPCOyJHJH5B83izP3qqk4syMwmny', 0, 83, '2023-03-03', 0, 1),
+(17, '+233209246449', 'artist@gmail.com', '', '$2y$10$./mp2/p3OgaXQnFn4JqJCeC2RJu6YpqS8R4Ym3EvRcyEW9Li40C/i', 0, 83, '2023-03-03', 0, 1),
+(18, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$baPaQKIm5aa3NGD/Dnf.5.9VPjmPFsAehySscS19GQQG7eBV3awOe', 0, 245, '2023-03-03', 0, 1),
+(19, '+233209246449', 'ttar@gmail.com', '', '$2y$10$1Mjkomamj.U8R9IA.Mo8FOt2vLljHRlZxhElfGPZ6sRfBh4LvCfN.', 2333222, 83, '2023-03-03', 0, 1),
+(20, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$PGaWo1XKMpzAD3gDZ.gb9eBgOUEqnYW/Gw0OtO/UD2VIxuthyQ7iC', 2333222, 83, '2023-03-03', 0, 1),
+(21, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Cl/58QCwmvEwTXCRpJQzLuffRa9AWubJTk.M.UhpacA0pmEKkGb6.', 44444, 83, '2023-03-03', 0, 1),
+(22, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Cl/58QCwmvEwTXCRpJQzLuffRa9AWubJTk.M.UhpacA0pmEKkGb6.', 44444, 83, '2023-03-03', 0, 1),
+(23, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Cl/58QCwmvEwTXCRpJQzLuffRa9AWubJTk.M.UhpacA0pmEKkGb6.', 44444, 83, '2023-03-03', 0, 1),
+(24, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Cl/58QCwmvEwTXCRpJQzLuffRa9AWubJTk.M.UhpacA0pmEKkGb6.', 44444, 83, '2023-03-03', 0, 1),
+(25, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Cl/58QCwmvEwTXCRpJQzLuffRa9AWubJTk.M.UhpacA0pmEKkGb6.', 44444, 83, '2023-03-03', 0, 1),
+(26, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Cl/58QCwmvEwTXCRpJQzLuffRa9AWubJTk.M.UhpacA0pmEKkGb6.', 44444, 83, '2023-03-03', 0, 1),
+(27, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$1hehC6Qrb.1NlIGp05QxcumfprBxChM1JooUXWptE7nVCOn/T86SG', 2333222, 83, '2023-03-03', 0, 1),
+(28, '+233209246449', 'tinotenda.alfaneti@ashesi.edu.', '', '$2y$10$Q9.OwBRhOrGKx4UxlSFLaOJE8.2pMfT/.zzyX3HCU3I1c6P2TSJ/a', 2333222, 83, '2023-03-03', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -664,6 +691,12 @@ ALTER TABLE `artwork`
   ADD PRIMARY KEY (`artworkID`),
   ADD KEY `fieldID` (`fieldID`),
   ADD KEY `artistID` (`artistID`);
+
+--
+-- Indexes for table `artworklikes`
+--
+ALTER TABLE `artworklikes`
+  ADD UNIQUE KEY `primary key` (`artworkID`);
 
 --
 -- Indexes for table `comment`
@@ -786,7 +819,7 @@ ALTER TABLE `artwork`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -816,7 +849,7 @@ ALTER TABLE `userpurchase`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
@@ -841,6 +874,12 @@ ALTER TABLE `artistsubscriber`
 ALTER TABLE `artwork`
   ADD CONSTRAINT `artwork_ibfk_1` FOREIGN KEY (`fieldID`) REFERENCES `field` (`fieldID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `artwork_ibfk_2` FOREIGN KEY (`artistID`) REFERENCES `artist` (`artistID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `artworklikes`
+--
+ALTER TABLE `artworklikes`
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`artworkID`) REFERENCES `artwork` (`artworkID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comment`

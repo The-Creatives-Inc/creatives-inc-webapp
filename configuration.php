@@ -1,7 +1,7 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $db_password = "";
+    $db_password = "creativeS@23";
     $dbname = "creative_db";
     
     // $servername = "18.168.199.7";

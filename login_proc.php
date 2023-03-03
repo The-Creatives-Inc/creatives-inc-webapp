@@ -8,25 +8,20 @@ if (isset($_POST['login']))
   $userEmail =  $_POST['email'];
   $password = $_POST['password'];
 
-
   // database connection parameters
-  // $dbhost = "localhost";
-  // $dbuser = "root";
-  // $dbpass = "";
+  // $servername = "18.168.199.7";
+  // $username = "root";
+  // $db_password = "creatives@23";
   // $dbname = "creative_db";
   
-    // // database connection parameters
+    // database connection parameters
     $servername = "localhost";
     $username = "root";
-    $db_password = "creativeS@23";
+    $db_password = "";
     $dbname = "creative_db";
 
   // Create connection
-  // $connect = mysql_connect($dbhost, $dbuser, $dbpass) or die("Unable to connect to '$dbhost'");
-  // mysql_select_db($dbname) or die("Could not open the database '$dbname'");
   $conn = new mysqli($servername, $username, $db_password, $dbname);
-
- 
   // Check connection
   if ($conn->connect_error) {
     //stop executing the code and echo error
@@ -62,7 +57,7 @@ if (isset($_POST['login']))
                   $_SESSION["userID"] = $userID;
                   $_SESSION["isAdmin"] = $isAdmin;
                   
-                  if(!isset($_SESSION['page'])){
+                  if(isset($_SESSION['page'])){
                     $location = "location: index.php";
                   }else{
                     $location = "Location: ".$_SESSION['page'] ;

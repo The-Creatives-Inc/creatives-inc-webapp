@@ -254,10 +254,6 @@
       <hr class="new1">
     </div>
 
-
-    <hr class="new1">
-
-
     <div class="container-fluid">
       <?php
                      
@@ -278,20 +274,17 @@
           <div class="col-md-6 alignn">
             <h1 id='title'>
               <span><?= $options['artworkTitle']; ?></span>
-              <span class="material-symbols-outlined">favorite 0</span>
-            </h1>
-            
-            <div class="row" style="margin-top: 5%;">
-              <div class="col-md-6">
-                <a href="like.php"><span id="like-btn" class="material-symbols-outlined">
+              <a href="like.php"><span id="like-btn" class="material-symbols-outlined">
                   favorite <span id="numOfLikes"><?= $options['numLikes']; ?></span>
                   </span></a>
-              </div>
-              
+            </h1>
+            
+            <img src="<?= $options['link']; ?>" style="height: 400px; width: 500px;">
+            
+            <div style="margin-top: 5%; text-align:center;">    
               <p>
                 <?= $options['artworkDescription']; ?> 
               </p>
-
             </div>
           </div>
           

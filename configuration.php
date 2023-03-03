@@ -1,11 +1,11 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $db_password = "creativeS@23";
+    $db_password = "";
     $dbname = "creative_db";
     
     // $servername = "18.168.199.7";
-    // $username = "'ubuntu'@'172.31.9.192'";
+    // $username = "root";
     // $db_password = "creatives@23";
     // $dbname = "creative_db";
   

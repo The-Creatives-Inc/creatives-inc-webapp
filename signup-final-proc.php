@@ -30,19 +30,33 @@ if (isset($_POST['end'])) {
       //collect data from the sessions
       $phone_number = $_SESSION['post']['number'];
       $email = $_SESSION['post']['email'];
-      $address = $_SESSION['post']['address'];
       $image = $_SESSION['post']['image'] == "" ? $_SESSION['post']['image'] : null;
       $password = $_SESSION['post']['password'];
-      $account = $_SESSION['post']['account'] == "" ? $_SESSION['post']['account'] : null;
+      $account = $_SESSION['post']['account'];
       $country = explode("+", $_SESSION['post']['country'])[0];
       
-      $fieldID = settype($_SESSION['post']['field'], "Integer");
+      $fieldID = $_SESSION['post']['field'];
      
-      $sql = "INSERT INTO users(phone_number, email, `address`, `image`, `passcode`, account_number, countryID, fieldID)
-      VALUES ('$phone_number', '$email', '$address', '$image', '$password', '$account', '$country', '$fieldID')";
+      $sql = "INSERT INTO users(phone_number, email, `image`, `passcode`, account_number, countryID, fieldID)
+      VALUES ('$phone_number', '$email', '$image', '$password', '$account', '$country', '$fieldID')";
   
       // check if query worked
       if ($conn->query($sql) === TRUE) {
+
+        $last_id = $conn->insert_id;
+
+
+        if ($_SESSION['post']['user-type'] == 1) {
+
+          $sql1 = "INSERT INTO visitor(visitorID) VALUES ('$last_id')";
+          $sql2 = "INSERT INTO individual_visitor(f_name, l_name, `gender`, `date_of_birth`)
+          VALUES ('$phone_number', '$email', '$image', '$password', '$account', '$country', '$fieldID')";
+
+
+
+
+
+        }
         
           //redirect to homepage
           session_unset();

@@ -2,28 +2,77 @@
 session_start();
 
 // Checking first page values for empty,If it finds any blank field then redirected to first page.
+if ($_SESSION['post']["user-type"] == 1) {
 
-if (isset($_POST['com-submit'])) {
-  if (empty($_POST['org-name']) || empty($_POST['org-description']) || empty($_POST['country']) || empty($_POST['number']) || empty($_POST['address'])) {
-     $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
-  } else {
-  
-    foreach ($_POST as $key => $value) {
-      $_SESSION['post'][$key] = $value;
-    }
-    $_SESSION['post']['image'] = $_POST['image'];
-  
-  } 
-}
-// if (isset(['ind-submit'])) {} 
+  if (isset($_POST['move'])) {
+    if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['number']) || empty($_POST['account']) || empty($_POST['dob']) || empty($_POST['country'])) {
+       $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
+    } else {
+    
+      foreach ($_POST as $key => $value) { 
+        $_SESSION['post'][$key] = $value;
+      }
+      $_SESSION['post']['image'] = $_POST['image'];
+    
+    } 
+  }   else {
+    if(empty($_SESSION['error_3'])) {
+      session_unset();
+      header("location:signup_ind.php");
+    }//redirecting to first page
+  }
 
-else {
-  if(empty($_SESSION['error_3'])) {
-    session_unset();
-    header("location:signup.php");
-  }//redirecting to first page
 }
-?>
+
+if ($_SESSION['post']["user-type"] == 4) {
+
+  if (isset($_POST['com-submit'])) {
+    if (empty($_POST['org-name']) || empty($_POST['org-description']) || empty($_POST['country']) || empty($_POST['number']) || empty($_POST['address'])) {
+       $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
+    } else {
+    
+      foreach ($_POST as $key => $value) {
+        $_SESSION['post'][$key] = $value;
+      }
+      $_SESSION['post']['image'] = $_POST['image'];
+    
+    } 
+  }
+  // if (isset(['ind-submit'])) {} 
+
+  else {
+    if(empty($_SESSION['error_3'])) {
+      session_unset();
+      header("location:signup.php");
+    }//redirecting to first page
+  }
+
+}
+
+if ($_SESSION['post']["user-type"] == 3) {
+
+  if (isset($_POST['next'])) {
+    if (empty($_POST['signature-name']) || empty($_POST['gender']) || empty($_POST['website'])) {
+       $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
+    } else {
+    
+      foreach ($_POST as $key => $value) { 
+        $_SESSION['post'][$key] = $value;
+      }
+    
+    } 
+  }   else {
+    if(empty($_SESSION['error_3'])) {
+      session_unset();
+      header("location:signup_ind.php");
+    }//redirecting to first page
+  }
+
+}
+
+
+  
+  ?>
 
 <!doctype html>
 <html lang="en">
@@ -160,7 +209,7 @@ else {
         <!---- Initializing Session for errors --->
         <?php
             if (!empty($_SESSION['error_3'])) {
-             echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_2']."</p>");
+             echo ("<p style='color: red; text-align: center;'>".$_SESSION['error_3']."</p>");
              unset($_SESSION['error_3']);
             }
         ?>

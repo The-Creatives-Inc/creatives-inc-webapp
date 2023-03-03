@@ -15,7 +15,7 @@ if (isset($_POST['end'])) {
       //collect data from the sessions
       $phone_number = $_SESSION['post']['number'];
       $email = $_SESSION['post']['email'];
-      $image = $_SESSION['post']['image'] == "" ? $_SESSION['post']['image'] : null;
+      $image = $_SESSION['post']['image'];
       $password = $_SESSION['post']['password'];
       $account = $_SESSION['post']['account'];
       $country = explode("+", $_SESSION['post']['country'])[0];

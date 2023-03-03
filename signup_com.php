@@ -200,7 +200,7 @@ if (isset($_POST['next'])){
       ?>
     </span>
 
-    <form action="signup-final.php" method="POST">
+    <form action="signup-final.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Organization name</label>
             <input type="text" name="org-name" class="form-control" placeholder="">

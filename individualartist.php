@@ -431,9 +431,9 @@
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                   <div class="card-body">
-                    <form action="update_proc.php" method="POST">
+                    <form action="update_proc.php" method="POST" enctype="multipart/form-data">
                       <img src="<?= $data_array['image']; ?>" alt="">
-                      <input type="file" class="form-control" accept="image/*" placeholder="Select image"> <br>
+                      <input type="file" id="myfile" accept="image/*" name="myfile"> <br>
                       <label for="">Signature name</label><br>
                       <input type="text" id='artist-name' name="artist-name" value="<?= $data_array['signature_name']; ?>"><br>
                       <label for="">Website</label><br>

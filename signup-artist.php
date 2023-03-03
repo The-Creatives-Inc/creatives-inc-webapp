@@ -6,10 +6,23 @@
        $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
     } else {
     
+      $img = $_FILES['image'];
+
+      $uploaded_file_name = $_FILES['image']['name'];
+      $uploaded_file_size = $_FILES['image']['size'];
+      $uploaded_file_tmp  = $_FILES['image']['tmp_name'];
+      $uploaded_file_type = $_FILES['image']['type'];
+      
+      $file_compositions = explode('.', $uploaded_file_name);
+      $file_ext = strtolower(end($file_compositions));
+
+      $sub_name = $_POST['firstname'].'-'.$uploaded_file_name;
+      $saved_file_name = "images/".$sub_name;
+    
       foreach ($_POST as $key => $value) { 
         $_SESSION['post'][$key] = $value;
       }
-      $_SESSION['post']['image'] = $_POST['image'];
+      $_SESSION['post']['image'] = $saved_file_name;
     
     } 
   }   else {

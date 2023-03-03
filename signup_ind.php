@@ -203,9 +203,9 @@ if (isset($_POST['next'])){
 
     <?php
         if ($_SESSION['post']['user-type'] == 1) {
-         echo ("<form action='signup-final.php' method='POST'>");
+         echo ("<form action='signup-final.php' method='POST' enctype='multipart/form-data'>");
         } else {
-          echo ("<form action='signup-artist.php' method='POST'>");
+          echo ("<form action='signup-artist.php' method='POST' enctype='multipart/form-data'>");
         }
         
     ?>

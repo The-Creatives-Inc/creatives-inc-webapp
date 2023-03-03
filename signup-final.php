@@ -8,11 +8,24 @@ if ($_SESSION['post']["user-type"] == 1) {
     if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['number']) || empty($_POST['account']) || empty($_POST['dob']) || empty($_POST['country'])) {
        $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
     } else {
+
+      $img = $_FILES['image'];
+
+      $uploaded_file_name = $_FILES['image']['name'];
+      $uploaded_file_size = $_FILES['image']['size'];
+      $uploaded_file_tmp  = $_FILES['image']['tmp_name'];
+      $uploaded_file_type = $_FILES['image']['type'];
+      
+      $file_compositions = explode('.', $uploaded_file_name);
+      $file_ext = strtolower(end($file_compositions));
+
+      $sub_name = $_POST['firstname'].'-'.$uploaded_file_name;
+      $saved_file_name = "images/".$sub_name;
     
       foreach ($_POST as $key => $value) { 
         $_SESSION['post'][$key] = $value;
       }
-      $_SESSION['post']['image'] = $_POST['image'];
+      $_SESSION['post']['image'] = $saved_file_name;
     
     } 
   }   else {
@@ -31,10 +44,23 @@ if ($_SESSION['post']["user-type"] == 4) {
        $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
     } else {
     
-      foreach ($_POST as $key => $value) {
+      $img = $_FILES['image'];
+
+      $uploaded_file_name = $_FILES['image']['name'];
+      $uploaded_file_size = $_FILES['image']['size'];
+      $uploaded_file_tmp  = $_FILES['image']['tmp_name'];
+      $uploaded_file_type = $_FILES['image']['type'];
+      
+      $file_compositions = explode('.', $uploaded_file_name);
+      $file_ext = strtolower(end($file_compositions));
+
+      $sub_name = $_POST['org-name'].'-'.$uploaded_file_name;
+      $saved_file_name = "images/".$sub_name;
+    
+      foreach ($_POST as $key => $value) { 
         $_SESSION['post'][$key] = $value;
       }
-      $_SESSION['post']['image'] = $_POST['image'];
+      $_SESSION['post']['image'] = $saved_file_name;
     
     } 
   }
@@ -77,9 +103,23 @@ if ($_SESSION['post']["user-type"] == 2) {
        $_SESSION['error_2'] = "Mandatory fields are missing please fill it again.";
     } else {
     
+      $img = $_FILES['image'];
+
+      $uploaded_file_name = $_FILES['image']['name'];
+      $uploaded_file_size = $_FILES['image']['size'];
+      $uploaded_file_tmp  = $_FILES['image']['tmp_name'];
+      $uploaded_file_type = $_FILES['image']['type'];
+      
+      $file_compositions = explode('.', $uploaded_file_name);
+      $file_ext = strtolower(end($file_compositions));
+
+      $sub_name = $_POST['artist-name'].'-'.$uploaded_file_name;
+      $saved_file_name = "images/".$sub_name;
+    
       foreach ($_POST as $key => $value) { 
         $_SESSION['post'][$key] = $value;
       }
+      $_SESSION['post']['image'] = $saved_file_name;
     
     } 
   }   else {
